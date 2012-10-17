@@ -2,18 +2,18 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
-group :development do
-  gem 'sqlite3'
-  gem 'pry'
-end
-
-group :production do
-  gem 'mysql2'
-end
+gem 'mongoid'
 
 gem 'unicorn'
 gem 'rabl'
 gem 'jquery-rails'
+gem 'rspec-rails'
+gem 'factory_girl'
+gem 'vkontakte_api', '~> 1.0'
+
+group :development do
+  gem 'thin'
+end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
