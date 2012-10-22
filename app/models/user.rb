@@ -4,6 +4,9 @@ class User
 
   field :social,            type: String
   field :social_id,         type: String
+  field :name,              type: String
+  field :male,              type: Boolean
+  field :age,               type: Integer
   field :last_sign_in,      type: DateTime
   field :friends_count,     type: Integer, default: 0
   field :friend_visits,     type: Integer, default: 0
@@ -23,6 +26,8 @@ class User
   field :credit_percent,    type: Integer, default: 10
   field :deposits,          type: Integer, default: 0
   field :deposit_percent,   type: Integer, default: 10
+  field :client_interval,   type: Integer, default: 10
+  field :crime_interval,    type: Integer, default: 10
 
   index({social: 1, social_id: 1}, {unique: true})
 
