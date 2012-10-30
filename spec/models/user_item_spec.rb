@@ -3,7 +3,8 @@ require 'spec_helper'
 describe UserItem do
   before do
     @user = FactoryGirl.create :user
-    @item = FactoryGirl.create :item, reputation_bonus: 100
+    @item2 = FactoryGirl.create :item, reputation_bonus: 100
+    @item = FactoryGirl.create :item, reputation_bonus: 100, upgrade: @item2
   end
   context 'place_item' do
     it 'should put item in place if its free' do
@@ -24,6 +25,15 @@ describe UserItem do
       @user.update_attribute :coins, 10
       @uitem = @user.buy_item @item, :coins
       @user.reload.reputation_bonus.should == 100
+    end
+  end
+  context 'upgrade' do
+    it 'should replace the item' do
+      @user.update_attribute :coins, 10
+      @uitem = @user.buy_item @item, :coins
+      @newitem = @uitem.upgrade
+      @newitem.should be_a UserItem
+      @newitem.item.should == @item2
     end
   end
 end

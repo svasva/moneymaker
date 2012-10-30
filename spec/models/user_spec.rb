@@ -40,39 +40,41 @@ describe User do
         end
       end
 
-      it 'should check requirements - level - not met' do
-        @user.update_attribute :money, 10
-        @item.requirements[:level] = 3
-        @uitem = @user.buy_item(@item, :money)
-        @uitem.should be_false
-      end
+      context 'requirements' do
+        it 'should check requirements - level - not met' do
+          @user.update_attribute :money, 10
+          @item.requirements[:level] = 3
+          @uitem = @user.buy_item(@item, :money)
+          @uitem.should be_false
+        end
 
-      it 'should check requirements - level - met' do
-        @user.update_attribute :money, 10
-        @user.update_attribute :level, 4
-        @item.requirements[:level] = 3
-        @item.save
-        @uitem = @user.buy_item(@item, :money)
-        @uitem.should be_a UserItem
-      end
+        it 'should check requirements - level - met' do
+          @user.update_attribute :money, 10
+          @user.update_attribute :level, 4
+          @item.requirements[:level] = 3
+          @item.save
+          @uitem = @user.buy_item(@item, :money)
+          @uitem.should be_a UserItem
+        end
 
-      it 'should check requirements - item - not met' do
-        @user.update_attribute :money, 10
-        @item2 = FactoryGirl.create :item
-        @item2.requirements[:items] = [ @item.id ]
-        @item2.save
-        @uitem = @user.buy_item(@item2, :money)
-        @uitem.should be_false
-      end
+        it 'should check requirements - item - not met' do
+          @user.update_attribute :money, 10
+          @item2 = FactoryGirl.create :item
+          @item2.requirements[:items] = [ @item.id ]
+          @item2.save
+          @uitem = @user.buy_item(@item2, :money)
+          @uitem.should be_false
+        end
 
-      it 'should check requirements - item - not met' do
-        @user.update_attribute :money, 20
-        @item2 = FactoryGirl.create :item
-        @item2.requirements[:items] = [ @item.id ]
-        @item2.save
-        @uitem = @user.buy_item(@item, :money)
-        @uitem = @user.buy_item(@item2, :money)
-        @uitem2.should be_a UserItem
+        it 'should check requirements - item - not met' do
+          @user.update_attribute :money, 20
+          @item2 = FactoryGirl.create :item
+          @item2.requirements[:items] = [ @item.id ]
+          @item2.save
+          @uitem = @user.buy_item(@item, :money)
+          @uitem = @user.buy_item(@item2, :money)
+          @uitem2.should be_a UserItem
+        end
       end
 
       it 'should give rewards' do

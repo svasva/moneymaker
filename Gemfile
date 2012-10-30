@@ -8,6 +8,7 @@ gem 'unicorn'
 gem 'rabl'
 gem 'jquery-rails'
 gem 'vkontakte_api', '~> 1.0'
+gem 'delayed_job_mongoid'
 
 group :development do
   gem 'thin'

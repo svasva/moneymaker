@@ -8,10 +8,9 @@ class User
   field :male,              type: Boolean
   field :age,               type: Integer
   field :last_sign_in,      type: DateTime
-  field :friends_count,     type: Integer, default: 0
   field :friend_visits,     type: Integer, default: 0
 
-  field :bank_name,         type: String
+  field :bank_name,         type: String,  default: 'Мой банк'
   field :experience,        type: Integer, default: 0
   field :level,             type: Integer, default: 1
   field :reputation,        type: Integer, default: 0
@@ -33,4 +32,5 @@ class User
 
   embeds_many :user_items
   embeds_many :user_contracts
+  has_and_belongs_to_many :friends, class_name: 'User'
 end
