@@ -32,4 +32,5 @@ class User
   index({social: 1, social_id: 1}, {unique: true})
 
   embeds_many :user_items
+  embeds_many :user_contracts
 end

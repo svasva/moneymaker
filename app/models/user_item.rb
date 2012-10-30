@@ -8,7 +8,5 @@ class UserItem
   field :floor,             type: Integer,  default: -1
   field :x,                 type: Integer,  default: -1
   field :y,                 type: Integer,  default: -1
-  field :status,            type: String,   default: ''
-  field :contract_id,       type: Integer
-  field :contract_ends_on,  type: DateTime
+  field :status,            type: String,   default: 'standby'
 end

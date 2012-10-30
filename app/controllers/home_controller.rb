@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_filter :social_auth
 
   def index
-    render text: @user.id
+    render text: current_user.id
   end
 
   def social_auth
@@ -18,6 +18,7 @@ class HomeController < ApplicationController
       end
       @user = User.find_or_create_by(social: @social, social_id: @social_id)
       @user.update_attribute(:last_sign_in, Time.now)
+      set_current_user @user
     rescue => e
       logger.error 'AUTH ERROR: ' + e.message
       render text: 'auth failed'
