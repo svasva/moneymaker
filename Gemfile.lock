@@ -177,7 +177,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   database_cleaner
   delayed_job_mongoid
-  factory_girl
   factory_girl_rails
   jquery-rails
   mongoid

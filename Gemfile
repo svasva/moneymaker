@@ -12,17 +12,13 @@ gem 'delayed_job_mongoid'
 
 group :development do
   gem 'thin'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-end
-
-group :test do
-  gem 'rspec-rails'
-  gem 'factory_girl'
-  gem 'factory_girl_rails'
-  gem 'database_cleaner'
 end
