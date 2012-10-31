@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -32,5 +34,6 @@ class User
 
   embeds_many :user_items
   embeds_many :user_contracts
+  has_many :user_sockets
   has_and_belongs_to_many :friends, class_name: 'User'
 end

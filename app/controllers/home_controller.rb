@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_filter :social_auth
 
   def index
-    render text: current_user.id
+    @socket_id = current_user.user_sockets.create.id
   end
 
   def social_auth

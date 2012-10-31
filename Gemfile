@@ -10,7 +10,7 @@ gem 'jquery-rails'
 gem 'vkontakte_api', '~> 1.0'
 gem 'delayed_job_mongoid'
 
-group :development do
+group :development, :test do
   gem 'thin'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
@@ -18,6 +18,7 @@ group :development do
 end
 
 group :assets do
+  gem 'haml-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'

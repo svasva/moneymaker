@@ -1,0 +1,11 @@
+= javascript_include_tag '//cdn.sockjs.org/sockjs-0.3.min.js'
+:javascript
+  var sjs = new SockJS('http://127.0.0.1:9999/socket');
+  sjs.onopen = function() {
+    $('body').append('socket opened<br>');
+    var data = {token: "#{@socket_id}"};
+    sjs.send(JSON.stringify(data));
+  }
+  sjs.onmessage = function(e) {
+   $('body').append(e.data + "<br>");
+  }
