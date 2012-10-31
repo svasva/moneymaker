@@ -4,11 +4,12 @@ socketserver = (app, server) ->
   db = mongo.createConnection('localhost', 'moneymaker_dev')
   Socket = db.model("user_sockets", new mongo.Schema(any: {}))
   User = db.model("users", new mongo.Schema(any: {}))
+  sockets = {}
 
   db.once 'open', ->
+    Socket.collection.drop()
     sock = sockjs.createServer()
     sock.installHandlers(server, {prefix:'/socket'})
-    sockets = {}
 
     sock.on "connection", (conn) ->
       conn.on "data", (message) ->
@@ -22,7 +23,7 @@ socketserver = (app, server) ->
                 conn.user = user
                 conn.token = data.token
                 sockets[conn.token] = conn
-                conn.write "welcome, #{conn.user.get('social')}##{conn.user.get('social_id')}"
+                conn.write "welcome, #{conn.user.get('social')}##{conn.user.get('social_id')}, sockid: #{conn.token}"
                 console.log "#{conn.user.get('social')} user ##{conn.user.get('social_id')} connected"
                 console.log "connections: " + Object.keys(sockets).length
       conn.on "close", ->
@@ -30,5 +31,6 @@ socketserver = (app, server) ->
         Socket.findByIdAndRemove conn.token, (a, b) -> console.log a, b
         console.log "#{conn.user.get('social')} user ##{conn.user.get('social_id')} disconnected"
         console.log "connections: " + Object.keys(sockets).length
+  sockets
 
 module.exports = socketserver

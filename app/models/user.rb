@@ -36,4 +36,10 @@ class User
   embeds_many :user_contracts
   has_many :user_sockets
   has_and_belongs_to_many :friends, class_name: 'User'
+
+  def send_message(message)
+    user_sockets.each do |sock|
+      HTTParty.post("http://localhost:9999/sock/#{sock.id}", {body: message})
+    end
+  end
 end
