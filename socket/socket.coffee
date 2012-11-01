@@ -13,6 +13,7 @@ socketserver = (app, server) ->
 
     sock.on "connection", (conn) ->
       conn.on "data", (message) ->
+        console.log 'DATA RECEIVED: \n' + message
         data = JSON.parse(message)
         unless conn.token
           Socket.findById data.token, (err, socket) ->
@@ -27,10 +28,11 @@ socketserver = (app, server) ->
                 console.log "#{conn.user.get('social')} user ##{conn.user.get('social_id')} connected"
                 console.log "connections: " + Object.keys(sockets).length
       conn.on "close", ->
-        delete sockets[conn.token]
-        Socket.findByIdAndRemove conn.token, (a, b) -> console.log a, b
-        console.log "#{conn.user.get('social')} user ##{conn.user.get('social_id')} disconnected"
-        console.log "connections: " + Object.keys(sockets).length
+        if conn.token
+          delete sockets[conn.token]
+          Socket.findByIdAndRemove conn.token
+          console.log "#{conn.user.get('social')} user ##{conn.user.get('social_id')} disconnected"
+          console.log "connections: " + Object.keys(sockets).length
   sockets
 
 module.exports = socketserver
