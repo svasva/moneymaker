@@ -1,5 +1,12 @@
+%button#ping
 = javascript_include_tag '//cdn.sockjs.org/sockjs-0.3.min.js'
 :javascript
+  $(document).ready(function(){
+    $('button#ping').click(function(e) {
+      console.log(sjs);
+      sjs.send(JSON.stringify({command: 'ping'}));
+    });
+  });
   var sjs = new SockJS('http://127.0.0.1:9999/socket');
   sjs.onopen = function() {
     $('body').append('socket opened<br>');

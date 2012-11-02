@@ -1,6 +1,7 @@
 socketserver = (app, server) ->
-  sockjs = require('sockjs')
-  mongo = require('mongoose')
+  sockjs = require 'sockjs'
+  mongo = require 'mongoose'
+  rest = require 'restless'
   db = mongo.createConnection('localhost', 'moneymaker_dev')
   Socket = db.model("user_sockets", new mongo.Schema(any: {}))
   User = db.model("users", new mongo.Schema(any: {}))
@@ -15,7 +16,16 @@ socketserver = (app, server) ->
       conn.on "data", (message) ->
         console.log 'DATA RECEIVED: \n' + message
         data = JSON.parse(message)
-        unless conn.token
+        if conn.token and conn.user
+          # authenticated client
+          switch data.command
+            when 'ping'
+              msg = {cmd: 'PING'}
+              rest.post "http://moneymaker.dev/api/users/#{conn.user.id}/send_message", {data: msg}, (err, data) ->
+                console.log "POST http://moneymaker.dev/api/users/#{conn.user.id}/send_message:"
+                console.log err, data
+        else
+          # have to authenticate client
           Socket.findById data.token, (err, socket) ->
             if !socket then conn.write(JSON.stringify(error: 'socket not found: ' + data.token))
             else User.findById socket.get('user_id'), (err, user) ->
