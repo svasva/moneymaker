@@ -10,7 +10,6 @@ gem 'jquery-rails'
 gem 'vkontakte_api', '~> 1.0'
 gem 'delayed_job_mongoid'
 gem 'httparty'
-gem 'activeadmin'
 
 group :development, :test do
   gem 'thin'
