@@ -1,0 +1,12 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{data: {toggle: 'collapse', target: '.nav-collapse'}}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.brand{href: '/admin'} moneymaker
+      .nav-collapse
+        %ul.nav
+          %li= link_to 'Приветствия', admin_greetings_path
+          %li= link_to 'link3', '#link2'

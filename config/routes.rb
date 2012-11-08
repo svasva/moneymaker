@@ -6,7 +6,7 @@ Moneymaker::Application.routes.draw do
       end
     end
   end
-  scope 'admin' do
+  namespace :admin do
     resources :users
     resources :greetings
     resources :items

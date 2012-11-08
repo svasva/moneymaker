@@ -1,0 +1,11 @@
+ru:
+  common:
+    edit: Изменить
+    delete: Удалить
+    back: Назад
+    new: Добавить
+    confirm: Уверены?
+  greeting:
+    caption: Приветствие
+    text: Текст
+    weight: Вес

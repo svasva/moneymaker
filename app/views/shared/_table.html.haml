@@ -1,0 +1,23 @@
+%table.table
+  %thead
+    - collection_fields(collection).each do |field, data|
+      %th= t "#{resource_class.to_s.downcase}.#{field}"
+    %th
+      .pull-right
+        %a.btn.btn-primary{href: new_resource_url}
+          %i.icon-plus.icon-white
+          = t 'common.new'
+  %tbody
+    - collection.each do |resource|
+      %tr
+        - resource_attrs(resource).each do |name, value|
+          %td
+            %a{href: edit_resource_url(resource)}= value
+        %td
+          .btn-group.pull-right
+            %a.btn.btn-small{href: edit_resource_url(resource)}
+              %i.icon-pencil
+              = t 'common.edit'
+            %a.btn.btn-small.btn-danger{href: resource_url(resource), data: {method: 'delete', confirm: t('common.confirm')}}
+              %i.icon-trash.icon-white
+              = t 'common.delete'
