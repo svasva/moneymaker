@@ -1,4 +1,6 @@
-%button#ping
+= @greeting
+%button#ping ping
+= javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js'
 = javascript_include_tag '//cdn.sockjs.org/sockjs-0.3.min.js'
 :javascript
   $(document).ready(function(){
@@ -7,7 +9,7 @@
       sjs.send(JSON.stringify({command: 'ping'}));
     });
   });
-  var sjs = new SockJS('http://127.0.0.1:9999/socket');
+  var sjs = new SockJS('http://10.0.0.100:9999/socket');
   sjs.onopen = function() {
     $('body').append('socket opened<br>');
     var data = {token: "#{@socket_id}"};
