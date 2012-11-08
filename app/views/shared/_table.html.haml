@@ -12,7 +12,7 @@
       %tr
         - resource_attrs(resource).each do |name, value|
           %td
-            %a{href: edit_resource_url(resource)}= value
+            %a{href: resource_url(resource)}= value
         %td
           .btn-group.pull-right
             %a.btn.btn-small{href: edit_resource_url(resource)}

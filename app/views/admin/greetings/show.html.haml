@@ -1,8 +1,10 @@
-%h3
+%h2
   = t(resource_class.to_s.downcase + '.caption') + ' # ' + resource.id.to_s
-- resource_attrs(resource).each do |name, value|
-  #{name} = #{value}
-  %br
+%p.lead
+  - resource_attrs(resource).each do |name, value|
+    %strong= t("#{resource_class.to_s.downcase}.#{name}") + ':'
+    = value
+    %br
 .btn-group
   %a.btn.btn-small{href: collection_url}
     %i.icon-arrow-left
