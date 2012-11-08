@@ -10,6 +10,7 @@ Moneymaker::Application.routes.draw do
     resources :users
     resources :greetings
     resources :items
+    root to: 'greetings#index'
   end
   root to: 'home#index'
 end
