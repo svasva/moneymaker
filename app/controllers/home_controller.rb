@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   before_filter :social_auth
 
   def index
+    @greeting = Greeting.all.sample
     @socket_id = current_user.user_sockets.create.id
   end
 
