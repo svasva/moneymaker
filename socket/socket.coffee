@@ -9,6 +9,7 @@ socketserver = (app, server) ->
   sockets = {}
 
   onConnect = (conn) ->
+    conn.write 'test'
     conn.on "data", (message) ->
       console.log 'DATA RECEIVED: \n' + message
       data = JSON.parse(message)
