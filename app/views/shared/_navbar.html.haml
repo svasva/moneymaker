@@ -8,5 +8,7 @@
       %a.brand{href: '/admin'} moneymaker
       .nav-collapse
         %ul.nav
-          %li= link_to 'Приветствия', admin_greetings_path
+          %li{class: ("active" if params[:controller] == 'admin/greetings')}
+            %a{href: admin_greetings_path}
+              = t 'greeting.menu_caption'
           %li= link_to 'link3', '#link2'

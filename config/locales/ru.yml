@@ -7,5 +7,6 @@ ru:
     confirm: Уверены?
   greeting:
     caption: Приветствие
+    menu_caption: Приветствия
     text: Текст
     weight: Вес
