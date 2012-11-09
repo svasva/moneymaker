@@ -12,6 +12,7 @@ socketserver = (app, server) ->
     conn.write 'test'
     conn.on "data", (message) ->
       console.log 'DATA RECEIVED: \n' + message
+      conn.write message
       data = JSON.parse(message)
       if conn.token and conn.user
         # authenticated client

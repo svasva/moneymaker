@@ -12,6 +12,7 @@ gem 'delayed_job_mongoid'
 gem 'httparty'
 gem 'inherited_resources'
 gem 'russian'
+gem 'haml-rails'
 
 group :development, :test do
   gem 'thin'
@@ -22,7 +23,6 @@ group :development, :test do
 end
 
 group :assets do
-  gem 'haml-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
