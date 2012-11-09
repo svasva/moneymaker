@@ -2,9 +2,9 @@
   %thead
     - collection_fields(collection).each do |field, data|
       %th= t "#{resource_class.to_s.downcase}.#{field}"
-    %th
+    %td
       .pull-right
-        %a.btn.btn-primary{href: new_resource_url}
+        %a.btn.btn-small.btn-primary{href: new_resource_url}
           %i.icon-plus.icon-white
           = t 'common.new'
   %tbody
