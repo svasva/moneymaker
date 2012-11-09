@@ -13,6 +13,7 @@ gem 'httparty'
 gem 'inherited_resources'
 gem 'russian'
 gem 'haml-rails'
+gem 'turbolinks'
 
 group :development, :test do
   gem 'thin'
