@@ -8,7 +8,7 @@ class Swfclient
   mount_uploader :swf, SwfUploader
 
   def self.active
-    self.where(active: true).first
+    self.where(active: true).first or Swfclient.new
   end
 
   def activate
