@@ -15,4 +15,13 @@ ru:
     menu_caption: Пользователи
     social: СоцСеть
     social_id: СоцID
-
+  swfclient:
+    caption: Flash-клиент
+    menu_caption: Flash-клиенты
+    desc: Описание
+    swf: Файл
+    active: Активен
+    activate: Активировать
+    created_at: Создан
+    updated_at: Обновлен
+    swf_filename: Путь

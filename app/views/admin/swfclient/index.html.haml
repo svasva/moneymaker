@@ -1,0 +1,34 @@
+%pre= Swfclient.active.swf.to_s
+%table.table
+  %thead
+    %th= t 'swfclient.created_at'
+    %th= t 'swfclient.desc'
+    %th= t 'swfclient.active'
+    %td
+      .pull-right
+        %a.btn.btn-small.btn-primary{href: new_resource_url}
+          %i.icon-plus.icon-white
+          = t 'common.new'
+  %tbody
+    - collection.each do |resource|
+      %tr
+        %td
+          %a{href: resource_url(resource)}= time_ago_in_words(resource.created_at) + ' назад'
+        %td
+          %a{href: resource_url(resource)}= resource.desc
+        %td
+          - if resource.active
+            %span.badge.badge-success
+              %i.icon-ok.icon-white
+        %td
+          .btn-group.pull-right
+            - unless resource.active
+              %a.btn.btn-small.btn-primary{href: edit_resource_url(resource)}
+                %i.icon-ok.icon-white
+                = t 'swfclient.activate'
+            %a.btn.btn-small{href: edit_resource_url(resource)}
+              %i.icon-pencil
+              = t 'common.edit'
+            %a.btn.btn-small.btn-danger{href: resource_url(resource), data: {method: 'delete', confirm: t('common.confirm')}}
+              %i.icon-trash.icon-white
+              = t 'common.delete'

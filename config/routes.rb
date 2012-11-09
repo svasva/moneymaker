@@ -10,6 +10,9 @@ Moneymaker::Application.routes.draw do
     resources :users
     resources :greetings
     resources :items
+    resources :swfclient do
+      member { get :activate }
+    end
     root to: 'greetings#index'
   end
   root to: 'home#index'

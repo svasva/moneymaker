@@ -1,0 +1,24 @@
+- @url = params[:action] == 'new' ? collection_url : resource_url(resource)
+= form_for resource, url: @url, html: {class: 'form-horizontal', multipart: true} do |f|
+  %legend
+    = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
+    = "# #{resource.id}" if params[:action] == 'edit'
+  .control-group
+    %label.control-label{for: "swfclient_desc"}
+      = t 'swfclient.desc'
+    .controls
+      = f.text_area :desc, rows: 5
+  .control-group
+    %label.control-label{for: "swfclient_swf"}
+      = t 'swfclient.swf'
+    .controls
+      = f.file_field :swf
+  .control-group
+    %label.control-label{for: "swfclient_active"}
+      = t 'swfclient.active'
+    .controls
+      = f.check_box :active, checked: true
+  .control-group
+    .controls
+      %a.btn{href: collection_url} Назад
+      %button.btn.btn-primary Сохранить

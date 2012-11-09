@@ -4,6 +4,8 @@ gem 'rails', '3.2.8'
 
 gem 'mongoid'
 
+gem 'carrierwave'
+gem 'carrierwave-mongoid'
 gem 'unicorn'
 gem 'rabl'
 gem 'jquery-rails'

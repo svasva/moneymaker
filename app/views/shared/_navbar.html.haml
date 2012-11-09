@@ -14,4 +14,6 @@
           %li{class: ("active" if params[:controller] == 'admin/users')}
             %a{href: admin_users_path}
               = t 'user.menu_caption'
-          %li= link_to 'link3', '#link2'
+          %li{class: ("active" if params[:controller] == 'admin/swfclients')}
+            %a{href: admin_swfclient_index_path}
+              = t 'swfclient.menu_caption'
