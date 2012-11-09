@@ -42,4 +42,29 @@ class User
       HTTParty.post("http://localhost:9999/sock/#{sock.id}", {body: message})
     end
   end
+
+  def requirements_met?(requirements)
+    return true unless requirements
+    return true if requirements.empty?
+    requirements.each do |req|
+      logger.info req.inspect
+    end
+    return true
+  end
+
+  def give_rewards(rewards)
+    return true unless rewards
+    return true if rewards.empty?
+  end
+
+  def buy_item(item, currency)
+    return false unless requirements_met? item.requirements
+    item_cost = item[currency.to_s + '_cost']
+    return false if item_cost > self[currency]
+    UserItem.create(item: item, user: self)
+    self[currency] -= item_cost
+    self.give_rewards item.rewards
+    self.save
+    return true
+  end
 end
