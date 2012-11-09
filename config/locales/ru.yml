@@ -10,3 +10,9 @@ ru:
     menu_caption: Приветствия
     text: Текст
     weight: Вес
+  user:
+    caption: Пользователь
+    menu_caption: Пользователи
+    social: СоцСеть
+    social_id: СоцID
+

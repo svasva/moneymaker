@@ -11,4 +11,7 @@
           %li{class: ("active" if params[:controller] == 'admin/greetings')}
             %a{href: admin_greetings_path}
               = t 'greeting.menu_caption'
+          %li{class: ("active" if params[:controller] == 'admin/users')}
+            %a{href: admin_users_path}
+              = t 'user.menu_caption'
           %li= link_to 'link3', '#link2'
