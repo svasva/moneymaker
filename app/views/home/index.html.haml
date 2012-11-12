@@ -8,4 +8,5 @@
   %param{name: 'wmode', value: 'transparent'}
   %param{name: 'movie', value: @swfpath}
   %param{name: 'allowScriptAccess', value: 'always'}
-  %embed{name: 'moneymaker', width: 760, height: 800, type: 'application/x-shockwave-flash', wmode: 'transparent', allowscriptaccess: 'always', src: @swfpath}
+  %param{name: 'FlashVars', value: @flashvars}
+  %embed{name: 'moneymaker', FlashVars: @flashvars, width: 760, height: 800, type: 'application/x-shockwave-flash', wmode: 'transparent', allowscriptaccess: 'always', src: @swfpath}

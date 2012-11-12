@@ -37,8 +37,8 @@ socketserver = (app, server) ->
           conn.user = user
           conn.token = data.token
           sockets[conn.token] = conn
+          conn.write JSON.stringify(user)
           userString = "#{conn.user.get('social')}##{conn.user.get('social_id')}"
-          conn.write "welcome, #{userString}, sockid: #{conn.token}"
           console.log "user #{userString} connected"
           console.log "connections: " + Object.keys(sockets).length
 

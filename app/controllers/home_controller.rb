@@ -5,6 +5,11 @@ class HomeController < ApplicationController
     @greeting = Greeting.get_random
     @socket_id = current_user.user_sockets.create.id
     @swfpath = Swfclient.active.swf.to_s
+    @flashvars = {
+      token: @socket_id,
+      greeting: @greeting,
+      socket_url: 'http://app.so14.org:9999/socket/0/0/websocket'
+    }.to_json
     render :index, layout: false
   end
 
