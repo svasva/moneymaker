@@ -8,8 +8,8 @@ class HomeController < ApplicationController
     @flashvars = {
       token: @socket_id,
       greeting: @greeting,
-      socket_url: 'http://app.so14.org:9999/socket/0/0/websocket'
-    }.to_json
+      socket_url: 'ws://app.so14.org:9999/socket/0/0/websocket'
+    }.map {|k,v| URI.escape "#{k}=#{v}"}.join '&'
     render :index, layout: false
   end
 

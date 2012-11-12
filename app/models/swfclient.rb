@@ -8,16 +8,19 @@ class Swfclient
   mount_uploader :swf, SwfUploader
   before_save :check_active
 
+  default_scope desc(:created_at)
+
   def self.active
-    self.where(active: true).first or Swfclient.new
+    self.where(active: true).first
   end
 
   def activate
-    Swfclient.active.update_attribute active: false
-    self.update_attribute active: true
+    self.update_attribute :active, true
   end
 
   def check_active
-    Swfclient.active.update_attribute(:active, false) if self.active
+    if self.active and Swfclient.active
+      Swfclient.active.update_attribute(:active, false)
+    end
   end
 end

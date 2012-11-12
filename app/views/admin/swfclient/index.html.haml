@@ -1,4 +1,3 @@
-%pre= Swfclient.active.swf.to_s
 %table.table
   %thead
     %th= t 'swfclient.created_at'
@@ -23,7 +22,7 @@
         %td
           .btn-group.pull-right
             - unless resource.active
-              %a.btn.btn-small.btn-primary{href: edit_resource_url(resource)}
+              %a.btn.btn-small.btn-primary{href: activate_admin_swfclient_path(resource)}
                 %i.icon-ok.icon-white
                 = t 'swfclient.activate'
             %a.btn.btn-small{href: edit_resource_url(resource)}
