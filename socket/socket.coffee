@@ -8,11 +8,11 @@ socketserver = (app, server) ->
   User = db.model("users", new mongo.Schema(any: {}))
   sockets = {}
 
+  REST_URL = 'http://localhost:3000/api/'
+
   onConnect = (conn) ->
-    conn.write 'test'
     conn.on "data", (message) ->
       console.log 'DATA RECEIVED: \n' + JSON.stringify message
-      conn.write JSON.stringify message
       data = message
       if conn.token and conn.user
         # authenticated client
@@ -23,36 +23,41 @@ socketserver = (app, server) ->
     conn.on "close", ->
       if conn.token
         delete sockets[conn.token]
-        Socket.findByIdAndRemove conn.token
+        # Socket.findByIdAndRemove conn.token
         console.log "#{conn.user.get('social')} user ##{conn.user.get('social_id')} disconnected"
         console.log "connections: " + Object.keys(sockets).length
 
   onAuth = (conn, data) ->
     Socket.findById data.token, (err, socket) ->
       if !socket
-        conn.write JSON.stringify(error: "socket not found: #{data.token}")
+        sendResponse conn, data.requestId, {error: "socket not found: #{data.token}"}
+        conn.close()
       else User.findById socket.get('user_id'), (err, user) ->
-        if !user then conn.write JSON.stringify(error: "user not found: #{user}")
+        if !user
+          sendResponse conn, data.requestId, {error: "user not found: #{user}"}
+          conn.close()
         else
           conn.user = user
           conn.token = data.token
           sockets[conn.token] = conn
-          conn.write JSON.stringify(user)
+          sendResponse conn, data.requestId, user
           userString = "#{conn.user.get('social')}##{conn.user.get('social_id')}"
           console.log "user #{userString} connected"
           console.log "connections: " + Object.keys(sockets).length
 
   onCommand = (conn, data) ->
-    switch data.command
-      when 'ping'
-        url = "http://moneymaker.dev/api/users/#{conn.user.id}/send_message"
-        msg = {cmd: 'PING'}
-        rest.post url, {data: msg}, (err, data) ->
-          console.log "POST #{url}:"
-          console.log err, data
+    url = REST_URL + "users/#{conn.user.id}/send_message"
+    msg = {requestId: data.requestId, cmd: data.command, args: data.args}
+    rest.post url, {data: msg}, (err, resp) ->
+      sendResponse conn, data.requestId, resp
+      console.log "POST #{url}:"
+      console.log err, resp
+
+  sendResponse = (conn, requestId, resp) ->
+    conn.write JSON.stringify({requestId: requestId, response: resp})
 
   db.once 'open', ->
-    Socket.collection.drop()
+    # Socket.collection.drop()
     sock = sockjs.createServer()
     sock.installHandlers(server, {prefix:'/socket'})
     sock.on "connection", onConnect
