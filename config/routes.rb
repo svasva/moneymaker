@@ -1,9 +1,7 @@
 Moneymaker::Application.routes.draw do
   scope 'api' do
     resources :users do
-      member do
-        post :send_message
-      end
+      member { post :send_message }
     end
   end
   namespace :admin do
