@@ -1,6 +1,7 @@
 %table.table
   %thead
     - collection_fields(collection).each do |field, data|
+      - next if @skip_fields and @skip_fields.include? field
       %th= t "#{resource_class.to_s.downcase}.#{field}"
     %td
       .pull-right
@@ -10,7 +11,8 @@
   %tbody
     - collection.each do |resource|
       %tr
-        - resource_attrs(resource).each do |name, value|
+        - resource_attrs(resource).each do |field, value|
+          - next if @skip_fields and @skip_fields.include? field.to_s
           %td
             %a{href: resource_url(resource)}= value
         %td
