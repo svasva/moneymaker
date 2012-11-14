@@ -4,7 +4,7 @@ class Item
   embeds_many :contracts
 
   field :name,              type: String
-  field :item_type,         type: String
+  field :type,              type: String
   field :money_cost,        type: Integer, default: 0
   field :coins_cost,        type: Integer, default: 0
   field :sell_cost,         type: Integer, default: 0
@@ -14,6 +14,8 @@ class Item
 
   field :requirements,      type: Hash
   field :rewards,           type: Hash
+
+  mount_uploader :swf, SwfUploader
 
   has_one :upgrade, class_name: 'Item'
 

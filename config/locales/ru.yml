@@ -25,3 +25,14 @@ ru:
     created_at: Создан
     updated_at: Обновлен
     swf_filename: Путь
+  item:
+    caption: Предмет
+    menu_caption: Предметы
+    name: Имя
+    type: Тип
+    money_cost: Цена (игр.)
+    coins_cost: Цена (реал.)
+    sell_cost: Продажа
+    size_x: Размер, X
+    size_y: Размер, Y
+    reputation_bonus: Репутация

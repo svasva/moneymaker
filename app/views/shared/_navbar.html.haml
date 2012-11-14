@@ -14,6 +14,9 @@
           %li{class: ("active" if params[:controller] == 'admin/users')}
             %a{href: admin_users_path}
               = t 'user.menu_caption'
+          %li{class: ("active" if params[:controller] == 'admin/items')}
+            %a{href: admin_items_path}
+              = t 'item.menu_caption'
           %li{class: ("active" if params[:controller] == 'admin/swfclient')}
             %a{href: admin_swfclient_index_path}
               = t 'swfclient.menu_caption'
