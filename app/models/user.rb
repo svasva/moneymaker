@@ -46,7 +46,19 @@ class User
   def requirements_met?(requirements)
     return true unless requirements
     return true if requirements.empty?
-    requirements.each do |req|
+    requirements.each do |type, req|
+      case type
+      when 'items'
+        req.each do |item, count|
+          return false if self.user_items.where(item_id: item).count < count
+        end
+      when 'level'
+        return false if req.to_i > self.level
+      when 'reputation'
+        return false if req.to_i > self.reputation
+      when 'friends'
+        return false if req.to_i > self.friends.count
+      end
       logger.info req.inspect
     end
     return true
