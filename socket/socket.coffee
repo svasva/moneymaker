@@ -40,18 +40,22 @@ socketserver = (app, server) ->
           conn.user = user
           conn.token = data.token
           sockets[conn.token] = conn
-          sendResponse conn, data.requestId, user
+          sendResponse conn, data.requestId, {success: 'connection established'}
           userString = "#{conn.user.get('social')}##{conn.user.get('social_id')}"
           console.log "user #{userString} connected"
           console.log "connections: " + Object.keys(sockets).length
 
   onCommand = (conn, data) ->
-    url = REST_URL + "users/#{conn.user.id}/send_message"
-    msg = {requestId: data.requestId, cmd: data.command, args: data.args}
-    rest.post url, {data: msg}, (err, resp) ->
-      sendResponse conn, data.requestId, resp
-      console.log "POST #{url}:"
-      console.log err, resp
+    switch data.command
+      when 'getUser'
+        sendResponse conn, data.requestId, conn.user
+      else
+        url = REST_URL + "users/#{conn.user.id}/send_message"
+        msg = {requestId: data.requestId, cmd: data.command, args: data.args}
+        rest.post url, {data: msg}, (err, resp) ->
+          sendResponse conn, data.requestId, resp
+          console.log "POST #{url}:"
+          console.log err, resp
 
   sendResponse = (conn, requestId, resp) ->
     conn.write JSON.stringify({requestId: requestId, response: resp})

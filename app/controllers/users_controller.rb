@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def send_message
-    @user = User.find params[:id]
     @args = params[:args]
     case params[:cmd]
     when 'PING'
@@ -11,6 +10,8 @@ class UsersController < ApplicationController
     when 'getItems'
       @items = Item.all
       render json: @items
+    when 'startApplication'
+      render json: {success: 'application started'}
     else
       render json: {error: 'command unknown'}
     end
