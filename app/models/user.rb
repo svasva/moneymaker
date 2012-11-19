@@ -65,8 +65,31 @@ class User
   end
 
   def give_rewards(rewards)
-    return true unless rewards
-    return true if rewards.empty?
+    return false unless rewards
+    return false if rewards.empty?
+    rewards.each do |type, rew|
+      case type
+      when 'items'
+        req.each do |item_id, count|
+          item = Item.find(item_id)
+          # TODO: error logging
+          if item and requirements_met? item.requirements
+            count.times { UserItem.create(user: self, item: item) }
+          end
+        end
+      when 'experience'
+        self.inc :experience, rew
+      when 'reputation'
+        self.inc :reputation, rew
+      when 'reputation_bonus'
+        self.inc :reputation_bonus, rew
+      # TODO: log financial stats
+      when 'coins'
+        self.inc :coins, rew
+      when 'money'
+        self.inc :money, rew
+      end
+    end
   end
 
   def buy_item(item, currency)
