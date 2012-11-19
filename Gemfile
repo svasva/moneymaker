@@ -19,6 +19,7 @@ gem 'turbolinks'
 
 group :development, :test do
   gem 'thin'
+  gem 'pry'
   gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
