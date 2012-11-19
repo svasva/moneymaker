@@ -42,13 +42,13 @@ class User
     message = {
       requestId: -1, # user update
       response: self.changes
-    }
+    }.to_json
     send_message message
   end
 
   def send_message(message)
     user_sockets.each do |sock|
-      HTTParty.post("#{SOCKET_URL}/#{sock.id}", {body: message})
+      HTTParty.post("#{SOCKET_API}/#{sock.id}", {body: message})
     end
   end
 
