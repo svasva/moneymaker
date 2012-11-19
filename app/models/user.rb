@@ -36,6 +36,15 @@ class User
   embeds_many :user_contracts
   has_many :user_sockets
   has_and_belongs_to_many :friends, class_name: 'User'
+  after_update :update_client
+
+  def update_client
+    message = {
+      requestId: -1, # user update
+      response: self.changes
+    }
+    send_message message
+  end
 
   def send_message(message)
     user_sockets.each do |sock|
