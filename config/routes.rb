@@ -8,7 +8,7 @@ Moneymaker::Application.routes.draw do
     resources :users
     resources :greetings
     resources :items
-    resources :swfclient do
+    resources :swfclients do
       member { get :activate }
     end
     root to: 'greetings#index'

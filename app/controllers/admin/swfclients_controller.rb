@@ -1,4 +1,4 @@
-class Admin::SwfclientController < InheritedResources::Base
+class Admin::SwfclientsController < InheritedResources::Base
   respond_to :html, :json
 
   def activate
