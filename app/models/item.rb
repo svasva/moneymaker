@@ -14,8 +14,10 @@ class Item
 
   field :requirements,      type: Hash
   field :rewards,           type: Hash
+  field :effects,           type: Hash
 
-  mount_uploader :swf, SwfUploader
+  mount_uploader :swf,  SwfUploader
+  mount_uploader :icon, SwfUploader
 
   has_one :upgrade, class_name: 'Item'
 
