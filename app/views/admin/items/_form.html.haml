@@ -1,0 +1,50 @@
+- @url = params[:action] == 'new' ? collection_url : resource_url(resource)
+= form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
+  %legend
+    = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
+    = "# #{resource.id}" if params[:action] == 'edit'
+  .control-group
+    %label.control-label{for: 'item_type'}= t 'item.type'
+    .controls= f.text_field :type
+  .control-group
+    %label.control-label{for: 'item_name'}= t 'item.name'
+    .controls= f.text_field :name
+  .control-group
+    %label.control-label{for: 'item_money_cost'}= t 'item.money_cost'
+    .controls= f.number_field :money_cost
+  .control-group
+    %label.control-label{for: 'item_coins_cost'}= t 'item.coins_cost'
+    .controls= f.number_field :coins_cost
+  .control-group
+    %label.control-label{for: 'item_sell_cost'}= t 'item.sell_cost'
+    .controls= f.number_field :sell_cost
+  .control-group
+    %label.control-label{for: 'item_size_x'}= t 'item.size_x'
+    .controls= f.number_field :size_x
+  .control-group
+    %label.control-label{for: 'item_size_y'}= t 'item.size_y'
+    .controls= f.number_field :size_y
+  .control-group
+    %label.control-label{for: 'item_reputation_bonus'}= t 'item.reputation_bonus'
+    .controls= f.number_field :reputation_bonus
+  .control-group
+    %label.control-label{for: 'item_upgrade_id'}= t 'item.upgrade'
+    .controls
+      = f.select :upgrade_id, options_for_select(@upgrades, resource.upgrade_id), {include_blank: true}, {class: 'select2'}
+  .control-group
+    %label.control-label{for: 'item_swf'}= t 'item.swf'
+    .controls= f.file_field :swf
+  .control-group
+    %label.control-label{for: 'item_icon'}= t 'item.icon'
+    .controls= f.file_field :icon
+  .control-group
+    %label.control-label{for: 'item_startup'}= t 'item.startup'
+    .controls= f.check_box :startup
+  .control-group
+    .controls
+      %a.btn{href: collection_url}
+        %i.icon-arrow-left
+        Назад
+      %button.btn.btn-primary
+        %i.icon-ok.icon-white
+        Сохранить

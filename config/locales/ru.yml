@@ -3,7 +3,7 @@ ru:
     edit: Изменить
     delete: Удалить
     back: Назад
-    new: Добавить
+    new: Новый(ая)
     confirm: Уверены?
   greeting:
     caption: Приветствие
@@ -36,3 +36,22 @@ ru:
     size_x: Размер, X
     size_y: Размер, Y
     reputation_bonus: Репутация
+    swf: Основной SWF
+    icon: Иконка SWF
+    upgrade: Апгрейд
+    startup: Стартовая локация
+  room:
+    caption: Комната
+    menu_caption: Комнаты
+    name: Имя
+    type: Тип
+    money_cost: Цена (игр.)
+    coins_cost: Цена (реал.)
+    sell_cost: Продажа
+    size_x: Размер, X
+    size_y: Размер, Y
+    reputation_bonus: Репутация
+    swf: Основной SWF
+    icon: Иконка SWF
+    upgrade: Апгрейд
+    startup: Стартовая локация
