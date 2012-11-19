@@ -49,8 +49,9 @@ class User
     requirements.each do |type, req|
       case type
       when 'items'
-        req.each do |item, count|
-          return false if self.user_items.where(item_id: item).count < count
+        req.each do |item_id, count|
+          own_count = self.user_items.where(item_id: item_id).count
+          return false if own_count < count
         end
       when 'level'
         return false if req.to_i > self.level
