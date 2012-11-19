@@ -48,7 +48,7 @@ class User
 
   def send_message(message)
     user_sockets.each do |sock|
-      HTTParty.post("http://localhost:9999/sock/#{sock.id}", {body: message})
+      HTTParty.post("#{SOCKET_URL}/#{sock.id}", {body: message})
     end
   end
 
