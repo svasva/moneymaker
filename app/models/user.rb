@@ -32,7 +32,7 @@ class User
 
   index({social: 1, social_id: 1}, {unique: true})
 
-  embeds_many :user_items
+  embeds_many :user_rooms
   embeds_many :user_contracts
   has_many :user_sockets
   has_and_belongs_to_many :friends, class_name: 'User'
