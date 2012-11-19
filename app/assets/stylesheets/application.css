@@ -11,6 +11,7 @@
  *= require_self
  *= require bootstrap
  *= require bootstrap-responsive
+ *= require select2
  */
 
 @media (min-width: 981px) {

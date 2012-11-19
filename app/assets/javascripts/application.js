@@ -14,4 +14,16 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require select2
 //= require_tree .
+
+init = function() {
+  $('.select2').select2({
+    width: 'resolve',
+    allowClear: true,
+    placeholder: 'Select one'
+  });
+}
+
+$(document).ready(init);
+$(window).on('page:change', init);
