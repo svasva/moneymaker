@@ -112,4 +112,8 @@ class User
     self.save
     return true
   end
+
+  if Rails.env.production?
+    handle_asynchronously :send_message
+  end
 end
