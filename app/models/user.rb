@@ -38,7 +38,7 @@ class User
   has_many :user_sockets, dependent: :destroy
   has_and_belongs_to_many :friends, class_name: 'User'
   after_update :update_client
-  after_save :setup_start_location
+  after_create :setup_start_location
 
   def update_client
     message = {
