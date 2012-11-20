@@ -24,9 +24,10 @@ class UsersController < ApplicationController
       else
         raise 'command unknown'
       end
-      render json: response
     rescue => e
-      render json: { error: e.inspect }
+      response = { error: e.inspect }
+    ensure
+      render json: response
     end
   end
 end
