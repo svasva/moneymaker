@@ -55,7 +55,13 @@ class User
       UserRoom.create(room: room, user: self)
     end
     Item.where(startup: true).each do |item|
-      UserItem.create(user: self, item: item)
+      UserItem.create(
+        user: self,
+        item: item,
+        room_id: self.user_rooms.first.id,
+        x: item.startup_x,
+        y: item.startup_y
+      )
     end
   end
 
