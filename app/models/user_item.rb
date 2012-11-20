@@ -11,4 +11,11 @@ class UserItem
   field :room_id,           type: String
 
   index({x: 1, y: 1})
+
+  def sell
+    if self.sell_cost and self.sell_cost > 0
+      self.user.inc :coins, self.sell_cost
+    end
+    self.destroy
+  end
 end

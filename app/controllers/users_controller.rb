@@ -7,6 +7,13 @@ class UsersController < ApplicationController
     when 'getItem'
       @item = Item.find(@args.first)
       render json: @item
+    when 'sellItem'
+      begin
+        @item = UserItem.find(@args.first).sell
+        render json: { success: 'item sold' }
+      rescue => e
+        render json: { error: e.inspect }
+      end
     when 'getItems'
       @items = Item.all
       render json: @items
