@@ -125,11 +125,11 @@ class User
     return false unless requirements_met? item.requirements
     item_cost = item[currency.to_s + '_cost']
     return false if item_cost > self[currency]
-    UserItem.create(item: item, user: self)
+    useritem = UserItem.create(item: item, user: self)
     self[currency] -= item_cost
     self.give_rewards item.rewards
     self.save
-    return true
+    return useritem
   end
 
   if Rails.env.production?

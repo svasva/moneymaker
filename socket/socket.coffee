@@ -3,7 +3,6 @@ socketserver = (app, server) ->
   mongo = require 'mongoose'
   rest = require 'restless'
   db = mongo.createConnection('localhost', 'moneymaker_dev')
-  # db = mongo.createConnection('mongodb://nodejitsu:6a3fefbf70f8e0b9e7245cce2de5e888@alex.mongohq.com:10088/nodejitsudb27089455908')
   Socket = db.model("user_sockets", new mongo.Schema(any: {}))
   User = db.model("users", new mongo.Schema(any: {}))
   sockets = {}
