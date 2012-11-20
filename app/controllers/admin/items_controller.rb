@@ -10,8 +10,4 @@ class Admin::ItemsController < InheritedResources::Base
     @upgrades = Item.all.map { |upg| [upg.name, upg.id] }
     super
   end
-  protected
-  def collection
-    @items ||= end_of_association_chain.where(_type: nil)
-  end
 end

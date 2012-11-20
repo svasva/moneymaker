@@ -24,4 +24,6 @@ class Item
   mount_uploader :icon, SwfUploader
 
   validates_presence_of :name, :size_x, :size_y
+
+  default_scope where(_type: nil)
 end

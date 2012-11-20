@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def send_message
     begin
-      args = params[:args]
+      args = params[:args] || []
       case params[:cmd]
       when 'PING'
         response = 'pong'
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
         user = User.find(params[:id])
         item_id, currency = args
         raise 'wrong arguments' unless item_id and currency
+        raise 'wrong currency' unless %w(coins money).include? currency
         item = Item.find(item_id)
         response = user.buy_item(item, currency.to_sym)
       when 'sellItem'
@@ -21,6 +22,13 @@ class UsersController < ApplicationController
         response = Item.all
       when 'startApplication'
         response = { success: 'application started' }
+      when 'getFlashLibs'
+        response = []
+        user = User.find(params[:id])
+        local = (args[0] == 'true')
+        FlashLib.where(social: user.social).each do |fl|
+          response << fl.path(local)
+        end
       else
         raise 'command unknown'
       end

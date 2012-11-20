@@ -25,6 +25,20 @@ ru:
     created_at: Создан
     updated_at: Обновлен
     swf_filename: Путь
+  flashlib: &flashlib
+    caption: Библиотека
+    menu_caption: Библиотеки
+    desc: Имя
+    swf: Файл
+    active: Активна
+    activate: Активировать
+    created_at: Создана
+    updated_at: Обновлена
+    swf_filename: Путь
+    local_path: Локальный путь
+    social: Соц. сеть
+  flash_lib:
+    <<: *flashlib
   item:
     caption: Предмет
     menu_caption: Предметы

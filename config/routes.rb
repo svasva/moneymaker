@@ -12,6 +12,9 @@ Moneymaker::Application.routes.draw do
     resources :swfclients do
       member { get :activate }
     end
+    resources :flash_libs do
+      member { get :activate }
+    end
     root to: 'greetings#index'
   end
   root to: 'home#index'
