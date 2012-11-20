@@ -41,6 +41,12 @@
     %label.control-label{for: 'item_startup'}= t 'item.startup'
     .controls= f.check_box :startup
   .control-group
+    %label.control-label{for: 'item_startup_x'}= t 'item.startup_x'
+    .controls= f.number_field :startup_x
+  .control-group
+    %label.control-label{for: 'item_startup_y'}= t 'item.startup_y'
+    .controls= f.number_field :startup_y
+  .control-group
     .controls
       %a.btn{href: collection_url}
         %i.icon-arrow-left

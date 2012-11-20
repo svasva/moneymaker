@@ -40,6 +40,8 @@ ru:
     icon: Иконка SWF
     upgrade: Апгрейд
     startup: Стартовая локация
+    startup_x: Стартовая локация, X
+    startup_y: Стартовая локация, Y
   room:
     caption: Комната
     menu_caption: Комнаты
@@ -55,3 +57,5 @@ ru:
     icon: Иконка SWF
     upgrade: Апгрейд
     startup: Стартовая локация
+    startup_x: Стартовая локация, X
+    startup_y: Стартовая локация, Y
