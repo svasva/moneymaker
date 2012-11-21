@@ -15,13 +15,20 @@ class UsersController < ApplicationController
         item = Item.find(item_id)
         response = user.buy_item(item, currency.to_sym)
       when 'sellItem'
-        item = UserItem.find(args.first).sell
-        raise 'item not sold' unless item
+        sold = UserItem.find(args.first).sell
+        raise 'item not sold' unless sold
         response = { success: 'item sold' }
       when 'getItems'
         response = Item.all
       when 'startApplication'
         response = { success: 'application started' }
+      when 'placeItem'
+        room_id, item_id, x, y = args
+        raise 'wrong params' unless room_id and item_id and x and y
+        user = User.find params[:id]
+        room = user.user_rooms.find room_id
+        item = user.user_items.find item_id
+        response = room.place_item item, x, y
       when 'getFlashLibs'
         response = []
         user = User.find(params[:id])
