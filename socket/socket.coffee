@@ -2,12 +2,16 @@ socketserver = (app, server) ->
   sockjs = require 'sockjs'
   mongo = require 'mongoose'
   rest = require 'restless'
-  db = mongo.createConnection('localhost', 'moneymaker_dev')
+  if process.env.NODE_ENV is 'production'
+    REST_URL = 'http://app.so14.org/api/'
+    db = mongo.createConnection('localhost', 'moneymaker_prod')
+  else
+    REST_URL = 'http://localhost:3000/api/'
+    db = mongo.createConnection('localhost', 'moneymaker_dev')
   Socket = db.model("user_sockets", new mongo.Schema(any: {}))
   User = db.model("users", new mongo.Schema(any: {}))
   sockets = {}
 
-  REST_URL = 'http://localhost:3000/api/'
 
   onConnect = (conn) ->
     conn.on "data", (message) ->
@@ -57,6 +61,7 @@ socketserver = (app, server) ->
           console.log err, resp
 
   sendResponse = (conn, requestId, resp) ->
+    console.log 'DATA SENT:\n' + JSON.stringify({requestId: requestId, response: resp})
     conn.write JSON.stringify({requestId: requestId, response: resp})
 
   db.once 'open', ->
