@@ -3,6 +3,6 @@ class FlashLib < Swfclient
   field :local_path, type: String
 
   def path(local = false)
-    local ? self.swf_url : self.local_path
+    local ? self.local_path : self.swf_url
   end
 end
