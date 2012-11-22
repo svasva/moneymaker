@@ -33,7 +33,7 @@ class UsersController < ApplicationController
         response = []
         user = User.find(params[:id])
         local = (args[0] == 'true')
-        FlashLib.where(social: user.social).each do |fl|
+        FlashLib.where(social: user.social, active: true).each do |fl|
           response << fl.path(local)
         end
       else
