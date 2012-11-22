@@ -12,7 +12,6 @@ class Item
   field :size_x,            type: Integer, default: 1
   field :size_y,            type: Integer, default: 1
   field :reputation_bonus,  type: Integer, default: 0
-  field :upgrade_id,        type: String
   field :startup,           type: Boolean, default: false
   field :startup_x,         type: Integer
   field :startup_y,         type: Integer

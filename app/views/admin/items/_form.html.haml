@@ -31,10 +31,6 @@
     %label.control-label{for: 'item_reputation_bonus'}= t 'item.reputation_bonus'
     .controls= f.number_field :reputation_bonus
   .control-group
-    %label.control-label{for: 'item_upgrade_id'}= t 'item.upgrade'
-    .controls
-      = f.select :upgrade_id, options_for_select(@upgrades, resource.upgrade_id), {include_blank: true}, {class: 'select2'}
-  .control-group
     %label.control-label{for: 'item_swf'}= t 'item.swf'
     .controls= f.file_field :swf
   .control-group
