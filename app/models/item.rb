@@ -4,6 +4,7 @@ class Item
   embeds_many :contracts
 
   field :name,              type: String
+  field :desc,              type: String
   field :type,              type: String
   field :money_cost,        type: Integer, default: 0
   field :coins_cost,        type: Integer, default: 0

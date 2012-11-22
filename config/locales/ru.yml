@@ -43,6 +43,7 @@ ru:
     caption: Предмет
     menu_caption: Предметы
     name: Имя
+    desc: Описание
     type: Тип
     money_cost: Цена (игр.)
     coins_cost: Цена (реал.)
@@ -60,6 +61,7 @@ ru:
     caption: Комната
     menu_caption: Комнаты
     name: Имя
+    desc: Описание
     type: Тип
     money_cost: Цена (игр.)
     coins_cost: Цена (реал.)
