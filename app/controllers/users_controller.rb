@@ -20,6 +20,10 @@ class UsersController < ApplicationController
         response = { success: 'item sold' }
       when 'getItems'
         response = Item.all
+      when 'getRooms'
+        response = Room.all
+      when 'getRoom'
+        response = Room.find(args.first)
       when 'startApplication'
         response = { success: 'application started' }
       when 'placeItem'
