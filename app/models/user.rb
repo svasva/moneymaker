@@ -52,7 +52,12 @@ class User
     self.user_rooms.destroy_all
     self.user_contracts.destroy_all
     Room.where(startup: true).each do |room|
-      UserRoom.create(room: room, user: self)
+      UserRoom.create(
+        room: room,
+        user: self,
+        x: room.startup_x,
+        y: room.startup_y
+      )
     end
     Item.where(startup: true).each do |item|
       UserItem.create(
