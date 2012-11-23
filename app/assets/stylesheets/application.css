@@ -19,3 +19,5 @@
     padding-top: 60px;
   }
 }
+
+textarea { resize:none; }
