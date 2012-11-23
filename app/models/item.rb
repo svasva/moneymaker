@@ -17,7 +17,8 @@ class Item
   field :startup_x,         type: Float
   field :startup_y,         type: Float
   field :startup_room_id,   type: String
-  field :enter_point,       type: Integer
+  field :enter_point_x,     type: Float
+  field :enter_point_y,     type: Float
 
   field :requirements,      type: Hash
   field :rewards,           type: Hash
