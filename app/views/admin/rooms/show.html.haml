@@ -1,0 +1,17 @@
+%h2
+  = t(resource_class.to_s.downcase + '.caption') + ' # ' + resource.id.to_s
+%p.lead
+  - resource_attrs(resource).each do |name, value|
+    %strong= t("#{resource_class.to_s.downcase}.#{name}") + ':'
+    = value
+    %br
+.btn-group
+  %a.btn.btn-small{href: collection_url}
+    %i.icon-arrow-left
+    = t 'common.back'
+  %a.btn.btn-small{href: edit_resource_url(resource)}
+    %i.icon-pencil
+    = t 'common.edit'
+  %a.btn.btn-small.btn-danger{href: resource_url(resource), data: {method: 'delete', confirm: t('common.confirm')}}
+    %i.icon-trash.icon-white
+    = t 'common.delete'
