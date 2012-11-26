@@ -4,50 +4,54 @@
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
     = "# #{resource.id}" if params[:action] == 'edit'
   .control-group
-    %label.control-label{for: 'item_type'}= t 'item.type'
+    %label.control-label{for: 'room_type'}= t 'room.type'
     .controls= f.text_field :type
   .control-group
-    %label.control-label{for: 'item_name'}= t 'item.name'
+    %label.control-label{for: 'room_type_id'}= t 'room.type'
+    .controls
+      = f.select :room_type_id, options_for_select(@room_types, resource.room_type_id), {include_blank: true}, {class: 'select2'}
+  .control-group
+    %label.control-label{for: 'room_name'}= t 'room.name'
     .controls= f.text_field :name
   .control-group
-    %label.control-label{for: 'item_desc'}= t 'item.desc'
+    %label.control-label{for: 'room_desc'}= t 'room.desc'
     .controls= f.text_area :desc, rows: 4
   .control-group
-    %label.control-label{for: 'item_money_cost'}= t 'item.money_cost'
+    %label.control-label{for: 'room_money_cost'}= t 'room.money_cost'
     .controls= f.number_field :money_cost
   .control-group
-    %label.control-label{for: 'item_coins_cost'}= t 'item.coins_cost'
+    %label.control-label{for: 'room_coins_cost'}= t 'room.coins_cost'
     .controls= f.number_field :coins_cost
   .control-group
-    %label.control-label{for: 'item_sell_cost'}= t 'item.sell_cost'
+    %label.control-label{for: 'room_sell_cost'}= t 'room.sell_cost'
     .controls= f.number_field :sell_cost
   .control-group
-    %label.control-label{for: 'item_size_x'}= t 'item.size_x'
+    %label.control-label{for: 'room_size_x'}= t 'room.size_x'
     .controls= f.number_field :size_x
   .control-group
-    %label.control-label{for: 'item_size_y'}= t 'item.size_y'
+    %label.control-label{for: 'room_size_y'}= t 'room.size_y'
     .controls= f.number_field :size_y
   .control-group
-    %label.control-label{for: 'item_reputation_bonus'}= t 'item.reputation_bonus'
+    %label.control-label{for: 'room_reputation_bonus'}= t 'room.reputation_bonus'
     .controls= f.number_field :reputation_bonus
   .control-group
-    %label.control-label{for: 'item_upgrade_id'}= t 'item.upgrade'
+    %label.control-label{for: 'room_upgrade_id'}= t 'room.upgrade'
     .controls
       = f.select :upgrade_id, options_for_select(@upgrades, resource.upgrade_id), {include_blank: true}, {class: 'select2'}
   .control-group
-    %label.control-label{for: 'item_swf'}= t 'item.swf'
+    %label.control-label{for: 'room_swf'}= t 'room.swf'
     .controls= f.file_field :swf
   .control-group
-    %label.control-label{for: 'item_icon'}= t 'item.icon'
+    %label.control-label{for: 'room_icon'}= t 'room.icon'
     .controls= f.file_field :icon
   .control-group
-    %label.control-label{for: 'item_startup'}= t 'item.startup'
+    %label.control-label{for: 'room_startup'}= t 'room.startup'
     .controls= f.check_box :startup
   .control-group
-    %label.control-label{for: 'item_startup_x'}= t 'item.startup_x'
+    %label.control-label{for: 'room_startup_x'}= t 'room.startup_x'
     .controls= f.number_field :startup_x
   .control-group
-    %label.control-label{for: 'item_startup_y'}= t 'item.startup_y'
+    %label.control-label{for: 'room_startup_y'}= t 'room.startup_y'
     .controls= f.number_field :startup_y
   .control-group
     .controls

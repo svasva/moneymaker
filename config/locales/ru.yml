@@ -5,6 +5,7 @@ ru:
     back: Назад
     new: Новый(ая)
     confirm: Уверены?
+    content: Контент
   greeting:
     caption: Приветствие
     menu_caption: Приветствия
@@ -75,3 +76,15 @@ ru:
     startup: Стартовая локация
     startup_x: Стартовая локация, X
     startup_y: Стартовая локация, Y
+  roomtype: &roomtype
+    caption: Тип комнат
+    menu_caption: Типы комнат
+    name: Имя
+    placement: Размещение
+    placement_options:
+      ground: 1-й этаж
+      onground: Надземный этаж
+      underground: Подземный этаж
+      any: Любой этаж
+  room_type:
+    <<: *roomtype

@@ -8,7 +8,16 @@
       %a.brand{href: '/admin'} moneymaker
       .nav-collapse
         %ul.nav
-          - %w(greetings users items rooms swfclients flash_libs).each do |controller|
+          - %w(greetings users swfclients flash_libs).each do |controller|
             %li{class: ("active" if params[:controller] == "admin/#{controller}")}
               %a{href: url_for(controller: controller)}
                 = t "#{controller[0..-2]}.menu_caption"
+          %li.dropdown
+            %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
+              = t 'common.content'
+              %b.caret
+            %ul.dropdown-menu
+              - %w(items rooms room_types).each do |controller|
+                %li{class: ("active" if params[:controller] == "admin/#{controller}")}
+                  %a{href: url_for(controller: controller)}
+                    = t "#{controller[0..-2]}.menu_caption"

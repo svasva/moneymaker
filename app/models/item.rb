@@ -2,6 +2,7 @@ class Item
   include Mongoid::Document
 
   embeds_many :contracts
+  belongs_to :room_type
 
   field :name,              type: String
   field :desc,              type: String
@@ -9,8 +10,8 @@ class Item
   field :money_cost,        type: Integer, default: 0
   field :coins_cost,        type: Integer, default: 0
   field :sell_cost,         type: Integer, default: 0
-  field :size_x,            type: Integer,   default: 1
-  field :size_y,            type: Integer,   default: 1
+  field :size_x,            type: Integer, default: 1
+  field :size_y,            type: Integer, default: 1
   field :height,            type: Integer, default: 1
   field :reputation_bonus,  type: Integer, default: 0
   field :startup,           type: Boolean, default: false

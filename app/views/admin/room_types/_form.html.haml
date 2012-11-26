@@ -1,0 +1,19 @@
+- @url = params[:action] == 'new' ? collection_url : resource_url(resource)
+= form_for resource, url: @url, html: {class: 'form-horizontal', multipart: true} do |f|
+  %legend
+    = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
+    = "# #{resource.id}" if params[:action] == 'edit'
+  .control-group
+    %label.control-label{for: "room_type_name"}
+      = t 'room_type.name'
+    .controls
+      = f.text_field :name
+  .control-group
+    %label.control-label{for: "room_type_placement"}
+      = t 'room_type.placement'
+    .controls
+      = f.select :placement, options_for_select(RoomType.placement_options, resource.placement), {include_blank: true}, {class: 'select2'}
+  .control-group
+    .controls
+      %a.btn{href: collection_url} Назад
+      %button.btn.btn-primary Сохранить

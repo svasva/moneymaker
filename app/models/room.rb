@@ -1,4 +1,4 @@
 class Room < Item
   field :upgrade_id, type: String
-  field :floor,      type: Integer
+  embeds_one :room_type
 end
