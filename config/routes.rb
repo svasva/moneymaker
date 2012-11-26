@@ -16,7 +16,7 @@ Moneymaker::Application.routes.draw do
     resources :flash_libs do
       member { get :activate }
     end
-    root to: 'greetings#index'
+    root to: 'users#index'
   end
   root to: 'home#index'
 end
