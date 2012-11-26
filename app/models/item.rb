@@ -12,7 +12,7 @@ class Item
   field :sell_cost,         type: Integer, default: 0
   field :size_x,            type: Integer, default: 1
   field :size_y,            type: Integer, default: 1
-  field :height,            type: Integer, default: 1
+  field :height,            type: Float,   default: 1
   field :reputation_bonus,  type: Integer, default: 0
   field :startup,           type: Boolean, default: false
   field :startup_x,         type: Integer
