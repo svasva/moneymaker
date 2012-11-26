@@ -10,6 +10,7 @@ Moneymaker::Application.routes.draw do
     resources :items
     resources :rooms
     resources :room_types
+    resources :item_types
     resources :swfclients do
       member { get :activate }
     end

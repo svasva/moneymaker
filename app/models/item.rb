@@ -3,6 +3,7 @@ class Item
 
   embeds_many :contracts
   belongs_to :room_type
+  belongs_to :item_type
 
   field :name,              type: String
   field :desc,              type: String

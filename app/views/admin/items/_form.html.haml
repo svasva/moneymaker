@@ -6,8 +6,9 @@
   .row-fluid
     .span6
       .control-group
-        %label.control-label{for: 'item_type'}= t 'item.type'
-        .controls= f.text_field :type
+        %label.control-label{for: 'item_item_type_id'}= t 'item.item_type'
+        .controls
+          = f.select :item_type_id, options_for_select(@item_types, resource.item_type_id), {include_blank: true}, {class: 'select2', tabindex: 0}
       .control-group
         %label.control-label{for: 'item_room_type_id'}= t 'item.room_type'
         .controls

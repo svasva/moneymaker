@@ -45,7 +45,6 @@ ru:
     menu_caption: Предметы
     name: Имя
     desc: Описание
-    type: Тип
     money_cost: Цена (игр.)
     coins_cost: Цена (реал.)
     sell_cost: Цена продажи (игр.)
@@ -59,6 +58,7 @@ ru:
     startup_x: Стартовая локация, X
     startup_y: Стартовая локация, Y
     room_type: Тип комнаты
+    item_type: Тип предмета
     startup_room: Стартовая комната
   room:
     caption: Комната
@@ -90,3 +90,14 @@ ru:
       any: Любой этаж
   room_type:
     <<: *roomtype
+  itemtype: &itemtype
+    caption: Тип предмета
+    menu_caption: Типы предметов
+    name: Имя
+    placement: Размещение
+    placement_options:
+      any: Любое свободное место
+      wall: Линкуется к стене
+      none: Не размещаемый
+  item_type:
+    <<: *itemtype

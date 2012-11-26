@@ -4,15 +4,15 @@
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
     = "# #{resource.id}" if params[:action] == 'edit'
   .control-group
-    %label.control-label{for: "room_type_name"}
-      = t 'room_type.name'
+    %label.control-label{for: "item_type_name"}
+      = t 'item_type.name'
     .controls
       = f.text_field :name
   .control-group
-    %label.control-label{for: "room_type_placement"}
-      = t 'room_type.placement'
+    %label.control-label{for: "item_type_placement"}
+      = t 'item_type.placement'
     .controls
-      = f.select :placement, options_for_select(RoomType.placement_options, resource.placement), {include_blank: true}, {class: 'select2', tabindex: 0}
+      = f.select :placement, options_for_select(ItemType.placement_options, resource.placement), {include_blank: true}, {class: 'select2', tabindex: 0}
   .control-group
     .controls
       %a.btn{href: collection_url}
