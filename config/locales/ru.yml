@@ -16,6 +16,11 @@ ru:
     menu_caption: Пользователи
     social: СоцСеть
     social_id: СоцID
+    bank_name: Назв. банка
+    level: Уровень
+    reputation: Репутация
+    coins: Деньги (игр.)
+    money: Деньги (реал.)
   swfclient:
     caption: Flash-клиент
     menu_caption: Flash-клиенты

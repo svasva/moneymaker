@@ -56,19 +56,14 @@ class User
         room: room,
         user: self,
         x: room.startup_x,
-        y: room.startup_y
-      )
-      Item.where(
-        startup: true,
-        startup_room_id: room.id
-      ).each do |item|
+        y: room.startup_y)
+      Item.where(startup: true, startup_room_id: room.id).each do |item|
         UserItem.create(
           user: self,
           item: item,
           user_room: user_room,
           x: item.startup_x,
-          y: item.startup_y
-        )
+          y: item.startup_y)
       end
     end
   end
