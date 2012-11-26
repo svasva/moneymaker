@@ -48,7 +48,7 @@ ru:
     type: Тип
     money_cost: Цена (игр.)
     coins_cost: Цена (реал.)
-    sell_cost: Продажа
+    sell_cost: Цена продажи (игр.)
     size_x: Размер, X
     size_y: Размер, Y
     reputation_bonus: Репутация
@@ -68,7 +68,7 @@ ru:
     type: Тип
     money_cost: Цена (игр.)
     coins_cost: Цена (реал.)
-    sell_cost: Продажа
+    sell_cost: Цена продажи (игр.)
     size_x: Размер, X
     size_y: Размер, Y
     reputation_bonus: Репутация
