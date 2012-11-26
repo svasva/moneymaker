@@ -4,9 +4,6 @@
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
     = "# #{resource.id}" if params[:action] == 'edit'
   .control-group
-    %label.control-label{for: 'room_type'}= t 'room.type'
-    .controls= f.text_field :type
-  .control-group
     %label.control-label{for: 'room_type_id'}= t 'room.type'
     .controls
       = f.select :room_type_id, options_for_select(@room_types, resource.room_type_id), {include_blank: true}, {class: 'select2'}

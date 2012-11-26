@@ -4,6 +4,7 @@ class RoomType
   field :placement, type: String
   PLACEMENT_OPTIONS = %w(any ground underground onground)
   has_many :items
+  has_many :rooms
 
   def self.placement_options
     PLACEMENT_OPTIONS.map do |opt|
