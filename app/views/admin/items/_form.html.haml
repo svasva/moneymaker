@@ -32,17 +32,17 @@
         .controls= f.number_field :reputation_bonus
     .span6
       .control-group
-        %label.control-label{for: 'item_size_x'}= t 'item.size_x'
-        .controls= f.number_field :size_x
-      .control-group
-        %label.control-label{for: 'item_size_y'}= t 'item.size_y'
-        .controls= f.number_field :size_y
-      .control-group
         %label.control-label{for: 'item_swf'}= t 'item.swf'
         .controls= f.file_field :swf
       .control-group
         %label.control-label{for: 'item_icon'}= t 'item.icon'
         .controls= f.file_field :icon
+      .control-group
+        %label.control-label{for: 'item_size_x'}= t 'item.size_x'
+        .controls= f.number_field :size_x
+      .control-group
+        %label.control-label{for: 'item_size_y'}= t 'item.size_y'
+        .controls= f.number_field :size_y
       .control-group
         %label.control-label{for: 'item_startup'}= t 'item.startup'
         .controls= f.check_box :startup

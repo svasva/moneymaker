@@ -29,12 +29,6 @@
         .controls= f.number_field :reputation_bonus
     .span6
       .control-group
-        %label.control-label{for: 'room_size_x'}= t 'room.size_x'
-        .controls= f.number_field :size_x
-      .control-group
-        %label.control-label{for: 'room_size_y'}= t 'room.size_y'
-        .controls= f.number_field :size_y
-      .control-group
         %label.control-label{for: 'room_upgrade_id'}= t 'room.upgrade'
         .controls
           = f.select :upgrade_id, options_for_select(@upgrades, resource.upgrade_id), {include_blank: true}, {class: 'select2'}
@@ -44,6 +38,12 @@
       .control-group
         %label.control-label{for: 'room_icon'}= t 'room.icon'
         .controls= f.file_field :icon
+      .control-group
+        %label.control-label{for: 'room_size_x'}= t 'room.size_x'
+        .controls= f.number_field :size_x
+      .control-group
+        %label.control-label{for: 'room_size_y'}= t 'room.size_y'
+        .controls= f.number_field :size_y
       .control-group
         %label.control-label{for: 'room_startup'}= t 'room.startup'
         .controls= f.check_box :startup
