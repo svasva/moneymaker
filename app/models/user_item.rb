@@ -4,12 +4,12 @@ class UserItem
 
   embedded_in :user
   belongs_to :item
+  belongs_to :user_room
 
   field :x,                 type: Integer,  default: -1
   field :y,                 type: Integer,  default: -1
-  field :status,            type: String, default: 'standby'
-  field :room_id,           type: String
-  field :rotation,          type: Integer
+  field :status,            type: String,   default: 'standby'
+  field :rotation,          type: Integer,  default: 0
 
   index({x: 1, y: 1})
 

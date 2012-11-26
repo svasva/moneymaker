@@ -17,8 +17,6 @@ class Item
   field :startup_x,         type: Integer
   field :startup_y,         type: Integer
   field :startup_room_id,   type: String
-  field :enter_point_x,     type: Integer
-  field :enter_point_y,     type: Integer
 
   field :requirements,      type: Hash
   field :rewards,           type: Hash
