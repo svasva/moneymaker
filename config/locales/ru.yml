@@ -58,6 +58,8 @@ ru:
     startup: Стартовая локация
     startup_x: Стартовая локация, X
     startup_y: Стартовая локация, Y
+    room_type: Тип комнаты
+    startup_room: Стартовая комната
   room:
     caption: Комната
     menu_caption: Комнаты
