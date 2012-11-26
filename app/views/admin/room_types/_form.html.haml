@@ -12,7 +12,7 @@
     %label.control-label{for: "room_type_placement"}
       = t 'room_type.placement'
     .controls
-      = f.select :placement, options_for_select(RoomType.placement_options, resource.placement), {include_blank: true}, {class: 'select2'}
+      = f.select :placement, options_for_select(RoomType.placement_options, resource.placement), {include_blank: true}, {class: 'select2', tabindex: 0}
   .control-group
     .controls
       %a.btn{href: collection_url} Назад

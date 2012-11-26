@@ -9,9 +9,9 @@
         %label.control-label{for: 'item_type'}= t 'item.type'
         .controls= f.text_field :type
       .control-group
-        %label.control-label{for: 'room_type_id'}= t 'item.room_type'
+        %label.control-label{for: 'item_room_type_id'}= t 'item.room_type'
         .controls
-          = f.select :room_type_id, options_for_select(@room_types, resource.room_type_id), {include_blank: true}, {class: 'select2'}
+          = f.select :room_type_id, options_for_select(@room_types, resource.room_type_id), {include_blank: true}, {class: 'select2', tabindex: 0}
       .control-group
         %label.control-label{for: 'item_name'}= t 'item.name'
         .controls= f.text_field :name
@@ -49,7 +49,7 @@
       .control-group
         %label.control-label{for: 'item_startup_room_id'}= t 'item.startup_room'
         .controls
-          = f.select :startup_room_id, options_for_select(@rooms, resource.startup_room_id), {include_blank: true}, {class: 'select2'}
+          = f.select :startup_room_id, options_for_select(@rooms, resource.startup_room_id), {include_blank: true}, {class: 'select2', tabindex: 0}
       .control-group
         %label.control-label{for: 'item_startup_x'}= t 'item.startup_x'
         .controls= f.number_field :startup_x

@@ -7,7 +7,7 @@
     %label.control-label{for: "flash_lib_social"}
       = t 'flash_lib.social'
     .controls
-      = f.select :social, SOCIAL_NETS, {}, {class: 'select2'}
+      = f.select :social, SOCIAL_NETS, {}, {class: 'select2', tabindex: 0}
   .control-group
     %label.control-label{for: "flash_lib_desc"}
       = t 'flash_lib.desc'
