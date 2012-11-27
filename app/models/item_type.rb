@@ -2,8 +2,8 @@ class ItemType
   include Mongoid::Document
   field :name,       type: String
   field :placement,  type: String
-  field :unique,     type: Boolean
-  field :timed,      type: Boolean
+  field :unique,     type: Boolean, default: false
+  field :timed,      type: Boolean, default: false
   field :timetolive, type: Integer # minutes
   PLACEMENT_OPTIONS = %w(any wall none)
   has_many :items
