@@ -14,6 +14,12 @@
     .controls
       = f.select :placement, options_for_select(ItemType.placement_options, resource.placement), {include_blank: true}, {class: 'select2', tabindex: 0}
   .control-group
+    %label.control-label{for: 'item_type_timed'}= t 'item_type.timed'
+    .controls= f.check_box :timed
+  .control-group
+    %label.control-label{for: 'item_type_timetolive'}= t 'item_type.timetolive'
+    .controls= f.number_field :timetolive
+  .control-group
     %label.control-label{for: 'item_type_unique'}= t 'item_type.unique'
     .controls= f.check_box :unique
   .control-group

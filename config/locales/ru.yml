@@ -100,6 +100,9 @@ ru:
     menu_caption: Типы предметов
     name: Имя
     placement: Размещение
+    unique: Уникальный
+    timed: Временный
+    timetolive: Время действия (мин.)
     placement_options:
       any: Любое свободное место
       wall: Линкуется к стене
