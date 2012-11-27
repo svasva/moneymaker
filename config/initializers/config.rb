@@ -4,8 +4,8 @@ if Rails.env.production?
   SOCKET_URL = 'ws://app.so14.org:9999/socket/0/0/websocket'
   CONTENT_URL = 'http://app.so14.org'
 else
-  SOCKET_API = 'http://localhost:9999/sock'
+  SOCKET_API = 'http://192.168.1.242:9999/sock'
   SOCKET_URL = 'ws://192.168.1.242:9999/socket/0/0/websocket'
-  CONTENT_URL = 'http://localhost:3000'
+  CONTENT_URL = 'http://192.168.1.242:3000'
 end
 SOCIAL_NETS = %w(vkontakte mailru odnoklassniki facebook)

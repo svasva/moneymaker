@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         raise 'item not sold' unless sold
         response = { success: 'item sold' }
       when 'getItems'
-        response = Item.all
+        response = Item.all.as_json(methods: [:swf_url, :icon_url])
       when 'getRooms'
         response = Room.all
       when 'getRoom'
