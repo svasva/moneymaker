@@ -14,6 +14,9 @@
     .controls
       = f.select :placement, options_for_select(ItemType.placement_options, resource.placement), {include_blank: true}, {class: 'select2', tabindex: 0}
   .control-group
+    %label.control-label{for: 'item_type_unique'}= t 'item_type.unique'
+    .controls= f.check_box :unique
+  .control-group
     .controls
       %a.btn{href: collection_url}
         %i.icon-arrow-left

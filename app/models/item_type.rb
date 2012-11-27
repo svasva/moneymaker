@@ -2,6 +2,7 @@ class ItemType
   include Mongoid::Document
   field :name,      type: String
   field :placement, type: String
+  field :unique,    type: Boolean
   PLACEMENT_OPTIONS = %w(any wall none)
   has_many :items
 
