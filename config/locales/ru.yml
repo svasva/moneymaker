@@ -6,6 +6,13 @@ ru:
     new: Новый(ая)
     confirm: Уверены?
     content: Контент
+    level: Уровень
+    friends: Кол-во друзей
+    reputation: Репутация
+    requirements: Требования
+    rewards: Награды
+    effects: Эффекты
+    items: Предметы
   greeting:
     caption: Приветствие
     menu_caption: Приветствия

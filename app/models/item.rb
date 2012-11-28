@@ -20,9 +20,9 @@ class Item
   field :startup_y,         type: Integer
   field :startup_room_id,   type: String
 
-  field :requirements,      type: Hash
-  field :rewards,           type: Hash
-  field :effects,           type: Hash
+  field :requirements,      type: Hash,    default: {items: {}}
+  field :rewards,           type: Hash,    default: {items: {}}
+  field :effects,           type: Hash,    default: {}
 
   mount_uploader :swf,  SwfUploader
   mount_uploader :icon, SwfUploader
@@ -30,4 +30,6 @@ class Item
   validates_presence_of :name, :size_x, :size_y
 
   default_scope where(_type: nil)
+
+  REQUIREMENT_OPTIONS = %w(items level reputation)
 end

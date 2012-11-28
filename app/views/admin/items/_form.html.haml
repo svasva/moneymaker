@@ -57,6 +57,41 @@
       .control-group
         %label.control-label{for: 'item_startup_y'}= t 'item.startup_y'
         .controls= f.number_field :startup_y
+  .row-fluid
+    .span4
+      %legend= t 'common.requirements'
+      .control-group
+        %label.control-label{for: 'item_requirements_level'}= t 'common.level'
+        .controls
+          %input{name: 'item[requirements][level]', type: 'number', value: resource.requirements['level']}
+      .control-group
+        %label.control-label{for: 'item_requirements_friends'}= t 'common.friends'
+        .controls
+          %input{name: 'item[requirements][friends]', type: 'number', value: resource.requirements['friends']}
+      .control-group
+        %label.control-label{for: 'item_requirements_reputation'}= t 'common.reputation'
+        .controls
+          %input{name: 'item[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
+      .itemRequirements
+      .removeLink.template
+        %a.btn.btn-small.btn-danger
+          %i.icon-trash.icon-white
+      .itemRequirement.template
+        .control-group
+          %label.control-label label
+          .controls
+            %input{type: 'number', value: 1}
+      .control-group
+        %label.control-label= t 'common.items'
+        .controls
+          %select.select2#requireItem
+            %option
+            - @items.each do |name, id|
+              %option{value: id}= name
+    .span4
+      %legend= t 'common.rewards'
+    .span4
+      %legend= t 'common.effects'
   .control-group
     .controls
       %a.btn{href: collection_url}
@@ -65,3 +100,5 @@
       %button.btn.btn-primary
         %i.icon-ok.icon-white
         Сохранить
+:javascript
+  var req_items = #{@req_items.to_json};

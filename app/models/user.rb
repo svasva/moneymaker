@@ -78,6 +78,7 @@ class User
     return true unless requirements
     return true if requirements.empty?
     requirements.each do |type, req|
+      next if req == 0 or req == ''
       case type
       when 'items'
         req.each do |item_id, count|
