@@ -20,8 +20,8 @@ class Item
   field :startup_y,         type: Integer
   field :startup_room_id,   type: String
 
-  field :requirements,      type: Hash,    default: {items: {}}
-  field :rewards,           type: Hash,    default: {items: {}}
+  field :requirements,      type: Hash,    default: {items: {}, rooms: {}}
+  field :rewards,           type: Hash,    default: {}
   field :effects,           type: Hash,    default: {}
 
   mount_uploader :swf,  SwfUploader
@@ -32,4 +32,24 @@ class Item
   default_scope where(_type: nil)
 
   REQUIREMENT_OPTIONS = %w(items level reputation)
+  EFFECT_MAXCOUNT = 3
+  EFFECT_OPTIONS = [
+    'reputation',
+    'income',
+    'service_speed',
+    'queue_time',
+    'max_coins',
+    'encashment_speed',
+    'encashment_speed_atm',
+    'security',
+    'security_branch',
+    'atm_crash'
+  ]
+
+  def self.effect_options
+    namespace = self.name.downcase
+    EFFECT_OPTIONS.map do |opt|
+      [I18n.t(namespace + '.effect_options.' + opt), opt]
+    end
+  end
 end

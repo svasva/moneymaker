@@ -13,6 +13,8 @@ ru:
     rewards: Награды
     effects: Эффекты
     items: Предметы
+    experience: Опыт
+    rooms: Комнаты
   greeting:
     caption: Приветствие
     menu_caption: Приветствия
@@ -72,6 +74,17 @@ ru:
     room_type: Тип комнаты
     item_type: Тип предмета
     startup_room: Стартовая комната
+    effect_options:
+      reputation: Репутация
+      income: Доход банка
+      service_speed: Скорость обслж.
+      queue_time: Время в очереди
+      max_coins: Максимальный доход
+      encashment_speed: Время инкассации
+      encashment_speed_atm: Время инкассации (бнкмт)
+      security: Защищенность
+      security_branch: Защищенность филиалов
+      atm_crash: Шанс поломки бнкмт
   room:
     caption: Комната
     menu_caption: Комнаты

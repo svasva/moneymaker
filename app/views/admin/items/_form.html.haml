@@ -50,7 +50,7 @@
       .control-group
         %label.control-label{for: 'item_startup_room_id'}= t 'item.startup_room'
         .controls
-          = f.select :startup_room_id, options_for_select(@rooms, resource.startup_room_id), {include_blank: true}, {class: 'select2', tabindex: 0}
+          = f.select :startup_room_id, options_for_select(@startup_rooms, resource.startup_room_id), {include_blank: true}, {class: 'select2', tabindex: 0}
       .control-group
         %label.control-label{for: 'item_startup_x'}= t 'item.startup_x'
         .controls= f.number_field :startup_x
@@ -73,6 +73,7 @@
         .controls
           %input{name: 'item[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
       .itemRequirements
+      .roomRequirements
       .removeLink.template
         %a.btn.btn-small.btn-danger
           %i.icon-trash.icon-white
@@ -84,14 +85,38 @@
       .control-group
         %label.control-label= t 'common.items'
         .controls
-          %select.select2#requireItem
+          %select.select2#requireItem{tabindex: 0}
             %option
             - @items.each do |name, id|
               %option{value: id}= name
+      .control-group
+        %label.control-label= t 'common.rooms'
+        .controls
+          %select.select2#requireRoom{tabindex: 0}
+            %option
+            - @rooms.each do |name, id|
+              %option{value: id}= name
     .span4
       %legend= t 'common.rewards'
+      .control-group
+        %label.control-label{for: 'item_rewards_reputation'}= t 'common.reputation'
+        .controls
+          %input{name: 'item[rewards][reputation]', type: 'number', value: resource.rewards['reputation']}
+      .control-group
+        %label.control-label{for: 'item_rewards_experience'}= t 'common.experience'
+        .controls
+          %input{name: 'item[rewards][experience]', type: 'number', value: resource.rewards['experience']}
     .span4
       %legend= t 'common.effects'
+      .control-group
+        %label.control-label{for: "item_type_placement"}
+          = t 'item_type.placement'
+        .controls
+          %select.select2#effects
+            %option
+            - Item.effect_options.each do |name, value|
+              %option{value: value}= name
+      .effects
   .control-group
     .controls
       %a.btn{href: collection_url}
@@ -102,3 +127,5 @@
         Сохранить
 :javascript
   var req_items = #{@req_items.to_json};
+  var req_rooms = #{@req_rooms.to_json};
+  var effects = #{@effects.to_json}
