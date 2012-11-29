@@ -20,6 +20,10 @@ class UsersController < ApplicationController
         response = { success: 'item sold' }
       when 'getItems'
         response = Item.all.as_json(methods: [:swf_url, :icon_url])
+      when 'getItemTypes'
+        response = ItemType.all.as_json(methods: [:icon_url])
+      when 'getRoomTypes'
+        response = RoomType.all.as_json(methods: [:icon_url])
       when 'getRooms'
         response = Room.all
       when 'getRoom'

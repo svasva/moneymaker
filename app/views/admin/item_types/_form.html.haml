@@ -9,6 +9,9 @@
     .controls
       = f.text_field :name
   .control-group
+    %label.control-label{for: 'item_type_icon'}= t 'item.icon'
+    .controls= f.file_field :icon
+  .control-group
     %label.control-label{for: "item_type_placement"}
       = t 'item_type.placement'
     .controls

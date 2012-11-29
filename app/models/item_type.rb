@@ -8,6 +8,8 @@ class ItemType
   PLACEMENT_OPTIONS = %w(any wall none)
   has_many :items
 
+  mount_uploader :icon, SwfUploader
+
   default_scope where(_type: nil)
 
   def self.placement_options
