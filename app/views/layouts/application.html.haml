@@ -21,6 +21,6 @@
       .content
         - if flash[:notice]
           .alert.alert-success= flash[:notice]
-        - if flash[:error]
-          .alert.alert-error= flash[:error]
+        - if flash[:alert]
+          .alert.alert-error= flash[:alert]
         = yield

@@ -17,8 +17,8 @@
 //= require_tree .
 //= require_self
 //= require turbolinks
-init = function() {
 
+init = function() {
   $('.select2').select2({
     width: 'resolve',
     allowClear: true,
