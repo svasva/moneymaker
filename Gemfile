@@ -16,6 +16,7 @@ gem 'inherited_resources'
 gem 'russian'
 gem 'haml-rails'
 gem 'turbolinks'
+gem 'state_machine'
 
 group :development, :test do
   gem 'thin'
