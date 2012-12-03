@@ -6,6 +6,7 @@ class Admin::ItemsController < InheritedResources::Base
     @item_types = ItemType.all.map { |t| [t.name, t.id] }
     @items = Item.ne(id: resource.id).map {|r| [r.name, r.id]}
     @rooms = Room.all.map {|r| [r.name, r.id]}
+    resource.requirements['items'] ||= {}
     @req_items = resource.requirements['items'].map do |item_id, count|
       {
         id: item_id,
@@ -13,6 +14,7 @@ class Admin::ItemsController < InheritedResources::Base
         count: count
       }
     end
+    resource.requirements['rooms'] ||= {}
     @req_rooms = resource.requirements['rooms'].map do |room_id, count|
       {
         id: room_id,
@@ -20,6 +22,7 @@ class Admin::ItemsController < InheritedResources::Base
         count: count
       }
     end
+    resource.effects ||= {}
     @effects = resource.effects.map do |effect_id, count|
       {
         id: effect_id,
@@ -36,6 +39,7 @@ class Admin::ItemsController < InheritedResources::Base
     @item_types = ItemType.all.map { |t| [t.name, t.id] }
     @items = Item.all.map {|r| [r.name, r.id]}
     @rooms = Room.all.map {|r| [r.name, r.id]}
+    resource.requirements['items'] ||= {}
     @req_items = resource.requirements['items'].map do |item_id, count|
       {
         id: item_id,
@@ -43,6 +47,7 @@ class Admin::ItemsController < InheritedResources::Base
         count: count
       }
     end
+    resource.requirements['rooms'] ||= {}
     @req_rooms = resource.requirements['rooms'].map do |room_id, count|
       {
         id: room_id,
