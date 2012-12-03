@@ -13,11 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require turbolinks
 //= require select2
 //= require_tree .
-
+//= require_self
+//= require turbolinks
 init = function() {
+
   $('.select2').select2({
     width: 'resolve',
     allowClear: true,

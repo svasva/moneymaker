@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 #
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 
-gem 'mongoid'
+gem 'mongoid', '~> 3.0.0'
 
 gem 'carrierwave'
 gem 'carrierwave-mongoid'
@@ -16,6 +16,7 @@ gem 'inherited_resources'
 gem 'russian'
 gem 'haml-rails'
 gem 'turbolinks'
+gem 'bson_ext'
 
 group :development, :test do
   gem 'thin'
