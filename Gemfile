@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 #
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 
-gem 'mongoid'
+gem 'mongoid', '~> 3.0.0'
 
 gem 'carrierwave'
 gem 'carrierwave-mongoid'
@@ -17,6 +17,7 @@ gem 'russian'
 gem 'haml-rails'
 gem 'turbolinks'
 gem 'state_machine'
+gem 'bson_ext'
 
 group :development, :test do
   gem 'thin'
@@ -32,3 +33,4 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
+
