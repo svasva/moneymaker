@@ -18,4 +18,9 @@
   %body
     = render partial: 'shared/navbar'
     .container
-      .content= yield
+      .content
+        - if flash[:notice]
+          .alert.alert-success= flash[:notice]
+        - if flash[:error]
+          .alert.alert-error= flash[:error]
+        = yield
