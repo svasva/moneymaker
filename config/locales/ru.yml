@@ -15,14 +15,38 @@ ru:
       text: Обязательное поле
       mark: '!'
     labels:
-      item_type:
+      defaults:
+        text: Текст
         name: Имя
-        klass_name: Имя класса
+        desc: Описание
         icon: Иконка
+        swf: SWF
         placement: Размещение
+        size_x: Размер, X
+        size_y: Размер, Y
+        startup: Вкл. в стартовую локацию
+        startup_x: Положение в ст. лок., X
+        startup_y: Положение в ст. лок., Y
+        money_cost: Цена (реал.)
+        coins_cost: Цена (игр.)
+        sell_cost: Цена продажи
+        reputation_bonus: Репутация
+        room_type_id: Тип комнаты
+        item_type_id: Тип предмета
+        startup_room_id: Стартовая комната
+      flash_lib:
+        active: Активна
+        social: СоцСеть
+        local_path: Локальный путь
+      item_type:
+        klass_name: Имя класса
         timed: Временный
         timetolive: Время действия
         unique: Уникальный
+      room_type:
+        unique: Уникальная
+      greeting:
+        weight: Вес
   common:
     edit: Изменить
     delete: Удалить
