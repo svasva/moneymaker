@@ -41,4 +41,13 @@ class Admin::ItemsController < InheritedResources::Base
     @rooms = Room.all.map {|r| [r.name, r.id]}
     super
   end
+
+  def create
+    @startup_rooms = Room.where(startup: true).map {|r| [r.name, r.id]}
+    @room_types = RoomType.all.map { |t| [t.name, t.id] }
+    @item_types = ItemType.all.map { |t| [t.name, t.id] }
+    @items = Item.all.map {|r| [r.name, r.id]}
+    @rooms = Room.all.map {|r| [r.name, r.id]}
+    super
+  end
 end
