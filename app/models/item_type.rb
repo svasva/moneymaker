@@ -8,6 +8,7 @@ class ItemType
   field :timed,      type: Boolean, default: false
   field :timetolive, type: Integer # minutes
   PLACEMENT_OPTIONS = %w(any wall none)
+  MODULES_OPTIONS = %w(base)
   has_many :items
 
   mount_uploader :icon, SwfUploader
@@ -30,7 +31,7 @@ class ItemType
     return false if klass_name.empty?
     klass = Class.new UserItem
     include_modules.each do |m|
-      klass.class_eval { include "#{m}".constantize }
+      klass.class_eval { include "ItemLogic::#{m.camelize}".constantize }
     end
     Object.const_set (self.klass_name + 'Item').camelize, klass
   end
