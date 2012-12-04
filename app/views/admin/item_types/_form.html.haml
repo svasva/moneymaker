@@ -1,4 +1,4 @@
-- @url = params[:action] == 'new' ? collection_url : resource_url(resource)
+- @url = params[:action] == 'edit' ? resource_url(resource) : collection_url
 = simple_form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
@@ -6,6 +6,7 @@
 
   = f.input :name
   = f.input :klass_name
+  = f.input :include_modules, collection: ItemType::MODULES_OPTIONS, input_html: {class: 'select2', tabindex: 0, multiple: true}
   = f.input :icon
   = f.input :placement, collection: ItemType.placement_options, input_html: {class: 'select2', tabindex: 0}
   = f.input :timed, as: :boolean

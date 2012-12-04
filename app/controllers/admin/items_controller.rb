@@ -39,22 +39,6 @@ class Admin::ItemsController < InheritedResources::Base
     @item_types = ItemType.all.map { |t| [t.name, t.id] }
     @items = Item.all.map {|r| [r.name, r.id]}
     @rooms = Room.all.map {|r| [r.name, r.id]}
-    resource.requirements['items'] ||= {}
-    @req_items = resource.requirements['items'].map do |item_id, count|
-      {
-        id: item_id,
-        name: Item.find(item_id).name,
-        count: count
-      }
-    end
-    resource.requirements['rooms'] ||= {}
-    @req_rooms = resource.requirements['rooms'].map do |room_id, count|
-      {
-        id: room_id,
-        name: Room.find(room_id).name,
-        count: count
-      }
-    end
     super
   end
 end

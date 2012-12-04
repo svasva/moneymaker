@@ -11,9 +11,6 @@ ru:
         notice: '%{resource_name} was successfully destroyed.'
         alert: '%{resource_name} could not be destroyed.'
   simple_form:
-    required:
-      text: Обязательное поле
-      mark: '!'
     labels:
       defaults:
         text: Текст
