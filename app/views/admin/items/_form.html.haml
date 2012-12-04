@@ -1,62 +1,27 @@
 - @url = params[:action] == 'new' ? collection_url : resource_url(resource)
-= form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
+= simple_form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
     = "# #{resource.id}" if params[:action] == 'edit'
   .row-fluid
     .span6
-      .control-group
-        %label.control-label{for: 'item_item_type_id'}= t 'item.item_type'
-        .controls
-          = f.select :item_type_id, options_for_select(@item_types, resource.item_type_id), {include_blank: true}, {class: 'select2', tabindex: 0}
-      .control-group
-        %label.control-label{for: 'item_room_type_id'}= t 'item.room_type'
-        .controls
-          = f.select :room_type_id, options_for_select(@room_types, resource.room_type_id), {include_blank: true}, {class: 'select2', tabindex: 0}
-      .control-group
-        %label.control-label{for: 'item_name'}= t 'item.name'
-        .controls= f.text_field :name
-      .control-group
-        %label.control-label{for: 'item_desc'}= t 'item.desc'
-        .controls= f.text_area :desc, rows: 4
-      .control-group
-        %label.control-label{for: 'item_money_cost'}= t 'item.money_cost'
-        .controls= f.number_field :money_cost
-      .control-group
-        %label.control-label{for: 'item_coins_cost'}= t 'item.coins_cost'
-        .controls= f.number_field :coins_cost
-      .control-group
-        %label.control-label{for: 'item_sell_cost'}= t 'item.sell_cost'
-        .controls= f.number_field :sell_cost
-      .control-group
-        %label.control-label{for: 'item_reputation_bonus'}= t 'item.reputation_bonus'
-        .controls= f.number_field :reputation_bonus
+      = f.input :item_type_id, collection: @item_types, input_html: {class: 'select2', tabindex: 0}
+      = f.input :room_type_id, collection: @room_types, input_html: {class: 'select2', tabindex: 0}
+      = f.input :name
+      = f.input :desc, as: :text, input_html: {rows: 4}
+      = f.input :money_cost, as: :integer
+      = f.input :coins_cost, as: :integer
+      = f.input :sell_cost, as: :integer
+      = f.input :reputation_bonus, as: :integer
     .span6
-      .control-group
-        %label.control-label{for: 'item_swf'}= t 'item.swf'
-        .controls= f.file_field :swf
-      .control-group
-        %label.control-label{for: 'item_icon'}= t 'item.icon'
-        .controls= f.file_field :icon
-      .control-group
-        %label.control-label{for: 'item_size_x'}= t 'item.size_x'
-        .controls= f.number_field :size_x
-      .control-group
-        %label.control-label{for: 'item_size_y'}= t 'item.size_y'
-        .controls= f.number_field :size_y
-      .control-group
-        %label.control-label{for: 'item_startup'}= t 'item.startup'
-        .controls= f.check_box :startup
-      .control-group
-        %label.control-label{for: 'item_startup_room_id'}= t 'item.startup_room'
-        .controls
-          = f.select :startup_room_id, options_for_select(@startup_rooms, resource.startup_room_id), {include_blank: true}, {class: 'select2', tabindex: 0}
-      .control-group
-        %label.control-label{for: 'item_startup_x'}= t 'item.startup_x'
-        .controls= f.number_field :startup_x
-      .control-group
-        %label.control-label{for: 'item_startup_y'}= t 'item.startup_y'
-        .controls= f.number_field :startup_y
+      = f.input :swf
+      = f.input :icon
+      = f.input :size_x, as: :integer
+      = f.input :size_y, as: :integer
+      = f.input :startup, as: :boolean
+      = f.input :startup_room_id, collection: @startup_rooms, input_html: {class: 'select2', tabindex: 0}
+      = f.input :startup_x, as: :integer
+      = f.input :startup_y, as: :integer
   .row-fluid
     .span4
       %legend= t 'common.requirements'

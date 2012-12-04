@@ -1,33 +1,13 @@
 - @url = params[:action] == 'new' ? collection_url : resource_url(resource)
-= form_for resource, url: @url, html: {class: 'form-horizontal', multipart: true} do |f|
+= simple_form_for resource, url: @url, html: {class: 'form-horizontal', multipart: true} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
     = "# #{resource.id}" if params[:action] == 'edit'
-  .control-group
-    %label.control-label{for: "flash_lib_social"}
-      = t 'flash_lib.social'
-    .controls
-      = f.select :social, SOCIAL_NETS, {}, {class: 'select2', tabindex: 0}
-  .control-group
-    %label.control-label{for: "flash_lib_desc"}
-      = t 'flash_lib.desc'
-    .controls
-      = f.text_field :desc
-  .control-group
-    %label.control-label{for: "flash_lib_local_path"}
-      = t 'flash_lib.local_path'
-    .controls
-      = f.text_field :local_path, rows: 5
-  .control-group
-    %label.control-label{for: "flash_lib_swf"}
-      = t 'flash_lib.swf'
-    .controls
-      = f.file_field :swf
-  .control-group
-    %label.control-label{for: "flash_lib_active"}
-      = t 'flash_lib.active'
-    .controls
-      = f.check_box :active, checked: true
+  = f.input :social, collection: SOCIAL_NETS, input_html: {class: 'select2', tabindex: 0}
+  = f.input :desc, as: :text, input_html: { rows: 5 }
+  = f.input :local_path
+  = f.input :swf
+  = f.input :active, as: :boolean
   .control-group
     .controls
       %a.btn{href: collection_url}

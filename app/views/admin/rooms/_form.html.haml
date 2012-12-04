@@ -1,58 +1,27 @@
 - @url = params[:action] == 'new' ? collection_url : resource_url(resource)
-= form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
+= simple_form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
     = "# #{resource.id}" if params[:action] == 'edit'
   .row-fluid
     .span6
-      .control-group
-        %label.control-label{for: 'room_room_type_id'}= t 'room.type'
-        .controls
-          = f.select :room_type_id, options_for_select(@room_types, resource.room_type_id), {include_blank: true}, {class: 'select2', tabindex: 0}
-      .control-group
-        %label.control-label{for: 'room_name'}= t 'room.name'
-        .controls= f.text_field :name
-      .control-group
-        %label.control-label{for: 'room_desc'}= t 'room.desc'
-        .controls= f.text_area :desc, rows: 4
-      .control-group
-        %label.control-label{for: 'room_money_cost'}= t 'room.money_cost'
-        .controls= f.number_field :money_cost
-      .control-group
-        %label.control-label{for: 'room_coins_cost'}= t 'room.coins_cost'
-        .controls= f.number_field :coins_cost
-      .control-group
-        %label.control-label{for: 'room_sell_cost'}= t 'room.sell_cost'
-        .controls= f.number_field :sell_cost
-      .control-group
-        %label.control-label{for: 'room_reputation_bonus'}= t 'room.reputation_bonus'
-        .controls= f.number_field :reputation_bonus
+      = f.input :room_type_id, collection: @room_types, input_html: {class: 'select2', tabindex: 0}
+      = f.input :name
+      = f.input :desc, as: :text, input_html: {rows: 4}
+      = f.input :money_cost, as: :integer
+      = f.input :coins_cost, as: :integer
+      = f.input :sell_cost, as: :integer
+      = f.input :reputation_bonus, as: :integer
     .span6
-      .control-group
-        %label.control-label{for: 'room_upgrade_id'}= t 'room.upgrade'
-        .controls
-          = f.select :upgrade_id, options_for_select(@upgrades, resource.upgrade_id), {include_blank: true}, {class: 'select2', tabindex: 0}
-      .control-group
-        %label.control-label{for: 'room_swf'}= t 'room.swf'
-        .controls= f.file_field :swf
-      .control-group
-        %label.control-label{for: 'room_icon'}= t 'room.icon'
-        .controls= f.file_field :icon
-      .control-group
-        %label.control-label{for: 'room_size_x'}= t 'room.size_x'
-        .controls= f.number_field :size_x
-      .control-group
-        %label.control-label{for: 'room_size_y'}= t 'room.size_y'
-        .controls= f.number_field :size_y
-      .control-group
-        %label.control-label{for: 'room_startup'}= t 'room.startup'
-        .controls= f.check_box :startup
-      .control-group
-        %label.control-label{for: 'room_startup_x'}= t 'room.startup_x'
-        .controls= f.number_field :startup_x
-      .control-group
-        %label.control-label{for: 'room_startup_y'}= t 'room.startup_y'
-        .controls= f.number_field :startup_y
+      = f.input :upgrade_id, collection: @upgrades, input_html: {class: 'select2', tabindex: 0}
+      = f.input :swf
+      = f.input :icon
+      = f.input :size_x, as: :integer
+      = f.input :size_y, as: :integer
+      = f.input :startup, as: :boolean
+      = f.input :startup_room_id, collection: @startup_rooms, input_html: {class: 'select2', tabindex: 0}
+      = f.input :startup_x, as: :integer
+      = f.input :startup_y, as: :integer
   .control-group
     .controls
       %a.btn{href: collection_url}

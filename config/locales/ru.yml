@@ -10,6 +10,19 @@ ru:
       destroy:
         notice: '%{resource_name} was successfully destroyed.'
         alert: '%{resource_name} could not be destroyed.'
+  simple_form:
+    required:
+      text: Обязательное поле
+      mark: '!'
+    labels:
+      item_type:
+        name: Имя
+        klass_name: Имя класса
+        icon: Иконка
+        placement: Размещение
+        timed: Временный
+        timetolive: Время действия
+        unique: Уникальный
   common:
     edit: Изменить
     delete: Удалить

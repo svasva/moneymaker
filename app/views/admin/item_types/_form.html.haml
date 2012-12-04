@@ -1,35 +1,17 @@
 - @url = params[:action] == 'new' ? collection_url : resource_url(resource)
-= form_for resource, url: @url, html: {class: 'form-horizontal', multipart: true} do |f|
+= simple_form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
     = "# #{resource.id}" if params[:action] == 'edit'
-  .control-group
-    %label.control-label{for: "item_type_name"}
-      = t 'item_type.name'
-    .controls
-      = f.text_field :name
-  .control-group
-    %label.control-label{for: "item_type_klass_name"}
-      = t 'item_type.klass_name'
-    .controls
-      = f.text_field :klass_name
-  .control-group
-    %label.control-label{for: 'item_type_icon'}= t 'item.icon'
-    .controls= f.file_field :icon
-  .control-group
-    %label.control-label{for: "item_type_placement"}
-      = t 'item_type.placement'
-    .controls
-      = f.select :placement, options_for_select(ItemType.placement_options, resource.placement), {include_blank: true}, {class: 'select2', tabindex: 0}
-  .control-group
-    %label.control-label{for: 'item_type_timed'}= t 'item_type.timed'
-    .controls= f.check_box :timed
-  .control-group
-    %label.control-label{for: 'item_type_timetolive'}= t 'item_type.timetolive'
-    .controls= f.number_field :timetolive
-  .control-group
-    %label.control-label{for: 'item_type_unique'}= t 'item_type.unique'
-    .controls= f.check_box :unique
+
+  = f.input :name
+  = f.input :klass_name
+  = f.input :icon
+  = f.input :placement, collection: ItemType.placement_options, input_html: {class: 'select2', tabindex: 0}
+  = f.input :timed, as: :boolean
+  = f.input :timetolive, as: :integer
+  = f.input :unique, as: :boolean
+
   .control-group
     .controls
       %a.btn{href: collection_url}

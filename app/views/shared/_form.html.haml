@@ -1,14 +1,10 @@
 - @url = params[:action] == 'new' ? collection_url : resource_url(resource)
-= form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
+= simple_form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
     = "# #{resource.id}" if params[:action] == 'edit'
   - resource_attrs(resource).each do |name, value|
-    .control-group
-      %label.control-label{for: "#{resource_class.to_s.downcase}_#{name}"}
-        = t "#{resource_class.to_s.downcase}.#{name}"
-      .controls
-        = f.text_field name
+    = f.input name
   .control-group
     .controls
       %a.btn{href: collection_url}

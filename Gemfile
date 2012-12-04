@@ -18,6 +18,7 @@ gem 'haml-rails'
 gem 'turbolinks'
 gem 'state_machine'
 gem 'bson_ext'
+gem 'simple_form'
 
 group :development, :test do
   gem 'thin'
