@@ -27,7 +27,7 @@ class Item
   mount_uploader :swf,  SwfUploader
   mount_uploader :icon, SwfUploader
 
-  validates_presence_of :name, :size_x, :size_y
+  validates_presence_of :name, :size_x, :size_y, :desc, :item_type_id
 
   default_scope where(_type: nil)
 
