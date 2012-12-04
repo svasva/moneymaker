@@ -30,9 +30,9 @@ class ItemType
     return false if klass_name.empty?
     klass = Class.new UserItem
     include_modules.each do |m|
-      klass.class_eval { include "#{m}Item".constantize }
+      klass.class_eval { include "#{m}".constantize }
     end
-    Object.const_set self.klass_name.camelize, klass
+    Object.const_set (self.klass_name + 'Item').camelize, klass
   end
 
   def self.init_all
