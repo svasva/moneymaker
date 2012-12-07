@@ -1,8 +1,7 @@
-- @url = params[:action] == 'edit' || 'update' ? resource_url(resource) : collection_url
-= simple_form_for resource, url: @url, html: {class: 'form-horizontal', multipart: true} do |f|
+= simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
-    = "# #{resource.id}" if params[:action] == 'edit' || 'update'
+    = "# #{resource.id}" unless resource.new_record?
 
   = f.input :desc, as: :text, input_html: {rows: 5}
   = f.input :swf

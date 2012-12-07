@@ -1,8 +1,7 @@
-- @url = params[:action] == 'edit' || 'update' ? resource_url(resource) : collection_url
-= simple_form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
+= simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
-    = "# #{resource.id}" if params[:action] == 'edit' || 'update'
+    = "# #{resource.id}" unless resource.new_record?
   .row-fluid
     .span6
       = f.input :item_type_id, collection: @item_types, input_html: {class: 'select2', tabindex: 0}
@@ -15,7 +14,15 @@
       = f.input :sell_cost, as: :integer
     .span6
       = f.input :swf
+      - unless resource.new_record?
+        .control-group
+          .controls
+            %a{href: resource.swf_url}= resource.swf_filename
       = f.input :icon
+      - unless resource.new_record?
+        .control-group
+          .controls
+            %a{href: resource.icon_url}= resource.icon_filename
       = f.input :size_x, as: :integer
       = f.input :size_y, as: :integer
       = f.input :height, as: :float
