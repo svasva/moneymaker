@@ -17,7 +17,9 @@
     - collection.each do |resource|
       %tr
         %td= resource.order
-        %td= link_to resource.item_type.name, [:admin, resource.item_type]
+        %td
+          - if resource.item_type
+            = link_to resource.item_type.name, [:admin, resource.item_type]
         - resource_attrs(resource).each do |field, value|
           - next if @skip_fields and @skip_fields.include? field.to_s
           - next if @use_fields and not @use_fields.include? field.to_s
