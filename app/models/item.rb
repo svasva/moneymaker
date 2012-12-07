@@ -24,7 +24,7 @@ class Item
   field :rewards,           type: Hash,    default: {}
   field :effects,           type: Hash,    default: {}
 
-  field :order,             type: Integer, default: ->{(Item.last.order || 0) + 1}
+  field :order,             type: Integer
 
   mount_uploader :swf,  SwfUploader
   mount_uploader :icon, SwfUploader
