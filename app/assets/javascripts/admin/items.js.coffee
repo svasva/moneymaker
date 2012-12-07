@@ -1,4 +1,11 @@
 initItems = ->
+  $('.sortedTable').dataTable
+    sDom: "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>"
+    sPaginationType: "bootstrap"
+    bFilter: false
+    bPaginate: false
+    bInfo: false
+
   window.addItemReq = (id, name, count = 1) ->
     tmpl = $('.itemRequirement.template').clone()
     tmpl.removeClass 'template'

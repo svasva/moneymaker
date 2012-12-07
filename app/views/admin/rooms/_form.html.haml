@@ -1,8 +1,8 @@
-- @url = params[:action] == 'edit' ? resource_url(resource) : collection_url
+- @url = params[:action] == 'edit' || 'update' ? resource_url(resource) : collection_url
 = simple_form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
-    = "# #{resource.id}" if params[:action] == 'edit'
+    = "# #{resource.id}" if params[:action] == 'edit' || 'update'
   .row-fluid
     .span6
       = f.input :room_type_id, collection: @room_types, input_html: {class: 'select2', tabindex: 0}

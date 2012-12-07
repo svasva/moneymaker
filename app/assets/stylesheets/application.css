@@ -12,6 +12,7 @@
  *= require bootstrap
  *= require bootstrap-responsive
  *= require select2
+ *= require datatables_bootstrap
  */
 
 @media (min-width: 981px) {

@@ -13,6 +13,7 @@ ru:
   simple_form:
     labels:
       defaults:
+        order: Позиция
         text: Текст
         name: Имя
         desc: Описание
@@ -21,6 +22,7 @@ ru:
         placement: Размещение
         size_x: Размер, X
         size_y: Размер, Y
+        height: Высота
         startup: Вкл. в стартовую локацию
         startup_x: Положение в ст. лок., X
         startup_y: Положение в ст. лок., Y
@@ -103,6 +105,7 @@ ru:
     caption: Предмет
     menu_caption: Предметы
     name: Имя
+    order: Позиция
     desc: Описание
     money_cost: Цена (игр.)
     coins_cost: Цена (реал.)
@@ -111,7 +114,7 @@ ru:
     size_y: Размер, Y
     reputation_bonus: Репутация
     swf: Основной SWF
-    icon: Иконка SWF
+    icon: Иконка
     upgrade: Апгрейд
     startup: Стартовая локация
     startup_x: Стартовая локация, X
@@ -143,7 +146,7 @@ ru:
     size_y: Размер, Y
     reputation_bonus: Репутация
     swf: Основной SWF
-    icon: Иконка SWF
+    icon: Иконка
     upgrade: Апгрейд
     startup: Стартовая локация
     startup_x: Стартовая локация, X

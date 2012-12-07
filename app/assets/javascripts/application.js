@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require datatables
+//= require datatables_bootstrap
 //= require select2
 //= require_tree .
 //= require_self

@@ -1,23 +1,24 @@
-- @url = params[:action] == 'edit' ? resource_url(resource) : collection_url
+- @url = params[:action] == 'edit' || 'update' ? resource_url(resource) : collection_url
 = simple_form_for resource, url: @url, html: {class: 'form-horizontal'} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
-    = "# #{resource.id}" if params[:action] == 'edit'
+    = "# #{resource.id}" if params[:action] == 'edit' || 'update'
   .row-fluid
     .span6
       = f.input :item_type_id, collection: @item_types, input_html: {class: 'select2', tabindex: 0}
       = f.input :room_type_id, collection: @room_types, input_html: {class: 'select2', tabindex: 0}
       = f.input :name
       = f.input :desc, as: :text, input_html: {rows: 4}
+      = f.input :order, as: :integer
       = f.input :money_cost, as: :integer
       = f.input :coins_cost, as: :integer
       = f.input :sell_cost, as: :integer
-      = f.input :reputation_bonus, as: :integer
     .span6
       = f.input :swf
       = f.input :icon
       = f.input :size_x, as: :integer
       = f.input :size_y, as: :integer
+      = f.input :height, as: :float
       = f.input :startup, as: :boolean
       = f.input :startup_room_id, collection: @startup_rooms, input_html: {class: 'select2', tabindex: 0}
       = f.input :startup_x, as: :integer
@@ -52,14 +53,14 @@
         .controls
           %select.select2#requireItem{tabindex: 0}
             %option
-            - @items.each do |name, id|
+            - @items_sel.each do |name, id|
               %option{value: id}= name
       .control-group
         %label.control-label= t 'common.rooms'
         .controls
           %select.select2#requireRoom{tabindex: 0}
             %option
-            - @rooms.each do |name, id|
+            - @rooms_sel.each do |name, id|
               %option{value: id}= name
     .span4
       %legend= t 'common.rewards'
