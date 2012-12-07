@@ -1,12 +1,11 @@
-- @use_fields = %w(name type coins_cost money_cost reputation_bonus)
+- @use_fields = %w(name coins_cost money_cost)
 %table.table.sortedTable
   %thead
     %th= t 'item.order'
-    %th= t 'item.name'
     %th= t 'item.item_type'
+    %th= t 'item.name'
     %th= t 'item.coins_cost'
     %th= t 'item.money_cost'
-    %th= t 'item.reputation_bonus'
     %th= t 'item.icon'
     %th= t 'item.swf'
     %td
@@ -18,6 +17,7 @@
     - collection.each do |resource|
       %tr
         %td= resource.order
+        %td= link_to resource.item_type.name, [:admin, resource.item_type]
         - resource_attrs(resource).each do |field, value|
           - next if @skip_fields and @skip_fields.include? field.to_s
           - next if @use_fields and not @use_fields.include? field.to_s
