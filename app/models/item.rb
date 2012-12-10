@@ -7,14 +7,12 @@ class Item
 
   field :name,              type: String
   field :desc,              type: String
-  field :type,              type: String
   field :money_cost,        type: Integer
   field :coins_cost,        type: Integer
   field :sell_cost,         type: Integer
   field :size_x,            type: Integer, default: 1
   field :size_y,            type: Integer, default: 1
   field :height,            type: Float,   default: 1
-  field :reputation_bonus,  type: Integer
   field :startup,           type: Boolean, default: false
   field :startup_x,         type: Integer
   field :startup_y,         type: Integer
