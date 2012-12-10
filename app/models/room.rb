@@ -8,9 +8,9 @@ class Room < GameContent
 
   def busy_slots
     busy = []
-    useritems = user.user_items.where room_id: self.id
+    useritems = user.items.where room_id: self.id
     useritems.each do |uitem|
-      busy.concat slots_for(uitem.item, uitem.x, uitem.y)
+      busy.concat slots_for(uitem, uitem.x, uitem.y)
     end
     return busy
   end
@@ -23,7 +23,7 @@ class Room < GameContent
   end
 
   def place_item(useritem, x, y)
-    raise 'no space for item' unless got_space? useritem.item, x, y
+    raise 'no space for item' unless got_space? useritem, x, y
     useritem.update_attributes room: self, x: x, y: y
     return useritem.reload
   end
