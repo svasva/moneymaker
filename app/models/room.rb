@@ -1,5 +1,6 @@
 class Room < GameContent
   field :upgrade_id, type: String
+  field :floor,      type: Integer, default: 1
   belongs_to :room_type
   validates_length_of :desc, maximum: 300
   validates_presence_of :room_type_id
@@ -24,7 +25,7 @@ class Room < GameContent
 
   def place_item(useritem, x, y)
     raise 'no space for item' unless got_space? useritem, x, y
-    useritem.update_attributes room: self, x: x, y: y
+    useritem.update_attributes room_id: self.id, x: x, y: y
     return useritem.reload
   end
 end
