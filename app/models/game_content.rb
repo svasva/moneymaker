@@ -39,9 +39,20 @@ class GameContent
 
   scope :refs, where(user_id: nil)
 
-  after_update :update_refs # update referenced items
+  # update referenced items, notify client
+  after_update :update_refs, :update_client
+
+  def update_client
+    return true unless self.user_id
+    message = {
+      requestId: -2, # item update
+      response: { id: self.id, changes: self.changes }
+    }.to_json
+    user.send_message message
+  end
+
   def update_refs
-    return false if changes.keys.include? :user_id
+    return true if changes.keys.include? :user_id
     self.references.update(self.changes) unless self.user_id
   end
 
