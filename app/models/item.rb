@@ -1,38 +1,14 @@
-class Item
-  include Mongoid::Document
-
+class Item < GameContent
   embeds_many :contracts
   belongs_to :room_type
   belongs_to :item_type
+  belongs_to :room
 
-  field :name,              type: String
-  field :desc,              type: String
-  field :money_cost,        type: Integer
-  field :coins_cost,        type: Integer
-  field :sell_cost,         type: Integer
-  field :size_x,            type: Integer, default: 1
-  field :size_y,            type: Integer, default: 1
-  field :height,            type: Float,   default: 1
-  field :startup,           type: Boolean, default: false
-  field :startup_x,         type: Integer
-  field :startup_y,         type: Integer
-  field :startup_room_id,   type: String
+  field :startup_room_id, type: String
+  field :rotation,        type: Integer, default: 0
 
-  field :requirements,      type: Hash,    default: {items: {}, rooms: {}}
-  field :rewards,           type: Hash,    default: {}
-  field :effects,           type: Hash,    default: {}
-
-  field :order,             type: Integer
-
-  mount_uploader :swf,  SwfUploader
-  mount_uploader :icon, SwfUploader
-
-  validates_presence_of :name, :desc, :order
-  validates_presence_of :size_x, :size_y, :size_y, :height
   validates_presence_of :item_type_id
   validates_length_of :desc, maximum: 150
-
-  default_scope where(_type: nil).asc(:order)
 
   REQUIREMENT_OPTIONS = %w(items level reputation)
   EFFECT_MAXCOUNT = 3

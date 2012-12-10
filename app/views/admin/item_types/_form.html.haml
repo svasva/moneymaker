@@ -4,8 +4,6 @@
     = "# #{resource.id}" unless resource.new_record?
 
   = f.input :name
-  = f.input :klass_name
-  = f.input :include_modules, collection: ItemType::MODULES_OPTIONS, input_html: {class: 'select2', tabindex: 0, multiple: true}
   = f.input :icon
   = f.input :placement, collection: ItemType.placement_options, input_html: {class: 'select2', tabindex: 0}
   = f.input :timed, as: :boolean

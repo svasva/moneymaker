@@ -32,9 +32,6 @@ class User
 
   index({social: 1, social_id: 1}, {unique: true})
 
-  embeds_many :user_rooms
-  embeds_many :user_items
-  embeds_many :user_contracts
   has_many :user_sockets, dependent: :destroy
   has_and_belongs_to_many :friends, class_name: 'User'
   after_update :update_client
@@ -49,21 +46,11 @@ class User
   end
 
   def setup_start_location
-    self.user_rooms.destroy_all
-    self.user_contracts.destroy_all
     Room.where(startup: true).each do |room|
-      user_room = UserRoom.create(
-        room: room,
-        user: self,
-        x: room.startup_x,
-        y: room.startup_y)
+      user_room = room.add_to_user self.id, room.startup_x, room.startup_y
       Item.where(startup: true, startup_room_id: room.id).each do |item|
-        UserItem.create(
-          user: self,
-          item: item,
-          user_room: user_room,
-          x: item.startup_x,
-          y: item.startup_y)
+        user_item = item.add_to_user self.id, item.startup_x, item.startup_y
+        user_item.update_attribute :user_room_id, user_room.id
       end
     end
   end
@@ -82,7 +69,7 @@ class User
       case type
       when 'items'
         req.each do |item_id, count|
-          own_count = self.user_items.where(item_id: item_id).count
+          own_count = self.items.where(reference_id: item_id).count
           return false if own_count < count
         end
       when 'level'
@@ -107,7 +94,7 @@ class User
           item = Item.find(item_id)
           # TODO: error logging
           if item and requirements_met? item.requirements
-            count.times { UserItem.create(user: self, item: item) }
+            count.to_i.times { item.add_to_user self.id }
           end
         end
       when 'experience'
@@ -125,15 +112,24 @@ class User
     end
   end
 
-  def buy_item(item, currency)
-    return false unless requirements_met? item.requirements
-    item_cost = item[currency.to_s + '_cost']
-    return false if item_cost > self[currency]
-    useritem = UserItem.create(item: item, user: self)
-    self[currency] -= item_cost
-    self.give_rewards item.rewards
+  def buy_content(content, currency)
+    return false unless [:coins, :money].include? currency
+    return false unless requirements_met? content.requirements
+    content_cost = content[currency.to_s + '_cost']
+    return false if content_cost > self[currency]
+    usercontent = content.add_to_user self.id
+    self[currency] -= content_cost
+    self.give_rewards content.rewards
     self.save
-    return useritem
+    return usercontent
+  end
+
+  def items
+    GameContent.where(user_id: self.id).ne(_type: 'Room')
+  end
+
+  def rooms
+    GameContent.where(user_id: self.id, _type: 'Room')
   end
 
   if Rails.env.production?
