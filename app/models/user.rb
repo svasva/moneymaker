@@ -132,7 +132,5 @@ class User
     GameContent.where(user_id: self.id, _type: 'Room')
   end
 
-  if Rails.env.production?
-    handle_asynchronously :send_message
-  end
+  handle_asynchronously :send_message
 end
