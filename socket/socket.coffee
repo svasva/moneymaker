@@ -49,16 +49,12 @@ socketserver = (app, server) ->
           console.log "connections: " + Object.keys(sockets).length
 
   onCommand = (conn, data) ->
-    switch data.command
-      when 'getUser'
-        sendResponse conn, data.requestId, conn.user
-      else
-        url = REST_URL + "users/#{conn.user.id}/send_message"
-        msg = {requestId: data.requestId, cmd: data.command, args: data.args}
-        rest.post url, {data: msg}, (err, resp) ->
-          sendResponse conn, data.requestId, resp
-          console.log "POST #{url}:"
-          console.log err, resp
+    url = REST_URL + "users/#{conn.user.id}/send_message"
+    msg = {requestId: data.requestId, cmd: data.command, args: data.args}
+    rest.post url, {data: msg}, (err, resp) ->
+      sendResponse conn, data.requestId, resp
+      console.log "POST #{url}:"
+      console.log err, resp
 
   sendResponse = (conn, requestId, resp) ->
     console.log 'DATA SENT:\n' + JSON.stringify({requestId: requestId, response: resp})

@@ -5,6 +5,9 @@ class UsersController < ApplicationController
       case params[:cmd]
       when 'PING'
         response = 'pong'
+      when 'getUser'
+        user = User.find params[:id]
+        response = user.as_json(methods: [:rooms, :items])
       when 'getContent'
         response = GameContent.find(args.first)
       when 'buyContent'
