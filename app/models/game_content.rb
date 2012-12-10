@@ -41,6 +41,7 @@ class GameContent
 
   after_update :update_refs # update referenced items
   def update_refs
+    return false if changes.keys.include? :user_id
     self.references.update(self.changes) unless self.user_id
   end
 
@@ -55,7 +56,7 @@ class GameContent
   end
 
   def add_to_user(user_id, x = nil, y = nil)
-    obj = self.clone
+    obj = self.class.new self.attributes
     obj.reference_id = (self.reference_id or self.id)
     obj.user_id = user_id
     obj.x, obj.y = x, y
