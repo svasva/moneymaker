@@ -12,33 +12,23 @@ class Admin::ItemsController < InheritedResources::Base
   def edit
     resource.requirements['items'] ||= {}
     @startup_rooms = Room.where(startup: true).map {|r| [r.name, r.id]}
-    @room_types = RoomType.all.map { |t| [t.name, t.id] }
-    @item_types = ItemType.all.map { |t| [t.name, t.id] }
-    @items = Item.ne(id: resource.id).map {|r| [r.name, r.id]}
-    @rooms = Room.all.map {|r| [r.name, r.id]}
     resource.requirements['items'] ||= {}
     @req_items = resource.requirements['items'].map do |item_id, count|
-      {
-        id: item_id,
+      { id: item_id,
         name: Item.find(item_id).name,
-        count: count
-      }
+        count: count }
     end
     resource.requirements['rooms'] ||= {}
     @req_rooms = resource.requirements['rooms'].map do |room_id, count|
-      {
-        id: room_id,
+      { id: room_id,
         name: Room.find(room_id).name,
-        count: count
-      }
+        count: count }
     end
     resource.effects ||= {}
     @effects = resource.effects.map do |effect_id, count|
-      {
-        id: effect_id,
+      { id: effect_id,
         name: I18n.t('item.effect_options.' + effect_id),
-        count: count
-      }
+        count: count }
     end
     super
   end
