@@ -220,6 +220,7 @@ DEPENDENCIES
   carrierwave
   carrierwave-mongoid
   coffee-rails (~> 3.2.1)
+  daemons
   database_cleaner
   delayed_job_mongoid
   factory_girl_rails

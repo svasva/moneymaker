@@ -19,6 +19,7 @@ gem 'turbolinks'
 gem 'state_machine'
 gem 'bson_ext'
 gem 'simple_form'
+gem 'daemons'
 
 group :development, :test do
   gem 'thin'

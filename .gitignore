@@ -11,6 +11,8 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
+.htpasswd
+/unicorn
 /log/*.log
 /tmp
 /socket/node_modules

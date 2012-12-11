@@ -111,16 +111,16 @@ class User
           end
         end
       when 'experience'
-        self.inc :experience, rew
+        self.inc :experience, rew.to_i
       when 'reputation'
-        self.inc :reputation, rew
+        self.inc :reputation, rew.to_i
       when 'reputation_bonus'
-        self.inc :reputation_bonus, rew
+        self.inc :reputation_bonus, rew.to_i
       # TODO: log financial stats
       when 'coins'
-        self.inc :coins, rew
+        self.inc :coins, rew.to_i
       when 'money'
-        self.inc :money, rew
+        self.inc :money, rew.to_i
       end
     end
   end
