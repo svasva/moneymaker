@@ -121,6 +121,7 @@ class User
     return false unless [:coins, :money].include? currency
     return false unless requirements_met? content.requirements
     content_cost = content[currency.to_s + '_cost']
+    return false unless content_cost
     return false if content_cost > self[currency]
     usercontent = content.add_to_user self.id
     self[currency] -= content_cost
