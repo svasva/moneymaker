@@ -14,7 +14,7 @@
           %i.icon-plus.icon-white
           = t 'common.new'
   %tbody
-    - collection.each do |resource|
+    - collection.refs.each do |resource|
       %tr
         %td= resource.order
         %td
