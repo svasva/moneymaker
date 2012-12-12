@@ -9,6 +9,7 @@ Moneymaker::Application.routes.draw do
     resources :greetings
     resources :items
     resources :rooms
+    resources :atms
     resources :room_types
     resources :item_types
     resources :swfclients do

@@ -29,7 +29,6 @@ ru:
         money_cost: Цена (реал.)
         coins_cost: Цена (игр.)
         sell_cost: Цена продажи
-        reputation_bonus: Репутация
         room_type_id: Тип комнаты
         item_type_id: Тип предмета
         startup_room_id: Стартовая комната
@@ -112,7 +111,6 @@ ru:
     sell_cost: Цена продажи (игр.)
     size_x: Размер, X
     size_y: Размер, Y
-    reputation_bonus: Репутация
     swf: Основной SWF
     icon: Иконка
     upgrade: Апгрейд
@@ -144,7 +142,6 @@ ru:
     sell_cost: Цена продажи (игр.)
     size_x: Размер, X
     size_y: Размер, Y
-    reputation_bonus: Репутация
     swf: Основной SWF
     icon: Иконка
     upgrade: Апгрейд

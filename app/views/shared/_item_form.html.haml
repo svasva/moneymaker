@@ -1,0 +1,92 @@
+:javascript
+  var req_items = #{@req_items.to_json};
+  var req_rooms = #{@req_rooms.to_json};
+  var item_effects = #{@effects.to_json}
+.row-fluid
+  .span6
+    = f.input :item_type_id, collection: @item_types, input_html: {class: 'select2', tabindex: 0}
+    = f.input :room_type_id, collection: @room_types, input_html: {class: 'select2', tabindex: 0}
+    = f.input :name
+    = f.input :desc, as: :text, input_html: {rows: 4}
+    = f.input :order, as: :integer
+    = f.input :money_cost, as: :integer
+    = f.input :coins_cost, as: :integer
+    = f.input :sell_cost, as: :integer
+  .span6
+    = f.input :swf
+    - unless resource.new_record?
+      .control-group
+        .controls
+          %a{href: resource.swf_url}= resource.swf_filename
+    = f.input :icon
+    - unless resource.new_record?
+      .control-group
+        .controls
+          %a{href: resource.icon_url}= resource.icon_filename
+    = f.input :size_x, as: :integer
+    = f.input :size_y, as: :integer
+    = f.input :height, as: :float
+    = f.input :startup, as: :boolean
+    = f.input :startup_room_id, collection: @startup_rooms, input_html: {class: 'select2', tabindex: 0}
+    = f.input :startup_x, as: :integer
+    = f.input :startup_y, as: :integer
+.row-fluid
+  .span4
+    %legend= t 'common.requirements'
+    .control-group
+      %label.control-label{for: 'item_requirements_level'}= t 'common.level'
+      .controls
+        %input{name: 'item[requirements][level]', type: 'number', value: resource.requirements['level']}
+    .control-group
+      %label.control-label{for: 'item_requirements_friends'}= t 'common.friends'
+      .controls
+        %input{name: 'item[requirements][friends]', type: 'number', value: resource.requirements['friends']}
+    .control-group
+      %label.control-label{for: 'item_requirements_reputation'}= t 'common.reputation'
+      .controls
+        %input{name: 'item[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
+    .itemRequirements
+    .roomRequirements
+    .removeLink.template
+      %a.btn.btn-small.btn-danger
+        %i.icon-trash.icon-white
+    .itemRequirement.template
+      .control-group
+        %label.control-label label
+        .controls
+          %input{type: 'number', value: 1}
+    .control-group
+      %label.control-label= t 'common.items'
+      .controls
+        %select.select2#requireItem{tabindex: 0}
+          %option
+          - @items_sel.each do |name, id|
+            %option{value: id}= name
+    .control-group
+      %label.control-label= t 'common.rooms'
+      .controls
+        %select.select2#requireRoom{tabindex: 0}
+          %option
+          - @rooms_sel.each do |name, id|
+            %option{value: id}= name
+  .span4
+    %legend= t 'common.rewards'
+    .control-group
+      %label.control-label{for: 'item_rewards_reputation'}= t 'common.reputation'
+      .controls
+        %input{name: 'item[rewards][reputation]', type: 'number', value: resource.rewards['reputation']}
+    .control-group
+      %label.control-label{for: 'item_rewards_experience'}= t 'common.experience'
+      .controls
+        %input{name: 'item[rewards][experience]', type: 'number', value: resource.rewards['experience']}
+  .span4
+    %legend= t 'common.effects'
+    .control-group
+      %label.control-label{for: "item_type_placement"}
+        = t 'item_type.placement'
+      .controls
+        %select.select2#effects
+          %option
+          - Item.effect_options.each do |name, value|
+            %option{value: value}= name
+    .effects
