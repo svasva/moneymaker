@@ -73,6 +73,7 @@ class GameContent
     obj.reference_id = (self.reference_id or self.id)
     obj.user_id = user_id
     obj.x, obj.y = x, y
+    obj.icon, obj.swf = icon, swf
     obj.save
     obj
   end
