@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       when 'getRoomTypes'
         response = RoomType.all.as_json(methods: [:icon_url])
       when 'getRooms'
-        response = Room.all
+        response = Room.refs.as_json(methods: [:swf_url, :icon_url])
       when 'getRoom'
         response = Room.find(args.first)
       when 'startApplication'
