@@ -21,6 +21,7 @@
   }
 }
 
+body { padding-bottom: 30px; }
 textarea { resize:none; }
 .template { display: none !important; }
 .removeLink { display: inline; }
