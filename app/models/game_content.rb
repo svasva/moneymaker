@@ -55,7 +55,7 @@ class GameContent
   def update_refs
     return true if self.user_id or changes.has_key? :user_id
     fields = self.attributes.select {|k,v| changes.keys.include? k.to_sym}
-    self.references.update(fields) unless self.user_id
+    self.references.update_all(fields) unless self.user_id
   end
 
   # item this one is based on
