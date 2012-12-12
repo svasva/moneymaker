@@ -34,12 +34,12 @@ class UsersController < ApplicationController
       when 'startApplication'
         response = { success: 'application started' }
       when 'placeItem'
-        room_id, item_id, x, y = args
-        raise 'wrong params' unless room_id and item_id and x and y
+        room_id, item_id, x, y, rotation = args
+        raise 'wrong params' unless room_id and item_id and x and y and rotation
         user = User.find params[:id]
         room = user.rooms.find room_id
         item = user.items.find item_id
-        response = room.place_item item, x, y
+        response = room.place_item item, x, y, rotation
       when 'getFlashLibs'
         response = []
         user = User.find(params[:id])
