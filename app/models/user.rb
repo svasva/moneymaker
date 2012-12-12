@@ -38,9 +38,10 @@ class User
   after_create :setup_start_location
 
   def update_client
+    fields = self.attributes.select {|k,v| changes.keys.include? k.to_sym}
     message = {
       requestId: -1, # user update
-      response: self.changes
+      response: fields
     }.to_json
     send_message message
   end
