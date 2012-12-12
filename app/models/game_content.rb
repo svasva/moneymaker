@@ -39,8 +39,14 @@ class GameContent
 
   scope :refs, where(user_id: nil)
 
+  before_destroy :destroy_refs
+
   # update referenced items, notify client
   after_update :update_refs, :update_client
+
+  def destroy_refs
+    self.references.destroy
+  end
 
   def update_client
     return true unless self.user_id

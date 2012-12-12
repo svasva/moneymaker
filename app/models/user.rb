@@ -36,6 +36,12 @@ class User
   has_and_belongs_to_many :friends, class_name: 'User'
   after_update :update_client
   after_create :setup_start_location
+  before_destroy :destroy_refs
+
+  def destroy_refs
+    self.items.destroy
+    self.rooms.destroy
+  end
 
   def update_client
     fields = self.attributes.select {|k,v| changes.keys.include? k.to_sym}
