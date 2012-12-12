@@ -4,8 +4,8 @@
   var item_effects = #{@effects.to_json}
 .row-fluid
   .span6
-    = f.input :item_type_id, collection: @item_types, input_html: {class: 'select2', tabindex: 0}
-    = f.input :room_type_id, collection: @room_types, input_html: {class: 'select2', tabindex: 0}
+    = f.input :item_type_id, collection: @item_types
+    = f.input :room_type_id, collection: @room_types
     = f.input :name
     = f.input :desc, as: :text, input_html: {rows: 4}
     = f.input :order, as: :integer
@@ -27,7 +27,7 @@
     = f.input :size_y, as: :integer
     = f.input :height, as: :float
     = f.input :startup, as: :boolean
-    = f.input :startup_room_id, collection: @startup_rooms, input_html: {class: 'select2', tabindex: 0}
+    = f.input :startup_room_id, collection: @startup_rooms
     = f.input :startup_x, as: :integer
     = f.input :startup_y, as: :integer
 .row-fluid
@@ -58,14 +58,14 @@
     .control-group
       %label.control-label= t 'common.items'
       .controls
-        %select.select2#requireItem{tabindex: 0}
+        %select#requireItem
           %option
           - @items_sel.each do |name, id|
             %option{value: id}= name
     .control-group
       %label.control-label= t 'common.rooms'
       .controls
-        %select.select2#requireRoom{tabindex: 0}
+        %select#requireRoom
           %option
           - @rooms_sel.each do |name, id|
             %option{value: id}= name

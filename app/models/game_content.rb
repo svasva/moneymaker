@@ -32,7 +32,7 @@ class GameContent
   mount_uploader :icon, SwfUploader
 
   validates_presence_of :name, :desc, :order
-  validates_presence_of :size_x, :size_y, :size_y, :height
+  validates_presence_of :size_x, :size_y, :height
 
   index({x: 1, y: 1}) # index items coordinates
   index({user_id: 1}) # index items user_id

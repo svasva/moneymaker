@@ -5,7 +5,7 @@
 
   = f.input :name
   = f.input :icon
-  = f.input :placement, collection: RoomType.placement_options, input_html: {class: 'select2', tabindex: 0}
+  = f.input :placement, collection: RoomType.placement_options
   = f.input :unique, as: :boolean
   .control-group
     .controls

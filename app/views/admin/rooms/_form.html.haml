@@ -2,21 +2,22 @@
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
     = "# #{resource.id}" unless resource.new_record?
-
   .row-fluid
     .span6
-      = f.input :room_type_id, collection: @room_types, input_html: {class: 'select2', tabindex: 0}
+      = f.input :room_type_id, collection: @room_types
       = f.input :name
+      = f.input :order
       = f.input :desc, as: :text, input_html: {rows: 4}
       = f.input :money_cost, as: :integer
       = f.input :coins_cost, as: :integer
       = f.input :sell_cost, as: :integer
     .span6
-      = f.input :upgrade_id, collection: @upgrades, input_html: {class: 'select2', tabindex: 0}
+      = f.input :upgrade_id, collection: @upgrades
       = f.input :swf
       = f.input :icon
       = f.input :size_x, as: :integer
       = f.input :size_y, as: :integer
+      = f.input :height, as: :integer
       = f.input :startup, as: :boolean
       = f.input :startup_x, as: :integer
       = f.input :startup_y, as: :integer

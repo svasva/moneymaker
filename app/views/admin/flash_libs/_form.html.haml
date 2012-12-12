@@ -2,7 +2,7 @@
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
     = "# #{resource.id}" unless resource.new_record?
-  = f.input :social, collection: SOCIAL_NETS, input_html: {class: 'select2', tabindex: 0}
+  = f.input :social, collection: SOCIAL_NETS
   = f.input :desc, as: :text, input_html: { rows: 5 }
   = f.input :local_path
   = f.input :swf

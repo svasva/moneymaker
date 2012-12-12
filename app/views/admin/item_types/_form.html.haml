@@ -5,7 +5,7 @@
 
   = f.input :name
   = f.input :icon
-  = f.input :placement, collection: ItemType.placement_options, input_html: {class: 'select2', tabindex: 0}
+  = f.input :placement, collection: ItemType.placement_options
   = f.input :timed, as: :boolean
   = f.input :timetolive, as: :integer
   = f.input :unique, as: :boolean

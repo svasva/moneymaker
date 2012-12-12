@@ -6,6 +6,8 @@ class Atm < Item
   field :cash,           type: Integer, default: 0 # current
   field :client_id,      type: String
 
+  SERVICE_OPTIONS = %w(credit debit)
+
   state_machine initial: :standby do
     event :serve_client do
       transition :standby => :serving_client

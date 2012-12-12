@@ -21,7 +21,8 @@
 //= require turbolinks
 
 init = function() {
-  $('.select2').select2({
+  $('select').attr('tabindex', 0);
+  $('select').select2({
     width: 'resolve',
     allowClear: true,
     placeholder: '---------------------------------'
