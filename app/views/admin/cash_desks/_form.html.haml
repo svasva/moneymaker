@@ -1,0 +1,13 @@
+= simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
+  %legend
+    = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
+    = "# #{resource.id}" unless resource.new_record?
+  = render partial: 'shared/item_form', locals: {f: f}
+  .control-group
+    .controls
+      %a.btn{href: collection_url}
+        %i.icon-arrow-left
+        Назад
+      %button.btn.btn-primary
+        %i.icon-ok.icon-white
+        Сохранить

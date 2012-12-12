@@ -100,6 +100,14 @@ ru:
     social: Соц. сеть
   flash_lib:
     <<: *flashlib
+  atm:
+    caption: Банкомат
+    menu_caption: Банкоматы
+  cashdesk: &cashdesk
+    caption: Касса
+    menu_caption: Кассы
+  cash_desk:
+    <<: *cashdesk
   item:
     caption: Предмет
     menu_caption: Предметы
