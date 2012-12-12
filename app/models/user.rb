@@ -72,7 +72,7 @@ class User
     return true unless requirements
     return true if requirements.empty?
     requirements.each do |type, req|
-      next if req == 0 or req == ''
+      next if req == 0 or req == '' or !req
       case type
       when 'items'
         req.each do |item_id, count|
@@ -80,11 +80,11 @@ class User
           return false if own_count < count
         end
       when 'level'
-        return false if req.to_i > self.level
+        return false if self.level and req.to_i > self.level
       when 'reputation'
-        return false if req.to_i > self.reputation
+        return false if self.reputation and req.to_i > self.reputation
       when 'friends'
-        return false if req.to_i > self.friends.count
+        return false if self.friends and req.to_i > self.friends.count
       end
       logger.info req.inspect
     end

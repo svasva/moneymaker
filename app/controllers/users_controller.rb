@@ -48,7 +48,7 @@ class UsersController < ApplicationController
           response << fl.path(local)
         end
       else
-        raise 'command unknown'
+        raise params[:cmd] + ': command unknown'
       end
     rescue => e
       response = { error: e.inspect }
