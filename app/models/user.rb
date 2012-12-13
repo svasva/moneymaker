@@ -81,18 +81,17 @@ class User
         end
       when 'level'
         if self.level and req.to_i > self.level
-          raise 'level requirement not met'
+          raise "level requirement not met: #{req} > #{self.level}"
         end
       when 'reputation'
         if self.reputation and req.to_i > self.reputation
-          raise 'reputation requirement not met'
+          raise "reputation requirement not met: #{req} > #{self.reputation}"
         end
       when 'friends'
         if self.friends and req.to_i > self.friends.count
-          raise 'friends requirement not met'
+          raise "friends requirement not met: #{req} > #{self.friends.count}"
         end
       end
-      logger.info req.inspect
     end
     return true
   end
