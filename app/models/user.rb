@@ -127,7 +127,7 @@ class User
     raise 'requirements not met' unless requirements_met? content.requirements
     content_cost = content[currency.to_s + '_cost']
     raise 'no price is set for currency' unless content_cost
-    raise 'not currency requirement not met' if content_cost > self[currency]
+    raise 'currency requirement not met' if content_cost > self[currency]
     usercontent = content.add_to_user self.id
     self[currency] -= content_cost
     self.give_rewards content.rewards
