@@ -36,6 +36,7 @@ class GameContent
 
   index({x: 1, y: 1}) # index items coordinates
   index({user_id: 1}) # index items user_id
+  index({_type: 1})   # index STI Class name
 
   scope :refs, where(user_id: nil)
 
