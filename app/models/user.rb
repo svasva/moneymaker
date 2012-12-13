@@ -77,14 +77,20 @@ class User
       when 'items'
         req.each do |item_id, count|
           own_count = self.items.where(reference_id: item_id).count
-          return false if own_count < count
+          raise 'not enough required items: ' + item_id if own_count < count
         end
       when 'level'
-        return false if self.level and req.to_i > self.level
+        if self.level and req.to_i > self.level
+          raise 'level requirement not met'
+        end
       when 'reputation'
-        return false if self.reputation and req.to_i > self.reputation
+        if self.reputation and req.to_i > self.reputation
+          raise 'reputation requirement not met'
+        end
       when 'friends'
-        return false if self.friends and req.to_i > self.friends.count
+        if self.friends and req.to_i > self.friends.count
+          raise 'friends requirement not met'
+        end
       end
       logger.info req.inspect
     end
@@ -118,11 +124,11 @@ class User
   end
 
   def buy_content(content, currency)
-    return false unless [:coins, :money].include? currency
-    return false unless requirements_met? content.requirements
+    raise 'wrong currency' unless [:coins, :money].include? currency
+    raise 'requirements not met' unless requirements_met? content.requirements
     content_cost = content[currency.to_s + '_cost']
-    return false unless content_cost
-    return false if content_cost > self[currency]
+    raise 'no price is set for currency' unless content_cost
+    raise 'not currency requirement not met' if content_cost > self[currency]
     usercontent = content.add_to_user self.id
     self[currency] -= content_cost
     self.give_rewards content.rewards
