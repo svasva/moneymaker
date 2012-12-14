@@ -45,6 +45,8 @@ class User
 
   def update_client
     fields = self.attributes.select {|k,v| changes.has_key? k.to_sym}
+    logger.info changes.inspect
+    logger.info fields.inspect
     message = {
       requestId: -1, # user update
       response: fields
