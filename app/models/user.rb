@@ -44,14 +44,10 @@ class User
   end
 
   def update_client
-    fields = self.attributes.select {|k,v| changes.has_key? k}
-    logger.info changes.inspect
-    logger.info fields.inspect
-    message = {
-      requestId: -1, # user update
-      response: fields
-    }
-    send_message message
+    send_message({
+      requestId: -1,
+      response: self.attributes.select {|k,v| changes.has_key? k}
+    })
   end
 
   def setup_start_location
@@ -143,6 +139,10 @@ class User
 
   def rooms
     GameContent.where(user_id: self.id, _type: 'Room')
+  end
+
+  def start_game
+
   end
 
   handle_asynchronously :send_message

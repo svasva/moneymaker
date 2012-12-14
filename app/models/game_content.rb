@@ -51,11 +51,13 @@ class GameContent
 
   def update_client
     return true unless self.user_id
-    message = {
+    user.send_message({
       requestId: -2, # item update
-      response: { id: self.id, changes: self.changes }
-    }
-    user.send_message message
+      response: {
+        id: self.id,
+        changes: self.attributes.select {|k,v| changes.has_key? k}
+      }
+    })
   end
 
   # WARN: EXPENSIVE, DISABLE IN PRODUCTION
