@@ -44,7 +44,7 @@ class User
   end
 
   def update_client
-    fields = self.attributes.select {|k,v| changes.has_key? k.to_sym}
+    fields = self.attributes.select {|k,v| changes.has_key? k}
     logger.info changes.inspect
     logger.info fields.inspect
     message = {
