@@ -48,7 +48,7 @@ class User
     message = {
       requestId: -1, # user update
       response: fields
-    }.to_json
+    }
     send_message message
   end
 

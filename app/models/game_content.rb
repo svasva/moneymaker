@@ -54,7 +54,7 @@ class GameContent
     message = {
       requestId: -2, # item update
       response: { id: self.id, changes: self.changes }
-    }.to_json
+    }
     user.send_message message
   end
 
