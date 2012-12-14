@@ -61,7 +61,7 @@ class GameContent
   # WARN: EXPENSIVE, DISABLE IN PRODUCTION
   def update_refs
     return true if self.user_id or changes.has_key? :user_id
-    fields = self.attributes.select {|k,v| changes.keys.include? k.to_sym}
+    fields = self.attributes.select {|k,v| changes.has_key? k.to_sym}
     self.references.update_all(fields) unless self.user_id
   end
 
