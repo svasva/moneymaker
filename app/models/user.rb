@@ -165,6 +165,4 @@ class User
       response: { client: client, item_id: item.id }
     })
   end
-
-  handle_asynchronously :send_message
 end
