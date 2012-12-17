@@ -12,7 +12,6 @@ socketserver = (app, server) ->
   User = db.model("users", new mongo.Schema(any: {}))
   sockets = {}
 
-
   onConnect = (conn) ->
     conn.on "data", (message) ->
       console.log 'DATA RECEIVED: \n' + JSON.stringify message
@@ -42,7 +41,9 @@ socketserver = (app, server) ->
         else
           conn.user = user
           conn.token = data.token
-          sockets[conn.token] = conn
+          sockets[user.id] = {} unless sockets[user.id]
+          sockets[user.id][conn.token] = conn
+
           sendResponse conn, data.requestId, {success: 'connection established'}
           userString = "#{conn.user.get('social')}##{conn.user.get('social_id')}"
           console.log "user #{userString} connected"

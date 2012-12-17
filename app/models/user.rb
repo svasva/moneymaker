@@ -61,9 +61,7 @@ class User
   end
 
   def send_message(message)
-    user_sockets.each do |sock|
-      HTTParty.post "#{SOCKET_API}/#{sock.id}", {body: message}
-    end
+    HTTParty.post "#{SOCKET_API}/#{self.id}", {body: message}
   end
 
   def requirements_met?(requirements)
