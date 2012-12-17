@@ -162,7 +162,7 @@ class User
     item = items.atms.sample
     send_message({
       requestId: -3,
-      response: { client: client, item_id: item.id }
+      response: { client: client.attributes, item_id: item.id }
     })
   end
 end
