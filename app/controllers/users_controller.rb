@@ -45,6 +45,10 @@ class UsersController < ApplicationController
         FlashLib.where(social: user.social, active: true).each do |fl|
           response << fl.path(local)
         end
+      when 'pushClient'
+        user = User.find params[:id]
+        user.generate_client
+        response = { success: 'client push initiated' }
       else
         raise params[:cmd] + ': command unknown'
       end

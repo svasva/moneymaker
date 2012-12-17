@@ -142,7 +142,28 @@ class User
   end
 
   def start_game
+    generate_client(true)
+  end
 
+  def accepted_services
+    services = items.cash_desks.map(&:service).flatten
+    services += items.atms.map(&:service).flatten
+    services.uniq
+  end
+
+  def accepted_clients
+    accept_clients = items.cash_desks.map(&:accept_clients).flatten
+    accept_clients += items.atms.map(&:accept_clients).flatten
+    accept_clients.uniq
+  end
+
+  def generate_client(first_time = false)
+    client = Client.new(name: 'test1', desc: 'assd', cash: 340)
+    item = item.atms.sample
+    send_message({
+      responseId: -3,
+      response: { client: client, item_id: item.id }
+    })
   end
 
   handle_asynchronously :send_message
