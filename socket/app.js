@@ -16,7 +16,7 @@ app.configure('development', function(){
 });
 
 var server = require('http').createServer(app);
-server.listen(app.get('port'));
+server.listen(app.get('port'), 'localhost');
 
 app.get( "/crossdomain.xml", function (req, res) {
   var xml = '<?xml version="1.0"?>\n<!DOCTYPE cross-domain-policy SYSTEM' +
