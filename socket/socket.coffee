@@ -16,7 +16,7 @@ socketserver = (app, server) ->
   onConnect = (conn) ->
     conn.on "data", (message) ->
       console.log 'DATA RECEIVED: \n' + JSON.stringify message
-      data = message
+      data = JSON.parse(message)
       if conn.token and conn.user
         # authenticated client
         onCommand(conn, data)
