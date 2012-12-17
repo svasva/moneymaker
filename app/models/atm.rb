@@ -1,12 +1,10 @@
 class Atm < Item
-  field :service_speed,  type: Integer, default: 10 # seconds
-  field :capacity,       type: Integer, default: 100 # coins
-  field :accept_clients, type: Array,   default: []
+  field :service_speed, type: Integer, default: 10 # seconds
+  field :capacity,      type: Integer, default: 100 # coins
+  field :operations,    type: Array,   default: []
 
-  field :cash,           type: Integer, default: 0 # current
-  field :client_id,      type: String
-
-  SERVICE_OPTIONS = %w(credit debit)
+  field :cash,          type: Integer, default: 0 # current
+  field :client_id,     type: String
 
   state_machine initial: :standby do
     event :serve_client do
