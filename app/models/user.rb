@@ -159,7 +159,7 @@ class User
 
   def generate_client(first_time = false)
     client = Client.new(name: 'test1', desc: 'assd', cash: 340)
-    item = item.atms.sample
+    item = items.atms.sample
     send_message({
       responseId: -3,
       response: { client: client, item_id: item.id }
