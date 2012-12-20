@@ -32,6 +32,14 @@ ru:
         room_type_id: Тип комнаты
         item_type_id: Тип предмета
         startup_room_id: Стартовая комната
+      client:
+        wait_time: Время в очереди
+        weight: Шанс появления
+        weight_rep_mod: Модиф. от репутации
+        weight_debt_mod: Модиф. от вкладов
+        weight_cred_mod: Модиф. от кредитов
+        weight_debt_perc_mod: Модиф. от % вкладов
+        weight_cred_perc_mod: Модиф. от % кредитов
       flash_lib:
         active: Активна
         social: СоцСеть
@@ -46,6 +54,7 @@ ru:
       greeting:
         weight: Вес
   common:
+    operations: Операции
     edit: Изменить
     delete: Удалить
     back: Назад
@@ -156,6 +165,10 @@ ru:
     startup: Стартовая локация
     startup_x: Стартовая локация, X
     startup_y: Стартовая локация, Y
+  client:
+    caption: Клиент
+    menu_caption: Клиенты
+    operation: Операция
   roomtype: &roomtype
     caption: Тип комнат
     menu_caption: Типы комнат

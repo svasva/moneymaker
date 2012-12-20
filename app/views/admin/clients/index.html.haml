@@ -1,0 +1,41 @@
+- @use_fields = %w(name coins_cost money_cost)
+%table.table.sortedTable
+  %thead
+    %th= t 'item.name'
+    %th= t 'item.icon'
+    %th= t 'item.swf'
+    %td
+      .pull-right
+        %a.btn.btn-small.btn-primary{href: new_resource_url}
+          %i.icon-plus.icon-white
+          = t 'common.new'
+  %tbody
+    - collection.each do |resource|
+      %tr
+        - resource_attrs(resource).each do |field, value|
+          - next if @skip_fields and @skip_fields.include? field.to_s
+          - next if @use_fields and not @use_fields.include? field.to_s
+          %td
+            %a{href: resource_url(resource)}= value
+        %td
+          - if resource.icon_filename
+            %object{height: 50, width: 50}
+              %param{name: 'movie', value: resource.icon_url}
+          - else
+            %span.badge.badge-important
+              %i.icon-remove.icon-white
+        %td
+          - if resource.swf_filename
+            %span.badge.badge-success
+              %i.icon-ok.icon-white
+          - else
+            %span.badge.badge-important
+              %i.icon-remove.icon-white
+        %td
+          .btn-group.pull-right
+            %a.btn.btn-small{href: edit_resource_url(resource)}
+              %i.icon-pencil
+              = t 'common.edit'
+            %a.btn.btn-small.btn-danger{href: resource_url(resource), data: {method: 'delete', confirm: t('common.confirm')}}
+              %i.icon-trash.icon-white
+              = t 'common.delete'

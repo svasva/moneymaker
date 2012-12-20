@@ -1,0 +1,63 @@
+:javascript
+  window.ops = #{resource.operations.to_json};
+= simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
+  %legend
+    = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
+    = "# #{resource.id}" unless resource.new_record?
+  .row-fluid
+    .span6
+      = f.input :name
+      = f.input :desc, as: :text, input_html: {rows: 4}
+      = f.input :wait_time, as: :integer
+      %legend= t 'common.requirements'
+      .control-group
+        %label.control-label{for: 'item_requirements_level'}= t 'common.level'
+        .controls
+          %input{name: 'item[requirements][level]', type: 'number', value: resource.requirements['level']}
+      .control-group
+        %label.control-label{for: 'item_requirements_reputation'}= t 'common.reputation'
+        .controls
+          %input{name: 'item[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}'
+    .span6
+      = f.input :swf
+      - unless resource.new_record?
+        .control-group
+          .controls
+            %a{href: resource.swf_url}= resource.swf_filename
+      = f.input :icon
+      - unless resource.new_record?
+        .control-group
+          .controls
+            %a{href: resource.icon_url}= resource.icon_filename
+      = f.input :weight, as: :integer
+      = f.input :weight_rep_mod, as: :integer
+      = f.input :weight_cred_mod, as: :integer
+      = f.input :weight_debt_mod, as: :integer
+      = f.input :weight_cred_perc_mod, as: :integer
+      = f.input :weight_debt_perc_mod, as: :integer
+  .row-fluid
+    .span6
+      %legend= t 'common.operations'
+      .operations
+      .operation.template
+        .control-group
+          %label.control-label label
+          .controls
+            %input{type: 'number', value: 1}
+      .removeLink.template
+        %a.btn.btn-small.btn-danger
+          %i.icon-trash.icon-white
+      .control-group
+        %label.control-label= t 'client.operation'
+        .controls
+          %input#opName{type: 'text'}
+          %a.btn#addOperation
+            %i.icon-plus
+  .control-group
+    .controls
+      %a.btn{href: collection_url}
+        %i.icon-arrow-left
+        Назад
+      %button.btn.btn-primary
+        %i.icon-ok.icon-white
+        Сохранить
