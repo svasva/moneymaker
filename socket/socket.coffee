@@ -23,11 +23,10 @@ socketserver = (app, server) ->
         # have to authenticate client
         onAuth(conn, data)
     conn.on "close", ->
-      if conn.token
-        delete sockets[conn.token]
+      if conn.token and conn.user
+        delete sockets[user.id][conn.token]
         # Socket.findByIdAndRemove conn.token
         console.log "#{conn.user.get('social')} user ##{conn.user.get('social_id')} disconnected"
-        console.log "connections: " + Object.keys(sockets).length
 
   onAuth = (conn, data) ->
     Socket.findById data.token, (err, socket) ->
