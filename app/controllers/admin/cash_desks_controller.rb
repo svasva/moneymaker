@@ -1,4 +1,5 @@
 class Admin::CashDesksController < InheritedResources::Base
+  respond_to :html, :json
   before_filter :setup_vars
   def setup_vars
     @startup_rooms = Room.where(startup: true).map {|r| [r.name, r.id]}
