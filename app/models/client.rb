@@ -4,7 +4,7 @@ class Client
   field :name,                 type: String
   field :desc,                 type: String
   field :cash,                 type: Integer
-  field :operations,           type: Hash, default: {} # operationType => cash
+  field :operations,           type: Hash, default: {} # operation_id => cash
   field :requirements,         type: Hash, default: {}
   field :wait_time,            type: Integer # seconds
   field :weight,               type: Float
@@ -13,6 +13,8 @@ class Client
   field :weight_debt_mod,      type: Float
   field :weight_cred_perc_mod, type: Float
   field :weight_debt_perc_mod, type: Float
+
+  has_many :bank_operations
 
   validates_presence_of :name, :desc, :wait_time, :weight
 

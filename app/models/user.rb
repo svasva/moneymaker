@@ -31,6 +31,7 @@ class User
   field :crime_interval,   type: Integer, default: 10
 
   index({social: 1, social_id: 1}, {unique: true})
+  validates_uniqueness_of [:social, :social_id]
 
   has_many :user_sockets, dependent: :destroy
   has_and_belongs_to_many :friends, class_name: 'User'

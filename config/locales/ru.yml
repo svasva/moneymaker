@@ -67,6 +67,7 @@ ru:
     requirements: Требования
     rewards: Награды
     effects: Эффекты
+    effect: Эффект
     items: Предметы
     experience: Опыт
     rooms: Комнаты
@@ -115,6 +116,11 @@ ru:
   cashdesk: &cashdesk
     caption: Касса
     menu_caption: Кассы
+  bankoperation: &bankoperation
+    caption: Банк. операция
+    menu_caption: Банк. операции
+  bank_operation:
+    <<: *bankoperation
   cash_desk:
     <<: *cashdesk
   item:

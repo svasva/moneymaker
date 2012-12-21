@@ -1,7 +1,7 @@
 :javascript
-  var req_items = #{@req_items.to_json};
-  var req_rooms = #{@req_rooms.to_json};
-  var item_effects = #{@effects.to_json}
+  window.req_items = #{@req_items.to_json};
+  window.req_rooms = #{@req_rooms.to_json};
+  window.item_effects = #{@effects.to_json}
 .row-fluid
   .span6
     = f.input :item_type_id, collection: @item_types
@@ -31,7 +31,7 @@
     = f.input :startup_x, as: :integer
     = f.input :startup_y, as: :integer
 .row-fluid
-  .span4
+  .span6
     %legend= t 'common.requirements'
     .control-group
       %label.control-label{for: 'item_requirements_level'}= t 'common.level'
@@ -69,7 +69,7 @@
           %option
           - @rooms_sel.each do |name, id|
             %option{value: id}= name
-  .span4
+  .span6
     %legend= t 'common.rewards'
     .control-group
       %label.control-label{for: 'item_rewards_reputation'}= t 'common.reputation'
@@ -79,11 +79,10 @@
       %label.control-label{for: 'item_rewards_experience'}= t 'common.experience'
       .controls
         %input{name: 'item[rewards][experience]', type: 'number', value: resource.rewards['experience']}
-  .span4
     %legend= t 'common.effects'
     .control-group
       %label.control-label{for: "item_type_placement"}
-        = t 'item_type.placement'
+        = t 'common.effect'
       .controls
         %select.select2#effects
           %option
