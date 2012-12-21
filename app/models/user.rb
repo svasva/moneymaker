@@ -144,16 +144,13 @@ class User
     generate_client(true)
   end
 
-  def accepted_services
-    services = items.cash_desks.map(&:service).flatten
-    services += items.atms.map(&:service).flatten
-    services.uniq
-  end
-
-  def accepted_clients
-    accept_clients = items.cash_desks.map(&:accept_clients).flatten
-    accept_clients += items.atms.map(&:accept_clients).flatten
-    accept_clients.uniq
+  def effects
+    items.on_stage.map(&:effects).reduce({}) do |mem, item|
+      item.each do |k,v|
+        mem.has_key?(k) ? mem[k] += v.to_i : mem[k] = v.to_i
+      end
+      mem
+    end
   end
 
   def generate_client(first_time = false)
