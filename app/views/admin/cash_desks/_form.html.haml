@@ -6,20 +6,7 @@
     = "# #{resource.id}" unless resource.new_record?
   = render partial: 'shared/item_form', locals: {f: f}
   %legend= t 'common.operations'
-  .operation.template
-    .control-group
-      %label.control-label label
-      .controls
-        %input{type: 'number', value: 1}
-  .operations
-  .control-group
-    %label.control-label= t 'client.operation'
-    .controls
-      %select#addOperation
-        %option
-        - BankOperation.each do |op|
-          %option{value: op.id}= op.name
-
+  = f.input :operations, collection: BankOperation.all, input_html: { multiple: true }
   .control-group
     .controls
       %a.btn{href: collection_url}

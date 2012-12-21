@@ -13,6 +13,7 @@ ru:
   simple_form:
     labels:
       defaults:
+        operations: Банк. операции
         order: Позиция
         text: Текст
         name: Имя
