@@ -1,5 +1,3 @@
-:javascript
-  window.ops = #{resource.operations.map {|k,v| {id: k, name: BankOperation.find(k).name, cash: v}}.to_json};
 = simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(resource_class.to_s.downcase + '.caption').mb_chars.downcase
