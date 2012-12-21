@@ -2,17 +2,15 @@ class Admin::CashDesksController < InheritedResources::Base
   respond_to :html, :json
   before_filter :setup_vars
   def setup_vars
-    @startup_rooms = Room.where(startup: true).map {|r| [r.name, r.id]}
+    @startup_rooms = Room.refs.where(startup: true).map {|r| [r.name, r.id]}
     @room_types = RoomType.all.map { |t| [t.name, t.id] }
     @item_types = ItemType.all.map { |t| [t.name, t.id] }
-    @items_sel = Item.all.map {|r| [r.name, r.id]}
-    @rooms_sel = Room.all.map {|r| [r.name, r.id]}
+    @items_sel = Item.refs.map {|r| [r.name, r.id]}
+    @rooms_sel = Room.refs.map {|r| [r.name, r.id]}
     return true
   end
 
   def edit
-    resource.requirements['items'] ||= {}
-    @startup_rooms = Room.where(startup: true).map {|r| [r.name, r.id]}
     resource.requirements['items'] ||= {}
     @req_items = resource.requirements['items'].map do |item_id, count|
       { id: item_id,

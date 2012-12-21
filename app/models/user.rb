@@ -52,9 +52,9 @@ class User
   end
 
   def setup_start_location
-    Room.where(startup: true).each do |room|
+    Room.refs.where(startup: true).each do |room|
       user_room = room.add_to_user self.id, room.startup_x, room.startup_y
-      Item.where(startup: true, startup_room_id: room.id).each do |item|
+      Item.refs.where(startup: true, startup_room_id: room.id).each do |item|
         user_item = item.add_to_user self.id, item.startup_x, item.startup_y
         user_item.update_attribute :room_id, user_room.id
       end
