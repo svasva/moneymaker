@@ -34,17 +34,17 @@
   .span6
     %legend= t 'common.requirements'
     .control-group
-      %label.control-label{for: 'item_requirements_level'}= t 'common.level'
+      %label.control-label{for: resource_class.to_s.downcase+'_requirements_level'}= t 'common.level'
       .controls
-        %input{name: 'item[requirements][level]', type: 'number', value: resource.requirements['level']}
+        %input{name: resource_class.to_s.downcase+'[requirements][level]', type: 'number', value: resource.requirements['level']}
     .control-group
-      %label.control-label{for: 'item_requirements_friends'}= t 'common.friends'
+      %label.control-label{for: resource_class.to_s.downcase+'_requirements_friends'}= t 'common.friends'
       .controls
-        %input{name: 'item[requirements][friends]', type: 'number', value: resource.requirements['friends']}
+        %input{name: resource_class.to_s.downcase+'[requirements][friends]', type: 'number', value: resource.requirements['friends']}
     .control-group
-      %label.control-label{for: 'item_requirements_reputation'}= t 'common.reputation'
+      %label.control-label{for: resource_class.to_s.downcase+'_requirements_reputation'}= t 'common.reputation'
       .controls
-        %input{name: 'item[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
+        %input{name: resource_class.to_s.downcase+'[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
     .itemRequirements
     .roomRequirements
     .removeLink.template
@@ -72,13 +72,13 @@
   .span6
     %legend= t 'common.rewards'
     .control-group
-      %label.control-label{for: 'item_rewards_reputation'}= t 'common.reputation'
+      %label.control-label{for: resource_class.to_s.downcase+'_rewards_reputation'}= t 'common.reputation'
       .controls
-        %input{name: 'item[rewards][reputation]', type: 'number', value: resource.rewards['reputation']}
+        %input{name: resource_class.to_s.downcase+'[rewards][reputation]', type: 'number', value: resource.rewards['reputation']}
     .control-group
-      %label.control-label{for: 'item_rewards_experience'}= t 'common.experience'
+      %label.control-label{for: resource_class.to_s.downcase+'_rewards_experience'}= t 'common.experience'
       .controls
-        %input{name: 'item[rewards][experience]', type: 'number', value: resource.rewards['experience']}
+        %input{name: resource_class.to_s.downcase+'[rewards][experience]', type: 'number', value: resource.rewards['experience']}
     %legend= t 'common.effects'
     .control-group
       %label.control-label{for: "item_type_placement"}
