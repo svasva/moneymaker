@@ -53,6 +53,10 @@ ru:
         unique: Уникальный
       room_type:
         unique: Уникальная
+      bank_level:
+        number: Уровень
+        experience: Опыт меньше
+        min_reputation: Мин. репутации
       greeting:
         weight: Вес
       setting:
@@ -81,6 +85,12 @@ ru:
   setting:
     caption: Настройка
     menu_caption: Настройки
+  bank_level:
+    caption: Уровень банка
+    menu_caption: Уровни банка
+    number: Уровень
+    experience: Опыт
+    min_reputation: Мин. репутации
   greeting:
     caption: Приветствие
     menu_caption: Приветствия
