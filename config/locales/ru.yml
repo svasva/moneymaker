@@ -103,7 +103,7 @@ ru:
     created_at: Создан
     updated_at: Обновлен
     swf_filename: Путь
-  flashlib: &flashlib
+  flash_lib:
     caption: Библиотека
     menu_caption: Библиотеки
     desc: Имя
@@ -115,21 +115,15 @@ ru:
     swf_filename: Путь
     local_path: Локальный путь
     social: Соц. сеть
-  flash_lib:
-    <<: *flashlib
   atm:
     caption: Банкомат
     menu_caption: Банкоматы
-  cashdesk: &cashdesk
-    caption: Касса
-    menu_caption: Кассы
-  bankoperation: &bankoperation
+  bank_operation:
     caption: Банк. операция
     menu_caption: Банк. операции
-  bank_operation:
-    <<: *bankoperation
   cash_desk:
-    <<: *cashdesk
+    caption: Касса
+    menu_caption: Кассы
   item:
     caption: Предмет
     menu_caption: Предметы
@@ -182,7 +176,7 @@ ru:
     caption: Клиент
     menu_caption: Клиенты
     operation: Операция
-  roomtype: &roomtype
+  room_type:
     caption: Тип комнат
     menu_caption: Типы комнат
     name: Имя
@@ -193,9 +187,8 @@ ru:
       onground: Надземный этаж
       underground: Подземный этаж
       any: Любой этаж
-  room_type:
-    <<: *roomtype
-  itemtype: &itemtype
+
+  item_type:
     caption: Тип предмета
     menu_caption: Типы предметов
     name: Имя
@@ -207,5 +200,3 @@ ru:
       any: Любое свободное место
       wall: Линкуется к стене
       none: Не размещаемый
-  item_type:
-    <<: *itemtype

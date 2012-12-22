@@ -1,8 +1,8 @@
 %h2
-  = t(resource_class.to_s.downcase + '.caption') + ' # ' + resource.id.to_s
+  = t(resource_class.to_s.underscore + '.caption') + ' # ' + resource.id.to_s
 %p.lead
   - resource_attrs(resource).each do |name, value|
-    %strong= t("#{resource_class.to_s.downcase}.#{name}") + ':'
+    %strong= t("#{resource_class.to_s.underscore}.#{name}") + ':'
     = value
     %br
 .btn-group

@@ -3,7 +3,7 @@
     - collection_fields(collection).each do |field, data|
       - next if @skip_fields and @skip_fields.include? field
       - next if @use_fields and not @use_fields.include? field
-      %th= t "#{resource_class.to_s.downcase}.#{field}"
+      %th= t "#{resource_class.to_s.underscore}.#{field}"
     %td
       .pull-right
         %a.btn.btn-small.btn-primary{href: new_resource_url}
