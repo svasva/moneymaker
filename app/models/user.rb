@@ -17,10 +17,10 @@ class User
   field :level,            type: Integer, default: 1
   field :reputation,       type: Integer, default: 0
   field :reputation_bonus, type: Integer, default: 0
-  field :coins,            type: Integer, default: 0
+  field :coins,            type: Integer, default: ->{Setting.get.start_coins}
   field :coins_max,        type: Integer, default: 100
   field :coins_spent,      type: Integer, default: 0
-  field :money,            type: Integer, default: 0
+  field :money,            type: Integer, default: ->{Setting.get.start_money}
   field :money_spent,      type: Integer, default: 0
   field :money_bought,     type: Integer, default: 0
   field :credits,          type: Integer, default: 0

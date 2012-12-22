@@ -15,6 +15,7 @@ Moneymaker::Application.routes.draw do
     resources :cash_desks
     resources :room_types
     resources :item_types
+    resources :settings
     resources :swfclients do
       member { get :activate }
     end

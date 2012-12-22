@@ -13,6 +13,7 @@ ru:
   simple_form:
     labels:
       defaults:
+        value: Значение
         operations: Банк. операции
         order: Позиция
         text: Текст
@@ -72,6 +73,11 @@ ru:
     items: Предметы
     experience: Опыт
     rooms: Комнаты
+  setting:
+    caption: Настройка
+    menu_caption: Настройки
+    name: Ключ
+    value: Значение
   greeting:
     caption: Приветствие
     menu_caption: Приветствия

@@ -8,7 +8,7 @@
       %a.brand{href: '/admin'} moneymaker
       .nav-collapse
         %ul.nav
-          - %w(users swfclients flash_libs).each do |controller|
+          - %w(users swfclients flash_libs settings).each do |controller|
             %li{class: ("active" if params[:controller] == "admin/#{controller}")}
               %a{href: url_for(controller: controller)}
                 = t "#{controller[0..-2]}.menu_caption"
