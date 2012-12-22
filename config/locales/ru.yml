@@ -55,7 +55,7 @@ ru:
         unique: Уникальная
       bank_level:
         number: Уровень
-        experience: Опыт меньше
+        experience: Опыт
         min_reputation: Мин. репутации
       greeting:
         weight: Вес
