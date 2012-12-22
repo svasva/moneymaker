@@ -2,14 +2,14 @@ ru:
   flash:
     actions:
       create:
-        notice: '%{resource_name} was successfully created.'
-        alert: '%{resource_name} could not be created.'
+        notice: Сохранено успешно
+        alert: При сохранении произошла ошибка
       update:
-        notice: '%{resource_name} was successfully updated.'
-        alert: '%{resource_name} could not be updated.'
+        notice: Сохранено успешно
+        alert: При сохранении произошла ошибка
       destroy:
-        notice: '%{resource_name} was successfully destroyed.'
-        alert: '%{resource_name} could not be destroyed.'
+        notice: Сохранено успешно
+        alert: При сохранении произошла ошибка
   simple_form:
     labels:
       defaults:
@@ -55,7 +55,12 @@ ru:
         unique: Уникальная
       greeting:
         weight: Вес
+      setting:
+        time_per_client: Частота появления клиентов
+        start_coins: Монет на старте
+        start_money: Реал. денег на старте
   common:
+    settings: Настройки
     operations: Операции
     edit: Изменить
     delete: Удалить
@@ -76,8 +81,6 @@ ru:
   setting:
     caption: Настройка
     menu_caption: Настройки
-    name: Ключ
-    value: Значение
   greeting:
     caption: Приветствие
     menu_caption: Приветствия

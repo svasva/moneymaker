@@ -1,0 +1,10 @@
+= simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
+  %legend= t("common.settings")
+
+  - resource_attrs(resource).each do |name, value|
+    = f.input name
+  .control-group
+    .controls
+      %button.btn.btn-primary
+        %i.icon-ok.icon-white
+        Сохранить
