@@ -34,17 +34,17 @@
   .span6
     %legend= t 'common.requirements'
     .control-group
-      %label.control-label{for: resource_class.name.underscore.underscore+'_requirements_level'}= t 'common.level'
+      %label.control-label{for: resource_class.name.underscore+'_requirements_level'}= t 'common.level'
       .controls
-        %input{name: resource_class.name.underscore.underscore+'[requirements][level]', type: 'number', value: resource.requirements['level']}
+        %input{name: resource_class.name.underscore+'[requirements][level]', type: 'number', value: resource.requirements['level']}
     .control-group
-      %label.control-label{for: resource_class.name.underscore.underscore+'_requirements_friends'}= t 'common.friends'
+      %label.control-label{for: resource_class.name.underscore+'_requirements_friends'}= t 'common.friends'
       .controls
-        %input{name: resource_class.name.underscore.underscore+'[requirements][friends]', type: 'number', value: resource.requirements['friends']}
+        %input{name: resource_class.name.underscore+'[requirements][friends]', type: 'number', value: resource.requirements['friends']}
     .control-group
-      %label.control-label{for: resource_class.name.underscore.underscore+'_requirements_reputation'}= t 'common.reputation'
+      %label.control-label{for: resource_class.name.underscore+'_requirements_reputation'}= t 'common.reputation'
       .controls
-        %input{name: resource_class.name.underscore.underscore+'[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
+        %input{name: resource_class.name.underscore+'[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
     .itemRequirements
     .roomRequirements
     .removeLink.template
@@ -72,13 +72,13 @@
   .span6
     %legend= t 'common.rewards'
     .control-group
-      %label.control-label{for: resource_class.name.underscore.underscore+'_rewards_reputation'}= t 'common.reputation'
+      %label.control-label{for: resource_class.name.underscore+'_rewards_reputation'}= t 'common.reputation'
       .controls
-        %input{name: resource_class.name.underscore.underscore+'[rewards][reputation]', type: 'number', value: resource.rewards['reputation']}
+        %input{name: resource_class.name.underscore+'[rewards][reputation]', type: 'number', value: resource.rewards['reputation']}
     .control-group
-      %label.control-label{for: resource_class.name.underscore.underscore+'_rewards_experience'}= t 'common.experience'
+      %label.control-label{for: resource_class.name.underscore+'_rewards_experience'}= t 'common.experience'
       .controls
-        %input{name: resource_class.name.underscore.underscore+'[rewards][experience]', type: 'number', value: resource.rewards['experience']}
+        %input{name: resource_class.name.underscore+'[rewards][experience]', type: 'number', value: resource.rewards['experience']}
     %legend= t 'common.effects'
     .control-group
       %label.control-label{for: "item_type_placement"}

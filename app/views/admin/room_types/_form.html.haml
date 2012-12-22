@@ -1,6 +1,6 @@
 = simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
   %legend
-    = t("common.#{params[:action]}") + ' ' + t(resource_class.name.underscore.underscore + '.caption').mb_chars.downcase
+    = t("common.#{params[:action]}") + ' ' + t(resource_class.name.underscore + '.caption').mb_chars.downcase
     = "# #{resource.id}" unless resource.new_record?
 
   = f.input :name
