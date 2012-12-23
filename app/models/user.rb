@@ -160,7 +160,7 @@ class User
     client = Client.all.sample
     send_message({
       requestId: -3,
-      response: client.attributes
+      response: client.as_json(methods: [:operations_mapped])
     })
   end
 end

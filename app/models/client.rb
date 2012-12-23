@@ -20,4 +20,8 @@ class Client
 
   mount_uploader :swf,  SwfUploader
   mount_uploader :icon, SwfUploader
+
+  def operations_mapped
+    operations.map {|k,v| { id: k, cash: v } }
+  end
 end
