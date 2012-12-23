@@ -33,13 +33,18 @@ class User
 
   has_many :user_sockets, dependent: :destroy
   has_and_belongs_to_many :friends, class_name: 'User'
-  after_update :update_client
+  after_update :update_client, :calc_stats
   after_create :setup_start_location
   before_destroy :destroy_refs
 
   def destroy_refs
     self.items.destroy
     self.rooms.destroy
+  end
+
+  def calc_stats
+    fields = self.attributes.select { |k,v| changes.has_key? k }
+    # TODO: add UserStats model with transaction details
   end
 
   def update_client
