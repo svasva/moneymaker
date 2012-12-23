@@ -155,7 +155,8 @@ class User
 
   def start_game
     update_attribute :online, true
-    generate_client_without_delay
+    send_client
+    generate_clients
   end
 
   def effects
@@ -167,14 +168,18 @@ class User
     end
   end
 
-  def generate_client(first_time = false)
+  def generate_clients(first_time = false)
     return false unless self.reload.online
+    send_client
+    generate_clients if self.reload.online
+  end
+
+  def send_client
     client = Client.all.sample
     send_message({
       requestId: -3,
       response: client.as_json(methods: [:operations_mapped, :swf_url])
     })
-    generate_client if self.reload.online
   end
 
   handle_asynchronously :generate_client, run_at: Proc.new { |i|
