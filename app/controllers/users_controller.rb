@@ -47,7 +47,7 @@ class UsersController < ApplicationController
         end
       when 'pushClient'
         user = User.find params[:id]
-        user.generate_client
+        user.generate_client_without_delay
         response = { success: 'client push initiated' }
       when 'serveClient'
         client_id, item_id = args

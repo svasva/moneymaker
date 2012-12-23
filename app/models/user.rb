@@ -158,6 +158,7 @@ class User
   end
 
   def generate_client(first_time = false)
+    return false unless online
     client = Client.all.sample
     send_message({
       requestId: -3,
