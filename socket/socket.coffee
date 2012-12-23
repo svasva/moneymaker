@@ -23,16 +23,16 @@ socketserver = (app, server) ->
       if conn.token and conn.user
         # authenticated client
         onCommand(conn, data)
-        setOnline(conn.user, true)
-        clearTimeout conn.user.onlineTimer if conn.user.onlineTimer
-        conn.user.onlineTimer = setTimeout (-> setOnline conn.user, false), 10000
+        setOnline conn.user
+        #clearTimeout conn.user.onlineTimer if conn.user.onlineTimer
+        #conn.user.onlineTimer = setTimeout (-> setOnline conn.user, false), 10000
       else
         # have to authenticate client
         onAuth(conn, data)
     conn.on "close", ->
       if conn.token and conn.user
         setOnline(conn.user, false)
-        clearTimeout conn.user.onlineTimer if conn.user.onlineTimer
+        #clearTimeout conn.user.onlineTimer if conn.user.onlineTimer
         delete sockets[conn.user.id][conn.token]
         # Socket.findByIdAndRemove conn.token
         console.log "#{conn.user.get('social')} user ##{conn.user.get('social_id')} disconnected"
