@@ -3,8 +3,14 @@
     = t("common.#{params[:action]}") + ' ' + t(resource_class.name.underscore + '.caption').mb_chars.downcase
     = "# #{resource.id}" unless resource.new_record?
   = render partial: 'shared/item_form', locals: {f: f}
-  %legend= t 'common.operations'
-  = f.input :operations, collection: BankOperation.all, input_html: { multiple: true }
+  .row-fluid
+    .span6
+      %legend= t 'common.operations'
+      = f.input :operations, collection: BankOperation.all, input_html: { multiple: true }
+    .span6
+      %legend= t 'common.additional_fields'
+      = f.input :service_speed, as: :integer
+      = f.input :capacity, as: :integer
   .control-group
     .controls
       %a.btn{href: collection_url}

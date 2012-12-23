@@ -34,6 +34,8 @@ ru:
         room_type_id: Тип комнаты
         item_type_id: Тип предмета
         startup_room_id: Стартовая комната
+        capacity: Емкость (монет)
+        service_speed: Скорость обслуживания
       client:
         wait_time: Время в очереди
         weight: Шанс появления
@@ -82,6 +84,7 @@ ru:
     items: Предметы
     experience: Опыт
     rooms: Комнаты
+    additional_fields: Дополнительные поля
   setting:
     caption: Настройка
     menu_caption: Настройки
@@ -200,7 +203,6 @@ ru:
       onground: Надземный этаж
       underground: Подземный этаж
       any: Любой этаж
-
   item_type:
     caption: Тип предмета
     menu_caption: Типы предметов
