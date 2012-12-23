@@ -162,7 +162,7 @@ class User
     client = Client.all.sample
     send_message({
       requestId: -3,
-      response: client.as_json(methods: [:operations_mapped])
+      response: client.as_json(methods: [:operations_mapped, :swf_url])
     })
     generate_client if online
   end
