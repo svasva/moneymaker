@@ -12,6 +12,9 @@ socketserver = (app, server) ->
   User = db.model("users", new mongo.Schema(any: {}))
   sockets = {}
 
+  setOnline = (user, online = true) ->
+    user.update {'$set': {online: online}}
+
   onConnect = (conn) ->
     conn.on "data", (message) ->
       console.log 'DATA RECEIVED: \n' + JSON.stringify message
@@ -19,11 +22,15 @@ socketserver = (app, server) ->
       if conn.token and conn.user
         # authenticated client
         onCommand(conn, data)
+        clearTimeout conn.user.onlineTimer if conn.user.onlineTimer
+        conn.user.onlineTimer = setTimeout (-> setOnline conn.user, false), 10000
       else
         # have to authenticate client
         onAuth(conn, data)
     conn.on "close", ->
       if conn.token and conn.user
+        setOnline(conn.user, false)
+        clearTimeout conn.user.onlineTimer if conn.user.onlineTimer
         delete sockets[user.id][conn.token]
         # Socket.findByIdAndRemove conn.token
         console.log "#{conn.user.get('social')} user ##{conn.user.get('social_id')} disconnected"
@@ -38,6 +45,7 @@ socketserver = (app, server) ->
           sendResponse conn, data.requestId, {error: "user not found: #{user}"}
           conn.close()
         else
+          setOnline user
           conn.user = user
           conn.token = data.token
           sockets[user.id] = {} unless sockets[user.id]

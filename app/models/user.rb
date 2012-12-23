@@ -27,6 +27,7 @@ class User
   field :deposit_percent,  type: Integer, default: 10
   field :client_interval,  type: Integer, default: 10
   field :crime_interval,   type: Integer, default: 10
+  field :online,           type: Boolean, default: false
 
   index({social: 1, social_id: 1}, {unique: true})
   validates_uniqueness_of [:social, :social_id]
