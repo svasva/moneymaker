@@ -49,6 +49,9 @@ class UsersController < ApplicationController
         user = User.find params[:id]
         user.generate_client
         response = { success: 'client push initiated' }
+      when 'resetGame'
+        User.find(params[:id]).destroy
+        response = { success: 'user data has been deleted' }
       else
         raise params[:cmd] + ': command unknown'
       end
