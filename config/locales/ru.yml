@@ -35,7 +35,7 @@ ru:
         item_type_id: Тип предмета
         startup_room_id: Стартовая комната
         capacity: Емкость (монет)
-        service_speed: Скорость обслуживания
+        service_speed: Скорость обслуживания (сек)
       client:
         wait_time: Время в очереди
         weight: Шанс появления
