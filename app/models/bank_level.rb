@@ -5,6 +5,7 @@ class BankLevel
   field :min_reputation,  type: Integer
 
   validates_presence_of :number, :experience, :min_reputation
+  validates_uniqueness_of :number
 
   default_scope asc(:number)
 end
