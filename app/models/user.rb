@@ -182,7 +182,7 @@ class User
     })
   end
 
-  handle_asynchronously :generate_client, run_at: Proc.new { |i|
+  handle_asynchronously :generate_clients, run_at: Proc.new { |i|
     Setting.get.time_per_client.seconds.from_now
   }
 end
