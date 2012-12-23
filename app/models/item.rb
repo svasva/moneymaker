@@ -5,7 +5,6 @@ class Item < GameContent
   belongs_to :room
 
   field :startup_room_id, type: String
-  field :rotation,        type: Integer, default: 0
 
   validates_presence_of :item_type_id
   validates_length_of :desc, maximum: 150

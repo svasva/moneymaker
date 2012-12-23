@@ -13,6 +13,7 @@ class GameContent
 
   field :size_x,       type: Integer, default: 1
   field :size_y,       type: Integer, default: 1
+  field :rotation,     type: Integer, default: 0
   field :height,       type: Float,   default: 1
   field :x,            type: Integer
   field :y,            type: Integer
