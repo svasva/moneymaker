@@ -136,11 +136,11 @@ class User
   end
 
   def items
-    GameContent.where(user_id: self.id).ne(_type: 'Room')
+    Item.where(user_id: self.id)
   end
 
   def rooms
-    GameContent.where(user_id: self.id, _type: 'Room')
+    Room.where(user_id: self.id)
   end
 
   def start_game
