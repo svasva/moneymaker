@@ -22,6 +22,10 @@ class Atm < Item
         self.inc :cash, - client.cash
         not_empty ? self.client_served : self.capacity_reached
         self.update_attribute :client_id, nil
+        self.user.send_message({
+          requestId: -4, # item: client served
+          response: self.id
+        })
       end
 
       handle_asynchronously :serve, run_at: Proc.new { |i|

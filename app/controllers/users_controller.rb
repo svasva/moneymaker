@@ -49,6 +49,15 @@ class UsersController < ApplicationController
         user = User.find params[:id]
         user.generate_client
         response = { success: 'client push initiated' }
+      when 'serveClient'
+        client_id, item_id = args
+        raise 'wrong params' unless client_id and item_id
+        user = User.find params[:id]
+        client = Client.find client_id
+        item = GameContent.find item_id
+        item.update_attribute :client_id, client_id
+        item.serve_client
+        response = { success: 'client serve initiated' }
       when 'resetGame'
         User.find(params[:id]).destroy
         response = { success: 'user data has been deleted' }
