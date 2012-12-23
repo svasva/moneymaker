@@ -22,6 +22,6 @@ class Client
   mount_uploader :icon, SwfUploader
 
   def operations_mapped
-    operations.map {|k,v| { id: k, cash: v } }
+    operations.map {|k,v| { 'id' => k, 'cash' => v } }
   end
 end
