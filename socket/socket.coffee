@@ -8,12 +8,13 @@ socketserver = (app, server) ->
   else
     REST_URL = 'http://localhost:3000/api/'
     db = mongo.createConnection('localhost', 'moneymaker_dev')
-  Socket = db.model("user_sockets", new mongo.Schema(any: {}))
-  User = db.model("users", new mongo.Schema(any: {}))
+  Socket = db.model("user_sockets", new mongo.Schema(any: mongo.Schema.Types.Mixed))
+  User = db.model("users", new mongo.Schema({any: mongo.Schema.Types.Mixed, online: Boolean}))
   sockets = {}
 
   setOnline = (user, online = true) ->
-    user.update {'$set': {online: online}}
+    user.online = online
+    user.save()
 
   onConnect = (conn) ->
     conn.on "data", (message) ->
@@ -32,7 +33,7 @@ socketserver = (app, server) ->
       if conn.token and conn.user
         setOnline(conn.user, false)
         clearTimeout conn.user.onlineTimer if conn.user.onlineTimer
-        delete sockets[user.id][conn.token]
+        delete sockets[conn.user.id][conn.token]
         # Socket.findByIdAndRemove conn.token
         console.log "#{conn.user.get('social')} user ##{conn.user.get('social_id')} disconnected"
 
