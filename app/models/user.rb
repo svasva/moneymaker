@@ -154,6 +154,7 @@ class User
   end
 
   def start_game
+    update_attribute :online, true
     generate_client_without_delay
   end
 
