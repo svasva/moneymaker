@@ -168,13 +168,13 @@ class User
   end
 
   def generate_client(first_time = false)
-    return false unless online
+    return false unless self.reload.online
     client = Client.all.sample
     send_message({
       requestId: -3,
       response: client.as_json(methods: [:operations_mapped, :swf_url])
     })
-    generate_client if online
+    generate_client if self.reload.online
   end
 
   handle_asynchronously :generate_client, run_at: Proc.new { |i|
