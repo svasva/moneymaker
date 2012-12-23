@@ -1,11 +1,12 @@
-- @use_fields = %w(name coins_cost money_cost)
+- @use_fields = %w(name coins_cost money_cost capacity service_speed)
 %table.table.sortedTable
   %thead
     %th= t 'item.order'
-    %th= t 'item.item_type'
     %th= t 'item.name'
     %th= t 'item.coins_cost'
     %th= t 'item.money_cost'
+    %th= t 'atm.capacity'
+    %th= t 'atm.service_speed'
     %th= t 'item.icon'
     %th= t 'item.swf'
     %td
@@ -17,9 +18,6 @@
     - collection.refs.each do |resource|
       %tr
         %td= resource.order
-        %td
-          - if resource.item_type
-            = link_to resource.item_type.name, [:admin, resource.item_type]
         - resource_attrs(resource).each do |field, value|
           - next if @skip_fields and @skip_fields.include? field.to_s
           - next if @use_fields and not @use_fields.include? field.to_s

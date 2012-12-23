@@ -134,12 +134,16 @@ ru:
   atm:
     caption: Банкомат
     menu_caption: Банкоматы
+    capacity: Вместимость
+    service_speed: Скорость
   bank_operation:
     caption: Банк. операция
     menu_caption: Банк. операции
   cash_desk:
     caption: Касса
     menu_caption: Кассы
+    capacity: Вместимость
+    service_speed: Скорость
   item:
     caption: Предмет
     menu_caption: Предметы
