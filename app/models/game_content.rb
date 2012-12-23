@@ -20,6 +20,7 @@ class GameContent
   field :startup,      type: Boolean, default: false
   field :startup_x,    type: Integer
   field :startup_y,    type: Integer
+  field :startup_rot,  type: Integer
 
   field :order,        type: Integer
   field :reference_id, type: String
@@ -80,11 +81,11 @@ class GameContent
     GameContent.where reference_id: self.id
   end
 
-  def add_to_user(user_id, x = nil, y = nil)
+  def add_to_user(user_id, x = nil, y = nil, rotation = 0)
     obj = self.class.new self.attributes
     obj.reference_id = (self.reference_id or self.id)
     obj.user_id = user_id
-    obj.x, obj.y = x, y
+    obj.x, obj.y, obj.rotation = x, y, rotation
     obj.icon, obj.swf = icon, swf
     obj.save
     obj
