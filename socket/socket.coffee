@@ -22,6 +22,7 @@ socketserver = (app, server) ->
       if conn.token and conn.user
         # authenticated client
         onCommand(conn, data)
+        setOnline(conn.user, true)
         clearTimeout conn.user.onlineTimer if conn.user.onlineTimer
         conn.user.onlineTimer = setTimeout (-> setOnline conn.user, false), 10000
       else
