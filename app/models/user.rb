@@ -145,7 +145,7 @@ class User
   end
 
   def start_game
-    generate_client(true)
+    generate_client_without_delay
   end
 
   def effects
@@ -163,5 +163,10 @@ class User
       requestId: -3,
       response: client.as_json(methods: [:operations_mapped])
     })
+    generate_client if online
   end
+
+  handle_asynchronously :generate_client, run_at: Proc.new { |i|
+    Setting.get.time_per_client.seconds.from_now
+  }
 end
