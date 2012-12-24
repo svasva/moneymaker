@@ -30,6 +30,8 @@ class UsersController < ApplicationController
       when 'getRooms'
         response = Room.refs.as_json(methods: [:swf_url, :icon_url])
       when 'startApplication'
+        user = User.find params[:id]
+        user.start_game
         response = { success: 'application started' }
       when 'placeItem'
         room_id, item_id, x, y, rotation = args

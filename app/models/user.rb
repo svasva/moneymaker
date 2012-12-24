@@ -168,10 +168,10 @@ class User
     end
   end
 
-  def generate_clients(first_time = false)
+  def generate_clients
     return false unless self.reload.online
     send_client
-    generate_clients if self.reload.online
+    generate_clients
   end
 
   def send_client
