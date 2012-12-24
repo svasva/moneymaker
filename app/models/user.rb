@@ -29,7 +29,10 @@ class User
   field :crime_interval,   type: Integer, default: 10
   field :online,           type: Boolean, default: false
 
+  scope :online, where(online: true)
+
   index({social: 1, social_id: 1}, {unique: true})
+  index({online: 1})
   validates_uniqueness_of [:social, :social_id]
 
   has_many :user_sockets, dependent: :destroy

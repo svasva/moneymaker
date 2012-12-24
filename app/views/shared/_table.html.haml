@@ -16,7 +16,15 @@
           - next if @skip_fields and @skip_fields.include? field.to_s
           - next if @use_fields and not @use_fields.include? field.to_s
           %td
-            %a{href: resource_url(resource)}= value
+            %a{href: resource_url(resource)}
+              - if value == true
+                %span.badge.badge-success
+                  %i.icon-ok.icon-white
+              - elsif value == false
+                %span.badge.badge-important
+                  %i.icon-remove.icon-white
+              - else
+                = value
         %td
           .btn-group.pull-right
             %a.btn.btn-small{href: edit_resource_url(resource)}
