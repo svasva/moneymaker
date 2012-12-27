@@ -24,4 +24,19 @@ class Client
   def operations_mapped
     operations.map {|k,v| { id: k, cash: v } }
   end
+
+  def self.get_random
+    hash = {}
+    self.all.each {|g|
+      hash[g.weight] ||= []
+      hash[g.weight] << g
+    }
+    total_weight = hash.inject(0) { |sum,(weight,v)| sum+weight }
+    running_weight = 0
+    n = rand*total_weight
+    hash.each do |weight,v|
+      return v.sample if n > running_weight && n <= running_weight+weight
+      running_weight += weight
+    end
+  end
 end

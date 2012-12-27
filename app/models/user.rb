@@ -170,7 +170,7 @@ class User
   end
 
   def send_client
-    client = Client.all.sample
+    client = Client.get_random
     send_message({
       requestId: -3,
       response: client.as_json(methods: [:operations_mapped, :swf_url])
