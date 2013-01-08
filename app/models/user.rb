@@ -36,15 +36,12 @@ class User
   validates_uniqueness_of [:social, :social_id]
 
   has_many :user_sockets, dependent: :destroy
+  has_many :items, dependent: :destroy
+  has_many :rooms, dependent: :destroy
+
   has_and_belongs_to_many :friends, class_name: 'User'
   after_update :update_client, :calc_stats, :fire_events
   after_create :setup_start_location
-  before_destroy :destroy_refs
-
-  def destroy_refs
-    self.items.destroy
-    self.rooms.destroy
-  end
 
   def calc_stats
     fields = self.attributes.select { |k,v| changes.has_key? k }
@@ -148,14 +145,6 @@ class User
     self.give_rewards content.rewards
     self.save
     return usercontent
-  end
-
-  def items
-    Item.where(user_id: self.id)
-  end
-
-  def rooms
-    Room.where(user_id: self.id)
   end
 
   def start_game
