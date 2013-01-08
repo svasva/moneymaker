@@ -8,4 +8,8 @@ class BankLevel
   validates_uniqueness_of :number
 
   default_scope asc(:number)
+
+  def next
+    BankLevel.where(number: self.number + 1).first
+  end
 end

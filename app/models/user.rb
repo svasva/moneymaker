@@ -37,7 +37,7 @@ class User
 
   has_many :user_sockets, dependent: :destroy
   has_and_belongs_to_many :friends, class_name: 'User'
-  after_update :update_client, :calc_stats
+  after_update :update_client, :calc_stats, :fire_events
   after_create :setup_start_location
   before_destroy :destroy_refs
 
@@ -49,6 +49,16 @@ class User
   def calc_stats
     fields = self.attributes.select { |k,v| changes.has_key? k }
     # TODO: add UserStats model with transaction details
+  end
+
+  def fire_events
+    # level up event
+    if changes.has_key? :experience
+      from, to = changes[:experience]
+      if level.next and (from..to).include? level.next.experience
+        logger.info 'LEVELUP'
+      end
+    end
   end
 
   def update_client
