@@ -53,7 +53,7 @@ class User
     if changes.has_key? 'experience'
       from, to = changes['experience']
       if level.next and (from..to).include? level.next.experience
-        EventHandler.trigger(self, :levelup)
+        EventHandler.trigger(self, :levelup, {level: level.next})
       end
     end
   end
