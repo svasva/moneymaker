@@ -50,10 +50,10 @@ class User
 
   def fire_events
     # level up event
-    if changes.has_key? :experience
-      from, to = changes[:experience]
+    if changes.has_key? 'experience'
+      from, to = changes['experience']
       if level.next and (from..to).include? level.next.experience
-        logger.info 'LEVELUP'
+        EventHandler.trigger(self, :levelup)
       end
     end
   end
