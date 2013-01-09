@@ -77,6 +77,7 @@ class User
   end
 
   def send_message(message)
+    return true unless online
     HTTParty.post "#{SOCKET_API}/#{self.id}", {body: message}
   end
 
