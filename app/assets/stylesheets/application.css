@@ -25,3 +25,11 @@ body { padding-bottom: 30px; }
 textarea { resize:none; }
 .template { display: none !important; }
 .removeLink { display: inline; }
+
+tbody tr td div.pull-right {
+  opacity: 0.2;
+}
+
+tbody tr:hover td div.pull-right {
+  opacity: 1;
+}
