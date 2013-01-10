@@ -16,6 +16,7 @@ Moneymaker::Application.routes.draw do
     resources :room_types
     resources :item_types
     resources :settings
+    resources :quests
     resources :bank_levels
     resources :swfclients do
       member { get :activate }

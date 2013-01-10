@@ -29,6 +29,9 @@ class User
   field :crime_interval,   type: Integer, default: 10
   field :online,           type: Boolean, default: false
 
+  field :accepted_quests,  type: Array, default: []
+  field :completed_quests, type: Array, default: []
+
   scope :online, where(online: true)
 
   index({social: 1, social_id: 1}, {unique: true})
@@ -78,6 +81,13 @@ class User
         user_item.update_attribute :room_id, user_room.id
       end
     end
+  end
+
+  # all non-completed & non-accepted quests where parent quest is completed
+  # or there is no parent quest
+  def available_quests
+    ret = Quest.nin(_id: self.completed_quests + self.accepted_quests)
+    ret.any_of({:parent_id.in => self.completed_quests}, {parent_id: nil})
   end
 
   def level

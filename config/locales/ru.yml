@@ -208,6 +208,11 @@ ru:
       onground: Надземный этаж
       underground: Подземный этаж
       any: Любой этаж
+  quest:
+    caption: Задание
+    menu_caption: Задания
+    name: Имя
+    desc: Описание
   item_type:
     caption: Тип предмета
     menu_caption: Типы предметов
