@@ -41,8 +41,6 @@ class GameContent
   index({_type: 1})   # index STI Class name
 
   scope :refs, where(user_id: nil)
-  scope :atms, where(_type: 'Atm')
-  scope :cash_desks, where(_type: 'CashDesk')
   scope :on_stage, ne(room_id: nil)
 
   before_destroy :destroy_refs

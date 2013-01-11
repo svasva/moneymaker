@@ -9,6 +9,9 @@ class Item < GameContent
   validates_presence_of :item_type_id
   validates_length_of :desc, maximum: 150
 
+  scope :atms, where(_type: 'Atm')
+  scope :cash_desks, where(_type: 'CashDesk')
+
   REQUIREMENT_OPTIONS = %w(items level reputation)
   EFFECT_MAXCOUNT = 3
   EFFECT_OPTIONS = [
