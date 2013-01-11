@@ -8,7 +8,6 @@ class EventHandler
   EVENTS = %w(levelup)
 
   def self.trigger(user, event, options = {})
-    binding.pry
     # STUB
   end
 end
