@@ -3,7 +3,7 @@ class Atm < Item
   field :capacity,          type: Integer, default: 100 # coins
   field :operations,        type: Array,   default: []
 
-  field :cash,              type: Integer, default: 0 # current
+  field :cash,              type: Integer, default: 100 # current
   field :client_id,         type: String
   field :current_operation, type: String
 
@@ -53,7 +53,7 @@ class Atm < Item
 
   def enough_cash
     client = Client.find client_id
-    client.operations[current_operation].to_i <= cash
+    cash >= client.operations[current_operation].to_i
   end
 
   def time_per_client

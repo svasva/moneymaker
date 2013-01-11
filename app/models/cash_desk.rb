@@ -19,7 +19,7 @@ class CashDesk < Item
       def serve
         client = Client.find client_id
         client_cash = client.operations[current_operation].to_i
-        if client_cash > (capacity - cash)
+        if client_cash + cash > capacity
           self.update_attribute :cash, capacity
         else
           self.update_attribute :cash, self.cash + client_cash
