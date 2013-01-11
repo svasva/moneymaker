@@ -20,7 +20,7 @@ class Swfclient
 
   def check_active
     if self.active and self.class.active
-      self.class.active.update_attribute(:active, false)
+      self.class.update_attribute(:active, false)
     end
   end
 end
