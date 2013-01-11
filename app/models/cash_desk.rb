@@ -37,10 +37,10 @@ class CashDesk < Item
       i.serve
     end
 
-    after_transition :to => :client_served do |i|
+    after_transition :to => :full do |i|
       i.user.send_message({
-        requestId: -4, # item: client served
-        response: i.id
+        requestId: -4, # item expired
+        response: { id: i.id, message: 'ATM empty' }
       })
     end
 
