@@ -34,12 +34,12 @@ class UsersController < ApplicationController
         user.start_game
         response = { success: 'application started' }
       when 'startClientService'
-        item_id, client_id = args
-        raise 'wrong params' unless item_id and client_id
+        item_id, client_id, operation_id = args
+        raise 'wrong params' unless item_id and client_id and operation_id
         item = Item.find(item_id)
         raise 'item not ready' unless item.state == 'standby'
         raise 'wrong client_id' unless Client.find(client_id)
-        item.update_attribute :client_id, client_id
+        item.update_attributes client_id: client_id, operation_id: operation_id
         item.serve_client
         response = { success: 'service started' }
       when 'placeItem'

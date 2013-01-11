@@ -3,7 +3,6 @@ class Client
 
   field :name,                 type: String
   field :desc,                 type: String
-  field :cash,                 type: Integer
   field :operations,           type: Hash, default: {} # operation_id => cash
   field :requirements,         type: Hash, default: {}
   field :wait_time,            type: Integer # seconds

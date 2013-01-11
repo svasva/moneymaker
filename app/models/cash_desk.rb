@@ -1,10 +1,11 @@
 class CashDesk < Item
-  field :service_speed, type: Integer, default: 10 # seconds
-  field :capacity,      type: Integer, default: 100 # coins
-  field :operations,    type: Array,   default: []
+  field :service_speed,     type: Integer, default: 10 # seconds
+  field :capacity,          type: Integer, default: 100 # coins
+  field :operations,        type: Array,   default: []
 
-  field :cash,           type: Integer, default: 0 # current
-  field :client_id,      type: String
+  field :cash,              type: Integer, default: 0 # current
+  field :client_id,         type: String
+  field :current_operation, type: String
 
   state_machine initial: :standby do
     event :serve_client do
@@ -20,10 +21,10 @@ class CashDesk < Item
         if client.cash > (capacity - cash)
           self.update_attribute :cash, capacity
         else
-          self.inc :cash, client.cash
+          self.inc :cash, client.operations[current_operation]
         end
+        self.update_attributes client_id: nil, operation_id: nil
         not_full ? self.client_served : self.capacity_reached
-        self.update_attribute :client_id, nil
       end
 
       handle_asynchronously :serve, run_at: Proc.new { |i|
