@@ -22,7 +22,7 @@ class CashDesk < Item
         if client_cash > (capacity - cash)
           self.update_attribute :cash, capacity
         else
-          self.inc :cash, client_cash
+          self.update_attribute :cash, self.cash + client_cash
         end
         self.update_attributes client_id: nil, operation_id: nil
         not_full ? self.client_served : self.capacity_reached

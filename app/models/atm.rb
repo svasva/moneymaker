@@ -19,9 +19,10 @@ class Atm < Item
       def serve
         client = Client.find client_id
         client_cash = client.operations[current_operation].to_i
-        self.inc :cash, - client_cash
-        self.reload # TODO: check if this is necessary
-        self.update_attributes client_id: nil, operation_id: nil
+        self.update_attributes({
+          client_id: nil,
+          operation_id: nil
+          cash: self.cash - client_cash)}
         self.cash > 0 ? self.client_served : self.capacity_reached
       end
 
