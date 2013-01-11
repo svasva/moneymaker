@@ -14,17 +14,18 @@ class CashDesk < Item
 
     state :serving_client do
       validates_presence_of :client_id
-      validate :not_full
 
       def serve
         client = Client.find client_id
         client_cash = client.operations[current_operation].to_i
-        if client_cash + cash > capacity
-          self.update_attribute :cash, capacity
+        if (client_cash + cash) > capacity
+          self.cash = capacity
         else
-          self.update_attribute :cash, self.cash + client_cash
+          self.cash += client_cash
         end
-        self.update_attributes client_id: nil, operation_id: nil
+        self.client_id = nil
+        self.operation_id = nil
+        self.save
         not_full ? self.client_served : self.capacity_reached
       end
 

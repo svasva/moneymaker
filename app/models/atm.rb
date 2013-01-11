@@ -14,7 +14,6 @@ class Atm < Item
 
     state :serving_client do
       validates_presence_of :client_id
-      validate :enough_cash
 
       def serve
         client = Client.find client_id
