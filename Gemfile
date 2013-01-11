@@ -5,7 +5,7 @@ gem 'rails', '3.2.11'
 gem 'mongoid', '~> 3.0.0'
 
 gem 'carrierwave'
-gem 'carrierwave-mongoid'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'unicorn'
 gem 'rabl'
 gem 'jquery-rails'
