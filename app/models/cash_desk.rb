@@ -18,10 +18,11 @@ class CashDesk < Item
 
       def serve
         client = Client.find client_id
-        if client.cash > (capacity - cash)
+        client_cash = client.operations[current_operation]
+        if client_cash > (capacity - cash)
           self.update_attribute :cash, capacity
         else
-          self.inc :cash, client.operations[current_operation]
+          self.inc :cash, client_cash
         end
         self.update_attributes client_id: nil, operation_id: nil
         not_full ? self.client_served : self.capacity_reached
@@ -34,6 +35,13 @@ class CashDesk < Item
 
     after_transition :to => :serving_client do |i|
       i.serve
+    end
+
+    after_transition :to => :client_served do |i|
+      i.user.send_message({
+        requestId: -4, # item: client served
+        response: i.id
+      })
     end
 
     event :client_served do

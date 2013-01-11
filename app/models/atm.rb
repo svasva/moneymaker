@@ -1,12 +1,11 @@
 class Atm < Item
-  field :service_speed, type: Integer, default: 10 # seconds
-  field :capacity,      type: Integer, default: 100 # coins
-  field :operations,    type: Array,   default: []
+  field :service_speed,     type: Integer, default: 10 # seconds
+  field :capacity,          type: Integer, default: 100 # coins
+  field :operations,        type: Array,   default: []
 
-  field :cash,          type: Integer, default: 0 # current
-  field :client_id,     type: String
-
-  has_many :bank_operations
+  field :cash,              type: Integer, default: 0 # current
+  field :client_id,         type: String
+  field :current_operation, type: String
 
   state_machine initial: :standby do
     event :serve_client do
@@ -19,13 +18,11 @@ class Atm < Item
 
       def serve
         client = Client.find client_id
-        self.inc :cash, - client.cash
-        not_empty ? self.client_served : self.capacity_reached
-        self.update_attribute :client_id, nil
-        self.user.send_message({
-          requestId: -4, # item: client served
-          response: self.id
-        })
+        client_cash = client.operations[current_operation]
+        self.inc :cash, - client_cash
+        self.reload # TODO: check if this is necessary
+        self.update_attributes client_id: nil, operation_id: nil
+        self.cash > 0 ? self.client_served : self.capacity_reached
       end
 
       handle_asynchronously :serve, run_at: Proc.new { |i|
@@ -35,6 +32,13 @@ class Atm < Item
 
     after_transition :to => :serving_client do |i|
       i.serve
+    end
+
+    after_transition :to => :client_served do |i|
+      i.user.send_message({
+        requestId: -4, # item: client served
+        response: i.id
+      })
     end
 
     event :client_served do
@@ -48,7 +52,7 @@ class Atm < Item
 
   def enough_cash
     client = Client.find client_id
-    client.cash <= cash
+    client.operations[current_operation] <= cash
   end
 
   def time_per_client
