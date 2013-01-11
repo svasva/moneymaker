@@ -22,7 +22,12 @@ class Atm < Item
         self.update_attributes({
           client_id: nil,
           operation_id: nil,
-          cash: self.cash - client_cash)}
+          cash: self.cash - client_cash})    after_transition :to => :empty do |i|
+      i.user.send_message({
+        requestId: -4, # item expired
+        response: { id: i.id, message: 'ATM empty' }
+      })
+    end
         self.cash > 0 ? self.client_served : self.capacity_reached
       end
 
