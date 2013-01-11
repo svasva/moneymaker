@@ -9,7 +9,7 @@ class ItemType
   MODULES_OPTIONS = %w(base)
   has_many :items
 
-  mount_uploader :icon, SwfUploader
+  mount_uploader :icon, SwfUploader, mount_on: :icon_filename
   validates_presence_of :name
   validates_presence_of :placement
 

@@ -5,7 +5,7 @@ class Swfclient
   field :active,  type: Boolean
   field :desc,    type: String
 
-  mount_uploader :swf, SwfUploader
+  mount_uploader :swf, SwfUploader, mount_on: :swf_filename
   before_save :check_active
 
   default_scope where(_type: nil).desc(:created_at)

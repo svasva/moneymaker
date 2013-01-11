@@ -17,8 +17,8 @@ class Client
 
   validates_presence_of :name, :desc, :wait_time, :weight
 
-  mount_uploader :swf,  SwfUploader
-  mount_uploader :icon, SwfUploader
+  mount_uploader :swf,  SwfUploader, mount_on: :swf_filename
+  mount_uploader :icon, SwfUploader, mount_on: :icon_filename
 
   def operations_mapped
     operations.map {|k,v| { id: k, cash: v } }

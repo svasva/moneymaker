@@ -30,8 +30,8 @@ class GameContent
   field :rewards,      type: Hash,    default: {}
   field :effects,      type: Hash,    default: {}
 
-  mount_uploader :swf,  SwfUploader
-  mount_uploader :icon, SwfUploader
+  mount_uploader :swf,  SwfUploader, mount_on: :swf_filename
+  mount_uploader :icon, SwfUploader, mount_on: :icon_filename
 
   validates_presence_of :name, :desc, :order
   validates_presence_of :size_x, :size_y, :height
