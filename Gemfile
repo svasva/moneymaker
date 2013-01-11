@@ -5,7 +5,7 @@ gem 'rails', '3.2.11'
 gem 'mongoid', '~> 3.0.0'
 
 gem 'carrierwave'
-gem "carrierwave-mongoid", :git => "git://github.com/jnicklas/carrierwave-mongoid.git", :branch => "mongoid-3.0"
+gem "carrierwave-mongoid", '0.1.0'
 gem 'unicorn'
 gem 'rabl'
 gem 'jquery-rails'
