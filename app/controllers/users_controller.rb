@@ -33,6 +33,15 @@ class UsersController < ApplicationController
         user = User.find params[:id]
         user.start_game
         response = { success: 'application started' }
+      when 'startClientService'
+        item_id, client_id = args
+        raise 'wrong params' unless item_id and client_id
+        item = Item.find(item_id)
+        case item.
+        raise 'wrong client_id' unless Client.find(client_id)
+        item.update_attribute :client_id, client_id
+        item.serve_client
+        response = { success: 'service started' }
       when 'placeItem'
         room_id, item_id, x, y, rotation = args
         raise 'wrong params' unless room_id and item_id and x and y and rotation
@@ -51,15 +60,6 @@ class UsersController < ApplicationController
         user = User.find params[:id]
         user.send_client
         response = { success: 'client push initiated' }
-      when 'serveClient'
-        client_id, item_id = args
-        raise 'wrong params' unless client_id and item_id
-        user = User.find params[:id]
-        client = Client.find client_id
-        item = GameContent.find item_id
-        item.update_attribute :client_id, client_id
-        item.serve_client
-        response = { success: 'client serve initiated' }
       when 'resetGame'
         User.find(params[:id]).destroy
         response = { success: 'user data has been deleted' }
