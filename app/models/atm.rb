@@ -21,7 +21,7 @@ class Atm < Item
         client_cash = client.operations[current_operation].to_i
         self.update_attributes({
           client_id: nil,
-          operation_id: nil
+          operation_id: nil,
           cash: self.cash - client_cash)}
         self.cash > 0 ? self.client_served : self.capacity_reached
       end
