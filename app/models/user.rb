@@ -28,6 +28,7 @@ class User
   field :client_interval,  type: Integer, default: 10
   field :crime_interval,   type: Integer, default: 10
   field :online,           type: Boolean, default: false
+  field :pushing_clients,  type: Boolean, default: false
 
   field :accepted_quests,  type: Array, default: []
   field :completed_quests, type: Array, default: []
@@ -167,9 +168,11 @@ class User
   end
 
   def start_game
-    update_attribute :online, true
     send_client
-    generate_clients
+    unless self.reload.pushing_clients
+      generate_clients
+      self.update_attribute :pushing_clients, true
+    end
   end
 
   def effects
@@ -182,7 +185,10 @@ class User
   end
 
   def generate_clients
-    return false unless self.reload.online
+    unless self.reload.online
+      self.update_attribute :pushing_clients, false
+      return true
+    end
     send_client
     generate_clients
   end
