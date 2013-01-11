@@ -18,7 +18,7 @@ class Atm < Item
 
       def serve
         client = Client.find client_id
-        client_cash = client.operations[current_operation]
+        client_cash = client.operations[current_operation].to_i
         self.inc :cash, - client_cash
         self.reload # TODO: check if this is necessary
         self.update_attributes client_id: nil, operation_id: nil
