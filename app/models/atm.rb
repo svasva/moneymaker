@@ -52,7 +52,7 @@ class Atm < Item
 
   def enough_cash
     client = Client.find client_id
-    client.operations[current_operation] <= cash
+    client.operations[current_operation].to_i <= cash
   end
 
   def time_per_client
