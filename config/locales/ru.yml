@@ -36,6 +36,9 @@ ru:
         startup_room_id: Стартовая комната
         capacity: Емкость (монет)
         service_speed: Скорость обслуживания (сек)
+      quest:
+        complete_text: Текст по завершению
+        parent_id: Родительский квест
       client:
         wait_time: Время в очереди
         weight: Шанс появления
@@ -213,6 +216,7 @@ ru:
     menu_caption: Задания
     name: Имя
     desc: Описание
+    complete_requirements: Требования для завершения
   item_type:
     caption: Тип предмета
     menu_caption: Типы предметов

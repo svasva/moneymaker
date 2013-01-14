@@ -9,9 +9,10 @@ class Quest
   field :complete_text, type: String
 
   field :requirements,  type: Hash, default: {items: {}, rooms: {}}
+  field :complete_requirements, type: Hash, default: {items: {}, rooms: {}}
   field :rewards,       type: Hash, default: {items: {}}
 
   mount_uploader :icon, SwfUploader
 
-  validates_presence_of :name, :desc
+  validates_presence_of :name, :desc, :complete_text
 end

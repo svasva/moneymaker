@@ -14,7 +14,7 @@ initItems = ->
     removeLink.click -> $(@).closest('.control-group').remove()
     tmpl.find('label').html(name)
     tmpl.find('label').append removeLink
-    tmpl.find('input').attr 'name', "item[requirements][items][#{id}]"
+    tmpl.find('input').attr 'name', resourceClass+"[requirements][items][#{id}]"
     tmpl.find('input').val count
     $('.itemRequirements').append tmpl
 
@@ -26,7 +26,7 @@ initItems = ->
     removeLink.click -> $(@).closest('.control-group').remove()
     tmpl.find('label').html(name)
     tmpl.find('label').append removeLink
-    tmpl.find('input').attr 'name', "item[requirements][rooms][#{id}]"
+    tmpl.find('input').attr 'name', resourceClass+"[requirements][rooms][#{id}]"
     tmpl.find('input').val count
     $('.roomRequirements').append tmpl
 
@@ -38,7 +38,7 @@ initItems = ->
     removeLink.click -> $(@).closest('.control-group').remove()
     tmpl.find('label').html(name)
     tmpl.find('label').append removeLink
-    tmpl.find('input').attr 'name', "item[effects][#{id}]"
+    tmpl.find('input').attr 'name', resourceClass+"[effects][#{id}]"
     tmpl.find('input').val count
     $('.effects').append tmpl
 
