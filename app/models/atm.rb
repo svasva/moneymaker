@@ -3,7 +3,7 @@ class Atm < Item
   field :capacity,          type: Integer, default: 100 # coins
   field :operations,        type: Array,   default: []
 
-  field :cash,              type: Integer, default: 100 # current
+  field :cash,              type: Integer, default: ->{self.capacity} # current
   field :client_id,         type: String
   field :current_operation, type: String
 
