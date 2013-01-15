@@ -37,7 +37,7 @@ class UsersController < ApplicationController
         item_id, client_id, operation_id = args
         raise 'wrong params' unless item_id and client_id and operation_id
         item = Item.find(item_id)
-        raise 'item not ready' unless item.state == 'standby'
+        raise "item not ready, state = #{item.state}" unless item.state == 'standby'
         raise 'wrong client_id' unless Client.find(client_id)
         item.update_attributes client_id: client_id, operation_id: operation_id
         item.serve_client
