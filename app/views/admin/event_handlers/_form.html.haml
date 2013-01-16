@@ -1,0 +1,15 @@
+= simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
+  %legend
+    = t("common.#{params[:action]}") + ' ' + t(resource_class.name.underscore + '.caption').mb_chars.downcase
+    = "# #{resource.id}" unless resource.new_record?
+  = f.input :event_type, collection: EventHandler::EVENTS
+  = f.input :message_title
+  = f.input :message_body, as: :text, input_html: {rows: 4}
+  .control-group
+    .controls
+      %a.btn{href: collection_url}
+        %i.icon-arrow-left
+        Назад
+      %button.btn.btn-primary
+        %i.icon-ok.icon-white
+        Сохранить

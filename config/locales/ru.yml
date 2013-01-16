@@ -11,6 +11,10 @@ ru:
         notice: Сохранено успешно
         alert: При сохранении произошла ошибка
   simple_form:
+    options:
+      event_handler:
+        event_type:
+          levelup: Новый уровень
     labels:
       defaults:
         value: Значение
@@ -36,6 +40,10 @@ ru:
         startup_room_id: Стартовая комната
         capacity: Емкость (монет)
         service_speed: Скорость обслуживания (сек)
+      event_handler:
+        event_type: Тип события
+        message_title: Заголовок окна
+        message_body: Текст
       quest:
         complete_text: Текст по завершению
         parent_id: Родительский квест
@@ -89,6 +97,9 @@ ru:
     experience: Опыт
     rooms: Комнаты
     additional_fields: Дополнительные поля
+  event_handler:
+    menu_caption: События
+    caption: Событие
   setting:
     caption: Настройка
     menu_caption: Настройки
