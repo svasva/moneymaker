@@ -10,6 +10,7 @@
     .span6
       = f.input :name
       = f.input :desc, as: :text, input_html: {rows: 4}
+      = f.input :quest_character_id, collection: QuestCharacter.all
     .span6
       = f.input :complete_text, as: :text, input_html: {rows: 4}
       = f.input :parent_id, collection: Quest.ne(id: resource.id)

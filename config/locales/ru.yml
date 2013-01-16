@@ -39,6 +39,7 @@ ru:
       quest:
         complete_text: Текст по завершению
         parent_id: Родительский квест
+        quest_character_id: Персонаж
       client:
         wait_time: Время в очереди
         weight: Шанс появления
@@ -217,6 +218,10 @@ ru:
     name: Имя
     desc: Описание
     complete_requirements: Требования для завершения
+  quest_character:
+    caption: Персонаж
+    menu_caption: Персонажи
+    name: Имя
   item_type:
     caption: Тип предмета
     menu_caption: Типы предметов

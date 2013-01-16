@@ -3,6 +3,7 @@ class Quest
 
   belongs_to :parent, class_name: 'Quest', index: true
   has_many :children, class_name: 'Quest', foreign_key: 'parent_id'
+  belongs_to :quest_character
 
   field :name,          type: String
   field :desc,          type: String
@@ -12,7 +13,7 @@ class Quest
   field :complete_requirements, type: Hash, default: {items: {}, rooms: {}}
   field :rewards,       type: Hash, default: {items: {}}
 
-  mount_uploader :icon, SwfUploader
+  mount_uploader :icon, SwfUploader, as: :icon_filename
 
-  validates_presence_of :name, :desc, :complete_text
+  validates_presence_of :name, :desc, :complete_text, :quest_character_id
 end

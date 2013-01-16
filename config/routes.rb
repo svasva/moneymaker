@@ -18,6 +18,7 @@ Moneymaker::Application.routes.draw do
     resources :settings
     resources :quests
     resources :bank_levels
+    resources :quest_characters
     resources :swfclients do
       member { get :activate }
     end
