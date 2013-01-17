@@ -47,6 +47,14 @@ class User
   after_update :update_client, :calc_stats, :fire_events
   after_create :setup_start_location
 
+  def nextlevel
+    level.next.experience
+  end
+
+  def min_rep
+    level.min_reputation
+  end
+
   def calc_stats
     fields = self.attributes.select { |k,v| changes.has_key? k }
     # TODO: add UserStats model with transaction details
