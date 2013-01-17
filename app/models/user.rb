@@ -100,7 +100,7 @@ class User
   end
 
   def level
-    BankLevel.where(:experience.lte => self.experience).first
+    BankLevel.where(:experience.lte => self.experience).last
   end
 
   def levelnumber
