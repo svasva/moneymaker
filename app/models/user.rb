@@ -103,6 +103,10 @@ class User
     BankLevel.where(:experience.lte => self.experience).first
   end
 
+  def levelnumber
+    level.number
+  end
+
   def send_message(message)
     return true unless online
     HTTParty.post "#{SOCKET_API}/#{self.id}", {body: message}

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         response = 'pong'
       when 'getUser'
         user = User.find params[:id]
-        response = user.as_json(methods: [:rooms, :items, :nextlevel, :min_rep])
+        response = user.as_json(methods: [:rooms, :items, :levelnumber, :nextlevel, :min_rep])
       when 'getContent'
         response = GameContent.find(args.first)
       when 'buyContent'
