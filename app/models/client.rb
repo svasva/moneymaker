@@ -6,6 +6,7 @@ class Client
   field :operations,           type: Hash, default: {} # operation_id => cash
   field :requirements,         type: Hash, default: {}
   field :wait_time,            type: Integer # seconds
+  field :height,               type: Float
   field :weight,               type: Float
   field :weight_rep_mod,       type: Float
   field :weight_cred_mod,      type: Float

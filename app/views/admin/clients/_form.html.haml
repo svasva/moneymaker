@@ -29,6 +29,7 @@
         .control-group
           .controls
             %a{href: resource.icon_url}= resource.icon_filename
+      = f.input :weight, as: :float
       = f.input :weight, as: :integer
       = f.input :weight_rep_mod, as: :integer
       = f.input :weight_cred_mod, as: :integer
