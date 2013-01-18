@@ -6,6 +6,7 @@ class Client
   field :operations,           type: Hash, default: {} # operation_id => cash
   field :requirements,         type: Hash, default: {}
   field :wait_time,            type: Integer # seconds
+  field :reputation,           type: Integer
   field :height,               type: Float
   field :weight,               type: Float
   field :weight_rep_mod,       type: Float
@@ -16,7 +17,7 @@ class Client
 
   has_many :bank_operations
 
-  validates_presence_of :name, :desc, :wait_time, :weight
+  validates_presence_of :name, :desc, :wait_time, :weight, :reputation, :height
 
   mount_uploader :swf,  SwfUploader, mount_on: :swf_filename
   mount_uploader :icon, SwfUploader, mount_on: :icon_filename

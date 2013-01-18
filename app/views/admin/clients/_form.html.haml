@@ -9,6 +9,7 @@
       = f.input :name
       = f.input :desc, as: :text, input_html: {rows: 4}
       = f.input :wait_time, as: :integer
+      = f.input :reputation, as: :integer
       %legend= t 'common.requirements'
       .control-group
         %label.control-label{for: 'item_requirements_level'}= t 'common.level'

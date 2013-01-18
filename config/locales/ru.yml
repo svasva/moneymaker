@@ -52,6 +52,7 @@ ru:
         wait_time: Время в очереди
         weight: Шанс появления
         height: Высота
+        reputation: Бонус/штраф репутации
         weight_rep_mod: Модиф. от репутации
         weight_debt_mod: Модиф. от вкладов
         weight_cred_mod: Модиф. от кредитов
