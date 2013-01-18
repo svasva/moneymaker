@@ -16,6 +16,7 @@ class User
   field :experience,       type: Integer, default: 0
   field :reputation,       type: Integer, default: 0
   field :reputation_bonus, type: Integer, default: 0
+  field :max_coins,        type: Integer, default: ->{Setting.get.bank_capacity}
   field :coins,            type: Integer, default: ->{Setting.get.start_coins}
   field :coins_spent,      type: Integer, default: 0
   field :money,            type: Integer, default: ->{Setting.get.start_money}
@@ -46,6 +47,10 @@ class User
   has_and_belongs_to_many :friends, class_name: 'User'
   after_update :update_client, :calc_stats, :fire_events
   after_create :setup_start_location
+
+  def capacity
+    max_coins
+  end
 
   def nextlevel
     level.next.experience

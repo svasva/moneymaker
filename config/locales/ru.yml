@@ -76,6 +76,7 @@ ru:
         weight: Вес
       setting:
         time_per_client: Частота появления клиентов
+        bank_capacity: Вместимость хранилища
         start_coins: Монет на старте
         start_money: Реал. денег на старте
   common:
