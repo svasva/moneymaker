@@ -73,7 +73,7 @@ class UsersController < ApplicationController
           {name: 'money5', desc: 'money money money', social_price: 50, money: 500, icon: Item.first.icon_url},
           {name: 'money6', desc: 'money money money', social_price: 60, money: 600, icon: Item.first.icon_url}
         ]
-        shop[:bonus] = Item.refs.where(item_type: {placement: 'none'})
+        shop[:bonus] = Item.in(item_type_id: ItemType.where(placement: 'none').map(&:id))
         response = shop
       when 'resetGame'
         User.find(params[:id]).destroy
