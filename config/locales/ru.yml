@@ -15,6 +15,17 @@ ru:
       event_handler:
         event_type:
           levelup: Новый уровень
+      room_type:
+        placement:
+          any: Любой этаж
+          ground: Цокольный этаж
+          underground: Подземный этаж
+          onground: Наземный этаж
+      item_type:
+        placement:
+          any: Где угодно
+          wall: Линкуется к стене
+          none: Не размещаемый
     labels:
       defaults:
         value: Значение

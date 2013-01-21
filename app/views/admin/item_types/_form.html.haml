@@ -5,7 +5,7 @@
 
   = f.input :name
   = f.input :icon
-  = f.input :placement, collection: ItemType.placement_options
+  = f.input :placement, collection: ItemType::PLACEMENT_OPTIONS
   = f.input :timed, as: :boolean
   = f.input :timetolive, as: :integer
   = f.input :unique, as: :boolean
