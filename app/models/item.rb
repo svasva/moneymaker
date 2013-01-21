@@ -11,6 +11,7 @@ class Item < GameContent
 
   scope :atms, where(_type: 'Atm')
   scope :cash_desks, where(_type: 'CashDesk')
+  scope :store, where(room_id: nil)
 
   REQUIREMENT_OPTIONS = %w(items level reputation)
   EFFECT_MAXCOUNT = 3
