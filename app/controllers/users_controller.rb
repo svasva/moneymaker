@@ -66,12 +66,12 @@ class UsersController < ApplicationController
         shop[:main] = RoomType.all.as_json(methods: [:ref_items, :ref_rooms])
         shop[:warehouse] = user.items.store
         shop[:premium] = [
-          {name: 'money1', desc: 'money money money', social_price: 10, money: 100, icon: Item.sample.icon_url},
-          {name: 'money2', desc: 'money money money', social_price: 20, money: 200, icon: Item.sample.icon_url},
-          {name: 'money3', desc: 'money money money', social_price: 30, money: 300, icon: Item.sample.icon_url},
-          {name: 'money4', desc: 'money money money', social_price: 40, money: 400, icon: Item.sample.icon_url},
-          {name: 'money5', desc: 'money money money', social_price: 50, money: 500, icon: Item.sample.icon_url},
-          {name: 'money6', desc: 'money money money', social_price: 60, money: 600, icon: Item.sample.icon_url}
+          {name: 'money1', desc: 'money money money', social_price: 10, money: 100, icon: Item.first.icon_url},
+          {name: 'money2', desc: 'money money money', social_price: 20, money: 200, icon: Item.first.icon_url},
+          {name: 'money3', desc: 'money money money', social_price: 30, money: 300, icon: Item.first.icon_url},
+          {name: 'money4', desc: 'money money money', social_price: 40, money: 400, icon: Item.first.icon_url},
+          {name: 'money5', desc: 'money money money', social_price: 50, money: 500, icon: Item.first.icon_url},
+          {name: 'money6', desc: 'money money money', social_price: 60, money: 600, icon: Item.first.icon_url}
         ]
         shop[:bonus] = Item.refs.where(item_type: {placement: 'none'})
         response = shop
