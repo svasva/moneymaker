@@ -43,6 +43,7 @@ class User
   has_many :user_sockets, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :rooms, dependent: :destroy
+  has_many :branches, dependent: :destroy
 
   has_and_belongs_to_many :friends, class_name: 'User'
   after_update :update_client, :calc_stats, :fire_events
