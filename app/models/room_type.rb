@@ -14,10 +14,10 @@ class RoomType
   validates_presence_of :placement
 
   def ref_items
-    self.items.refs
+    self.items.refs.map(&:id)
   end
 
   def ref_rooms
-    self.rooms.refs
+    self.rooms.refs.map(&:id)
   end
 end

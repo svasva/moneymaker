@@ -64,7 +64,7 @@ class UsersController < ApplicationController
         shop = {}
         user = User.find(params[:id])
         shop[:main] = RoomType.all.as_json(methods: [:ref_items, :ref_rooms])
-        shop[:warehouse] = user.items.store
+        shop[:warehouse] = user.items.store.map(&:id)
         shop[:premium] = [
           {name: 'money1', desc: 'money money money', social_price: 10, money: 100, icon: Item.first.icon_url},
           {name: 'money2', desc: 'money money money', social_price: 20, money: 200, icon: Item.first.icon_url},
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
           {name: 'money5', desc: 'money money money', social_price: 50, money: 500, icon: Item.first.icon_url},
           {name: 'money6', desc: 'money money money', social_price: 60, money: 600, icon: Item.first.icon_url}
         ]
-        shop[:bonus] = Item.in(item_type_id: ItemType.where(placement: 'none').map(&:id))
+        shop[:bonus] = Item.in(item_type_id: ItemType.where(placement: 'none').map(&:id)).map(&:id)
         response = shop
       when 'resetGame'
         User.find(params[:id]).destroy
