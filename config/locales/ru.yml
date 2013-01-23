@@ -111,26 +111,26 @@ ru:
     experience: Опыт
     rooms: Комнаты
     additional_fields: Дополнительные поля
-  event_handler:
+  event_handlers:
     menu_caption: События
     caption: Событие
     event_type: Тип события
     message_title: Заголовок окна
-  setting:
+  settings:
     caption: Настройка
     menu_caption: Настройки
-  bank_level:
+  bank_levels:
     caption: Уровень банка
     menu_caption: Уровни банка
     number: Уровень
     experience: Опыт
     min_reputation: Мин. репутации
-  greeting:
+  greetings:
     caption: Приветствие
     menu_caption: Приветствия
     text: Текст
     weight: Вес
-  user:
+  users:
     caption: Пользователь
     menu_caption: Пользователи
     social: СоцСеть
@@ -141,7 +141,7 @@ ru:
     reputation: Репутация
     coins: Деньги (игр.)
     money: Деньги (реал.)
-  swfclient:
+  swfclients:
     caption: Flash-клиент
     menu_caption: Flash-клиенты
     desc: Описание
@@ -151,7 +151,7 @@ ru:
     created_at: Создан
     updated_at: Обновлен
     swf_filename: Путь
-  flash_lib:
+  flash_libs:
     caption: Библиотека
     menu_caption: Библиотеки
     desc: Имя
@@ -163,20 +163,20 @@ ru:
     swf_filename: Путь
     local_path: Локальный путь
     social: Соц. сеть
-  atm:
+  atms:
     caption: Банкомат
     menu_caption: Банкоматы
     capacity: Вместимость
     service_speed: Скорость
-  bank_operation:
+  bank_operations:
     caption: Банк. операция
     menu_caption: Банк. операции
-  cash_desk:
+  cash_desks:
     caption: Касса
     menu_caption: Кассы
     capacity: Вместимость
     service_speed: Скорость
-  item:
+  items:
     caption: Предмет
     menu_caption: Предметы
     name: Имя
@@ -207,7 +207,7 @@ ru:
       security: Защищенность
       security_branch: Защищенность филиалов
       atm_crash: Шанс поломки бнкмт
-  room:
+  rooms:
     caption: Комната
     menu_caption: Комнаты
     name: Имя
@@ -224,12 +224,18 @@ ru:
     startup: Стартовая локация
     startup_x: Стартовая локация, X
     startup_y: Стартовая локация, Y
-  client:
+  branches:
+    caption: Филиал
+    menu_caption: Филиалы
+    name: Название
+    desc: Описание
+    level: Уровень
+  clients:
     caption: Клиент
     menu_caption: Клиенты
     operation: Операция
     height: Высота
-  room_type:
+  room_types:
     caption: Тип комнат
     menu_caption: Типы комнат
     name: Имя
@@ -240,17 +246,17 @@ ru:
       onground: Надземный этаж
       underground: Подземный этаж
       any: Любой этаж
-  quest:
+  quests:
     caption: Задание
     menu_caption: Задания
     name: Имя
     desc: Описание
     complete_requirements: Требования для завершения
-  quest_character:
+  quest_characters:
     caption: Персонаж
     menu_caption: Персонажи
     name: Имя
-  item_type:
+  item_types:
     caption: Тип предмета
     menu_caption: Типы предметов
     name: Имя

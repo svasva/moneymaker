@@ -11,17 +11,17 @@
           - %w(users bank_levels settings).each do |controller|
             %li{class: ("active" if params[:controller] == "admin/#{controller}")}
               %a{href: url_for(controller: controller)}
-                = t "#{controller[0..-2]}.menu_caption"
+                = t "#{controller}.menu_caption"
           %li.dropdown
             %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
               = t 'common.content'
               %b.caret
             %ul.dropdown-menu
-              - %w(greetings bank_operations atms cash_desks items item_types rooms room_types clients quests quest_characters event_handlers).each do |controller|
+              - %w(greetings bank_operations atms cash_desks items item_types rooms room_types clients quests quest_characters event_handlers branches).each do |controller|
                 %li{class: ("active" if params[:controller] == "admin/#{controller}")}
                   %a{href: url_for(controller: controller)}
-                    = t "#{controller[0..-2]}.menu_caption"
+                    = t "#{controller}.menu_caption"
           - %w( swfclients flash_libs).each do |controller|
             %li{class: ("active" if params[:controller] == "admin/#{controller}")}
               %a{href: url_for(controller: controller)}
-                = t "#{controller[0..-2]}.menu_caption"
+                = t "#{controller}.menu_caption"
