@@ -32,15 +32,15 @@
       .control-group
         %label.control-label{for: rname+'_requirements_level'}= t 'common.level'
         .controls
-          %input{name: rname+'[requirements][level]', type: 'number', value: resource.requirements['level']}
+          %input{resource_class.name.underscore'[requirements][level]', type: 'number', value: resource.requirements['level']}
       .control-group
         %label.control-label{for: rname+'_requirements_friends'}= t 'common.friends'
         .controls
-          %input{name: rname+'[requirements][friends]', type: 'number', value: resource.requirements['friends']}
+          %input{resource_class.name.underscore'[requirements][friends]', type: 'number', value: resource.requirements['friends']}
       .control-group
         %label.control-label{for: rname+'_requirements_reputation'}= t 'common.reputation'
         .controls
-          %input{name: rname+'[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
+          %input{resource_class.name.underscore'[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
       .itemRequirements
       .roomRequirements
       .removeLink.template
@@ -70,11 +70,11 @@
       .control-group
         %label.control-label{for: rname+'_rewards_reputation'}= t 'common.reputation'
         .controls
-          %input{name: rname+'[rewards][reputation]', type: 'number', value: resource.rewards['reputation']}
+          %input{resource_class.name.underscore'[rewards][reputation]', type: 'number', value: resource.rewards['reputation']}
       .control-group
         %label.control-label{for: rname+'_rewards_experience'}= t 'common.experience'
         .controls
-          %input{name: rname+'[rewards][experience]', type: 'number', value: resource.rewards['experience']}
+          %input{resource_class.name.underscore'[rewards][experience]', type: 'number', value: resource.rewards['experience']}
       %legend= t 'common.effects'
       .control-group
         %label.control-label{for: "item_type_placement"}
