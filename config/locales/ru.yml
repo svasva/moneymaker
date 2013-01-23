@@ -28,6 +28,7 @@ ru:
           none: Не размещаемый
     labels:
       defaults:
+        level: Уровень
         value: Значение
         operations: Банк. операции
         order: Позиция
@@ -91,6 +92,10 @@ ru:
         bank_capacity: Вместимость хранилища
         start_coins: Монет на старте
         start_money: Реал. денег на старте
+      branch:
+        income_modifier: Множитель доходности
+        crime_probability: Шанс криминала
+        encashment_speed: Скорость инкассации (сек)
   common:
     settings: Настройки
     operations: Операции
@@ -196,6 +201,7 @@ ru:
     room_type: Тип комнаты
     item_type: Тип предмета
     startup_room: Стартовая комната
+  item:
     effect_options:
       reputation: Репутация
       income: Доход банка

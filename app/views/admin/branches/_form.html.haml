@@ -1,0 +1,94 @@
+- rname = resource_class.name.pluralize.underscore
+= simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
+  %legend
+    = t("common.#{params[:action]}") + ' ' + t(rname + '.caption').mb_chars.downcase
+    = "# #{resource.id}" unless resource.new_record?
+  :javascript
+    window.req_items = #{@req_items.to_json};
+    window.req_rooms = #{@req_rooms.to_json};
+    window.item_effects = #{@effects.to_json}
+    window.resourceClass = '#{resource_class.name.underscore}';
+  .row-fluid
+    .span6
+      = f.input :name
+      = f.input :desc, as: :text, input_html: {rows: 4}
+      = f.input :money_cost, as: :integer
+      = f.input :coins_cost, as: :integer
+    .span6
+      = f.input :icon
+      - unless resource.new_record?
+        .control-group
+          .controls
+            %a{href: resource.icon_url}= resource.icon_filename
+      = f.input :income_modifier, as: :float
+      = f.input :crime_probability, as: :integer
+      = f.input :encashment_speed, as: :integer
+      = f.input :level, as: :integer
+  .row-fluid
+    .span6
+      %legend= t 'common.requirements'
+      .control-group
+        %label.control-label{for: rname+'_requirements_level'}= t 'common.level'
+        .controls
+          %input{name: rname+'[requirements][level]', type: 'number', value: resource.requirements['level']}
+      .control-group
+        %label.control-label{for: rname+'_requirements_friends'}= t 'common.friends'
+        .controls
+          %input{name: rname+'[requirements][friends]', type: 'number', value: resource.requirements['friends']}
+      .control-group
+        %label.control-label{for: rname+'_requirements_reputation'}= t 'common.reputation'
+        .controls
+          %input{name: rname+'[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
+      .itemRequirements
+      .roomRequirements
+      .removeLink.template
+        %a.btn.btn-small.btn-danger
+          %i.icon-trash.icon-white
+      .itemRequirement.template
+        .control-group
+          %label.control-label label
+          .controls
+            %input{type: 'number', value: 1}
+      .control-group
+        %label.control-label= t 'common.items'
+        .controls
+          %select#requireItem
+            %option
+            - Item.refs.each do |name, id|
+              %option{value: id}= name
+      .control-group
+        %label.control-label= t 'common.rooms'
+        .controls
+          %select#requireRoom
+            %option
+            - Room.refs.each do |name, id|
+              %option{value: id}= name
+    .span6
+      %legend= t 'common.rewards'
+      .control-group
+        %label.control-label{for: rname+'_rewards_reputation'}= t 'common.reputation'
+        .controls
+          %input{name: rname+'[rewards][reputation]', type: 'number', value: resource.rewards['reputation']}
+      .control-group
+        %label.control-label{for: rname+'_rewards_experience'}= t 'common.experience'
+        .controls
+          %input{name: rname+'[rewards][experience]', type: 'number', value: resource.rewards['experience']}
+      %legend= t 'common.effects'
+      .control-group
+        %label.control-label{for: "item_type_placement"}
+          = t 'common.effect'
+        .controls
+          %select.select2#effects
+            %option
+            - Item.effect_options.each do |name, value|
+              %option{value: value}= name
+      .effects
+
+  .control-group
+    .controls
+      %a.btn{href: collection_url}
+        %i.icon-arrow-left
+        Назад
+      %button.btn.btn-primary
+        %i.icon-ok.icon-white
+        Сохранить

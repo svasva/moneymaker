@@ -43,7 +43,7 @@
         .controls
           %select#requireItem
             %option
-            - Item.all.each do |item|
+            - Item.refs.each do |item|
               %option{value: item.id}= item.name
     .span6
       %legend= t 'quest.complete_requirements'
@@ -73,7 +73,7 @@
         .controls
           %select#requireItem
             %option
-            - Item.all.each do |item|
+            - Item.refs.each do |item|
               %option{value: item.id}= item.name
 
   .control-group
