@@ -57,15 +57,15 @@
         .controls
           %select#requireItem
             %option
-            - Item.refs.each do |name, id|
-              %option{value: id}= name
+            - Item.refs.each do |item|
+              %option{value: item.id}= item.name
       .control-group
         %label.control-label= t 'common.rooms'
         .controls
           %select#requireRoom
             %option
-            - Room.refs.each do |name, id|
-              %option{value: id}= name
+            - Room.refs.each do |room|
+              %option{value: room.id}= room.name
     .span6
       %legend= t 'common.rewards'
       .control-group
