@@ -1,4 +1,4 @@
-class Admin::EventHandlersController < InheritedResources::Base
+class Admin::EventHandlersController < Admin::BaseController
   before_filter :set_fields
 
   def set_fields

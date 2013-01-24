@@ -1,4 +1,4 @@
-class Admin::QuestsController < InheritedResources::Base
+class Admin::QuestsController < Admin::BaseController
   before_filter :set_fields
 
   def set_fields

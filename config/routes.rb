@@ -1,4 +1,6 @@
 Moneymaker::Application.routes.draw do
+  devise_for :admins
+
   scope 'api' do
     resources :users do
       member { post :send_message }

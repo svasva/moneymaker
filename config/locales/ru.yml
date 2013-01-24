@@ -1,4 +1,11 @@
 ru:
+  devise:
+    failure:
+      admin:
+        unauthenticated: Доступ запрещен
+    sessions:
+      admin:
+        signed_in: Вы вошли в систему
   flash:
     actions:
       create:
@@ -97,6 +104,7 @@ ru:
         crime_probability: Шанс криминала
         encashment_speed: Скорость инкассации (сек)
   common:
+    sign_out: Выход
     settings: Настройки
     operations: Операции
     edit: Изменить

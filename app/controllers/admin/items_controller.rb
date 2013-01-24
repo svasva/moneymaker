@@ -1,4 +1,4 @@
-class Admin::ItemsController < InheritedResources::Base
+class Admin::ItemsController < Admin::BaseController
   respond_to :html, :json
   before_filter :setup_vars
   def setup_vars

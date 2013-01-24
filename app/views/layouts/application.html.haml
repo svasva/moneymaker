@@ -16,7 +16,8 @@
     / %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114")
     = javascript_include_tag 'application'
   %body
-    = render partial: 'shared/navbar'
+    - if admin_signed_in?
+      = render partial: 'shared/navbar'
     .container
       .content
         - if flash[:notice]

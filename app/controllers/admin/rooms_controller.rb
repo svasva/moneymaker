@@ -1,7 +1,7 @@
-class Admin::RoomsController < InheritedResources::Base
+class Admin::RoomsController < Admin::BaseController
   respond_to :html, :json
   def edit
-    @upgrades = Room.where(room_type_id: resource.room_type_id).ne(id: resource.id).map { |upg|
+    @upgrades = Room.refs.where(room_type_id: resource.room_type_id).ne(id: resource.id).map { |upg|
       [upg.name, upg.id]
     }
     @room_types = RoomType.all.map { |rt| [rt.name, rt.id] }

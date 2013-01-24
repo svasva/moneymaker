@@ -1,4 +1,4 @@
-class Admin::FlashLibsController < InheritedResources::Base
+class Admin::FlashLibsController < Admin::BaseController
   respond_to :html, :json
 
   def activate

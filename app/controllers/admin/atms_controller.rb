@@ -1,4 +1,4 @@
-class Admin::AtmsController < InheritedResources::Base
+class Admin::AtmsController < Admin::BaseController
   before_filter :setup_vars
   def setup_vars
     @startup_rooms = Room.refs.where(startup: true).map {|r| [r.name, r.id]}

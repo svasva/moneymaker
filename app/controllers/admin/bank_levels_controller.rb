@@ -1,2 +1,2 @@
-class Admin::BankLevelsController < InheritedResources::Base
+class Admin::BankLevelsController < Admin::BaseController
 end

@@ -1,4 +1,4 @@
-class Admin::CashDesksController < InheritedResources::Base
+class Admin::CashDesksController < Admin::BaseController
   respond_to :html, :json
   before_filter :setup_vars
   def setup_vars

@@ -4,6 +4,7 @@ gem 'rails', '3.2.11'
 
 gem 'mongoid', '~> 3.0.0'
 
+gem 'devise'
 gem 'carrierwave-mongoid', :git => "git://github.com/jnicklas/carrierwave-mongoid.git"
 gem 'unicorn'
 gem 'rabl'

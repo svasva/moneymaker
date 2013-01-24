@@ -1,4 +1,4 @@
-class Admin::BranchesController < InheritedResources::Base
+class Admin::BranchesController < Admin::BaseController
   before_filter :set_fields
 
   def set_fields

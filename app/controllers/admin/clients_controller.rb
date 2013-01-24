@@ -1,3 +1,3 @@
-class Admin::ClientsController < InheritedResources::Base
+class Admin::ClientsController < Admin::BaseController
   respond_to :html, :json
 end
