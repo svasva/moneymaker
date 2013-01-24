@@ -3,6 +3,7 @@
     = t("common.#{params[:action]}") + ' ' + t(resource_class.name.pluralize.underscore + '.caption').mb_chars.downcase
     = "# #{resource.id}" unless resource.new_record?
 
+  = f.input :order, as: :integer
   = f.input :name
   = f.input :icon
   = f.input :placement, collection: RoomType::PLACEMENT_OPTIONS

@@ -1,5 +1,6 @@
 class RoomType
   include Mongoid::Document
+  field :order,      type: Integer, default: ->{RoomType.count + 1}
   field :name,       type: String
   field :placement,  type: String
   field :unique,     type: Boolean, default: false
@@ -10,8 +11,9 @@ class RoomType
   has_many :items
 
   mount_uploader :icon, SwfUploader, mount_on: :icon_filename
-  validates_presence_of :name
-  validates_presence_of :placement
+  validates_presence_of :name, :placement, :order
+
+  default_scope asc(:order)
 
   def ref_items
     self.items.refs.map(&:id)
