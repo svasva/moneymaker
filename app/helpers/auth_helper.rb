@@ -5,6 +5,8 @@ module AuthHelper
       case @social
       when 'vkontakte'
         vk_auth
+      when 'mailru'
+        mailru_auth
       else
         raise 'unknown social'
       end
@@ -12,8 +14,8 @@ module AuthHelper
       @user.update_attribute(:last_sign_in, Time.now)
       set_current_user @user
     rescue => e
-      logger.error 'AUTH FAILED: ' + e.message
-      render text: 'auth failed'
+      logger.error 'AUTH FAILED: ' + e.inspect
+      render text: 'AUTH FAILED: ' + e.inspect
     end
   end
 
@@ -26,5 +28,17 @@ module AuthHelper
     if params[:auth_key] != md5
       raise "auth failed, #{params[:auth_key]} != #{md5}"
     end
+  end
+
+  def mailru_auth
+    @social_id = params[:vid]
+    sig = params.delete :sig
+    params.delete :controller
+    params.delete :action
+    req = params.reduce("") {|do mem, item|
+      mem + "#{item.keys.first}=#{items.values.first}"
+    }
+    md5 = Digest::MD5.hexdigest(req)
+    raise "auth failed, #{sig} != #{md5}" if sig != md5
   end
 end
