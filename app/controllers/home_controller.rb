@@ -10,7 +10,7 @@ class HomeController < ApplicationController
       token: @socket_id,
       greeting: @greeting,
       socket_url: SOCKET_URL,
-      social: params[:social],
+      social: @social,
       content_url: CONTENT_URL
     }.map {|k,v| URI.escape "#{k}=#{v}"}.join '&'
     render :index, layout: false
