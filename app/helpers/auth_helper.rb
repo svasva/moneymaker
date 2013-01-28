@@ -35,7 +35,7 @@ module AuthHelper
     sig = params.delete :sig
     params.delete :controller
     params.delete :action
-    req = params.reduce("") {|do mem, item|
+    req = params.reduce("") {|mem, item|
       mem + "#{item.keys.first}=#{items.values.first}"
     }
     md5 = Digest::MD5.hexdigest(req)

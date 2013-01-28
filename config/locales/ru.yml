@@ -35,6 +35,7 @@ ru:
           none: Не размещаемый
     labels:
       defaults:
+        number: Номер
         level: Уровень
         value: Значение
         operations: Банк. операции
@@ -103,6 +104,9 @@ ru:
         income_modifier: Множитель доходности
         crime_probability: Шанс криминала
         encashment_speed: Скорость инкассации (сек)
+      branch_level:
+        profit: Доходность
+        cost: Стоимость
   common:
     sign_out: Выход
     settings: Настройки
@@ -138,6 +142,13 @@ ru:
     number: Уровень
     experience: Опыт
     min_reputation: Мин. репутации
+  branch_levels:
+    caption: Уровень филиала
+    menu_caption: Уровни филиалов
+    number: Номер
+    cost: Цена
+    capacity: Вместимость
+    profit: Доходность
   greetings:
     caption: Приветствие
     menu_caption: Приветствия

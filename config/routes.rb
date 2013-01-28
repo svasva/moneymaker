@@ -23,6 +23,7 @@ Moneymaker::Application.routes.draw do
     resources :quest_characters
     resources :event_handlers
     resources :branches
+    resources :branch_levels
     resources :swfclients do
       member { get :activate }
     end
