@@ -35,10 +35,10 @@ module AuthHelper
     sig = params.delete :sig
     params.delete :controller
     params.delete :action
-    req = params.reduce("") {|mem, item|
-      mem + "#{item.keys.first}=#{items.values.first}"
-    }
-    md5 = Digest::MD5.hexdigest(req)
-    raise "auth failed, #{sig} != #{md5}" if sig != md5
+    params.delete :social
+    req = ""
+    params.sort.each {|k,v| req += "#{k}=#{v}"}
+    md5 = Digest::MD5.hexdigest(req+SOCIAL['mailru']['app_secret'])
+    raise "auth failed, #{sig} != #{md5}; #{req}" if sig != md5
   end
 end
