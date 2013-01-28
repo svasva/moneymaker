@@ -24,6 +24,7 @@ class FlashLib
     if self.active and self.class.active(self.social)
       self.class.update_all social: self.social, active: false
     end
+    return true
   end
 
   def path(local = false)
