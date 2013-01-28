@@ -7,12 +7,10 @@ class FlashLib
   field :social,     type: String
   field :local_path, type: String
 
-  default_scope where(_type: 'FlashLib')
-
   mount_uploader :swf, SwfUploader, mount_on: :swf_filename
   before_save :check_active
 
-  default_scope where(_type: nil).desc(:created_at)
+  default_scope desc(:created_at)
 
   def self.active(social)
     self.where(active: true, social: social).first

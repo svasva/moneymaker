@@ -8,7 +8,7 @@ class Swfclient
   mount_uploader :swf, SwfUploader, mount_on: :swf_filename
   before_save :check_active
 
-  default_scope where(_type: nil).desc(:created_at)
+  default_scope desc(:created_at)
 
   def self.active
     self.where(active: true).first
