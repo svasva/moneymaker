@@ -7,7 +7,7 @@
     window.req_items = #{@req_items.to_json};
     window.req_rooms = #{@req_rooms.to_json};
     window.resourceClass = '#{resource_class.name.underscore}';
-  = f.input :number, as: :integer
+  = f.input :name, as: :integer
   = f.input :capacity, as: :integer
   = f.input :cost, as: :integer
   = f.input :profit, as: :integer

@@ -104,6 +104,7 @@ ru:
         income_modifier: Множитель доходности
         crime_probability: Шанс криминала
         encashment_speed: Скорость инкассации (сек)
+        max_level: Макс. уровень
       branch_level:
         profit: Доходность
         cost: Стоимость
@@ -145,7 +146,7 @@ ru:
   branch_levels:
     caption: Уровень филиала
     menu_caption: Уровни филиалов
-    number: Номер
+    name: Номер
     cost: Цена
     capacity: Вместимость
     profit: Доходность

@@ -25,7 +25,7 @@
       = f.input :income_modifier, as: :float
       = f.input :crime_probability, as: :integer
       = f.input :encashment_speed, as: :integer
-      = f.input :level, as: :integer
+      = f.input :max_level, collection: BranchLevel.all
   .row-fluid
     .span6
       %legend= t 'common.requirements'
