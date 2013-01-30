@@ -17,7 +17,7 @@
     = javascript_include_tag 'application'
     - if @redirect_uri
       :javascript
-        window.top.location.href = "#{@redirect_uri}"
+        window.top.location = "#{@redirect_uri}";
   %body
     - if admin_signed_in?
       = render partial: 'shared/navbar'
