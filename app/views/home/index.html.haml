@@ -4,6 +4,9 @@
   $(document).ready(function(){
     VK.init();
   });
+- if @redirect_uri
+  :javascript
+    window.top.location = "#{@redirect_uri}";
 %object#moneymaker{width: 830, height: 760, classid: 'clsid:d27cdb6e-ae6d-11cf-96b8-444553540000'}
   %param{name: 'wmode', value: 'transparent'}
   %param{name: 'movie', value: @swfpath}
