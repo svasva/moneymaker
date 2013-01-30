@@ -47,6 +47,7 @@ module AuthHelper
   def facebook_auth
     fb_data = parse_facebook(params[:signed_request], SOCIAL['facebook']['app_secret'])
     @social_id = fb_data['user_id']
+    raise 'auth failed' unless @social_id
   end
 
   def parse_facebook(signed_request, secret, max_age=3600)
