@@ -47,7 +47,7 @@ module AuthHelper
   def facebook_auth
     fb_data = parse_facebook(params[:signed_request], SOCIAL['facebook']['app_secret'])
     @social_id = fb_data['user_id']
-    redirect_to "https://www.facebook.com/dialog/oauth?client_id=#{SOCIAL['facebook']['app_id']}&redirect_uri=http://apps.facebook.com/#{SOCIAL['facebook']['app_namespace']}/" unless @social_id
+    @redirect_uri = "https://www.facebook.com/dialog/oauth?client_id=#{SOCIAL['facebook']['app_id']}&redirect_uri=http://apps.facebook.com/#{SOCIAL['facebook']['app_namespace']}/" unless @social_id
   end
 
   def parse_facebook(signed_request, secret, max_age=3600)
