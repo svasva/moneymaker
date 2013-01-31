@@ -9,6 +9,8 @@ module AuthHelper
         mailru_auth
       when 'facebook'
         facebook_auth
+      when 'odnoklassniki'
+        odnoklassniki_auth
       else
         raise 'unknown social'
       end
@@ -41,6 +43,18 @@ module AuthHelper
     req = ""
     params.sort.each {|k,v| req += "#{k}=#{v}"}
     md5 = Digest::MD5.hexdigest(req+SOCIAL['mailru']['app_secret'])
+    raise "auth failed, #{sig} != #{md5}; #{req}" if sig != md5
+  end
+
+  def odnoklassniki_auth
+    @social_id = params[:logged_user_id]
+    sig = params.delete :sig
+    params.delete :controller
+    params.delete :action
+    params.delete :social
+    req = ""
+    params.sort.each {|k,v| req += "#{k}=#{v}"}
+    md5 = Digest::MD5.hexdigest(req+SOCIAL['odnoklassniki']['app_secret'])
     raise "auth failed, #{sig} != #{md5}; #{req}" if sig != md5
   end
 
