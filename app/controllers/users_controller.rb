@@ -82,7 +82,7 @@ class UsersController < ApplicationController
         raise params[:cmd] + ': command unknown'
       end
     rescue => e
-      response = { error: e.inspect }
+      response = { error: e.inspect, stack: caller.join('\n') }
     ensure
       render json: response
     end
