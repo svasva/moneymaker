@@ -130,8 +130,8 @@ class User
           raise 'not enough required items: ' + item_id if own_count < count
         end
       when 'level'
-        if self.level and req.to_i > self.level
-          raise "level requirement not met: #{req} > #{self.level}"
+        if self.level and req.to_i > self.level.number
+          raise "level requirement not met: #{req} > #{self.level.number}"
         end
       when 'reputation'
         if self.reputation and req.to_i > self.reputation
