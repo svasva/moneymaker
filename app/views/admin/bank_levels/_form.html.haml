@@ -1,28 +1,27 @@
-- rname = resource_class.name.pluralize.underscore
 = simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
   %legend
-    = t("common.#{params[:action]}") + ' ' + t(rname + '.caption').mb_chars.downcase
+    = t("common.#{params[:action]}") + ' ' + t(@rpname + '.caption').mb_chars.downcase
     = "# #{resource.id}" unless resource.new_record?
   = f.input :number, as: :integer
   = f.input :experience, as: :integer
   = f.input :min_reputation, as: :integer
   %legend= t 'common.rewards'
   .control-group
-    %label.control-label{for: resource_class.name.underscore+'_rewards_reputation'}= t 'common.reputation'
+    %label.control-label{for: @rname+'_rewards_reputation'}= t 'common.reputation'
     .controls
-      %input{name: resource_class.name.underscore+'[rewards][reputation]', type: 'number', value: resource.rewards['reputation']}
+      %input{name: @rname+'[rewards][reputation]', type: 'number', value: resource.rewards['reputation']}
   .control-group
-    %label.control-label{for: resource_class.name.underscore+'_rewards_experience'}= t 'common.experience'
+    %label.control-label{for: @rname+'_rewards_experience'}= t 'common.experience'
     .controls
-      %input{name: resource_class.name.underscore+'[rewards][experience]', type: 'number', value: resource.rewards['experience']}
+      %input{name: @rname+'[rewards][experience]', type: 'number', value: resource.rewards['experience']}
   .control-group
-    %label.control-label{for: resource_class.name.underscore+'_rewards_coins'}= t 'common.coins'
+    %label.control-label{for: @rname+'_rewards_coins'}= t 'common.coins'
     .controls
-      %input{name: resource_class.name.underscore+'[rewards][coins]', type: 'number', value: resource.rewards['coins']}
+      %input{name: @rname+'[rewards][coins]', type: 'number', value: resource.rewards['coins']}
   .control-group
-    %label.control-label{for: resource_class.name.underscore+'_rewards_money'}= t 'common.money'
+    %label.control-label{for: @rname+'_rewards_money'}= t 'common.money'
     .controls
-      %input{name: resource_class.name.underscore+'[rewards][money]', type: 'number', value: resource.rewards['money']}
+      %input{name: @rname+'[rewards][money]', type: 'number', value: resource.rewards['money']}
   .control-group
     .controls
       %a.btn{href: collection_url}

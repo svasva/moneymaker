@@ -1,10 +1,10 @@
 :javascript
   window.req_items = #{@req_items.to_json};
   window.compl_req_items = #{@compl_req_items.to_json};
-  window.resourceClass = '#{resource_class.name.underscore}';
+  window.resourceClass = '#{@rname}';
 = simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
   %legend
-    = t("common.#{params[:action]}") + ' ' + t(resource_class.name.pluralize.underscore + '.caption').mb_chars.downcase
+    = t("common.#{params[:action]}") + ' ' + t(@rpname + '.caption').mb_chars.downcase
     = "# #{resource.id}" unless resource.new_record?
   .row-fluid
     .span6
@@ -18,17 +18,17 @@
     .span6
       %legend= t 'common.requirements'
       .control-group
-        %label.control-label{for: resource_class.name.underscore+'_requirements_level'}= t 'common.level'
+        %label.control-label{for: @rname+'_requirements_level'}= t 'common.level'
         .controls
-          %input{name: resource_class.name.underscore+'[requirements][level]', type: 'number', value: resource.requirements['level']}
+          %input{name: @rname+'[requirements][level]', type: 'number', value: resource.requirements['level']}
       .control-group
-        %label.control-label{for: resource_class.name.underscore+'_requirements_friends'}= t 'common.friends'
+        %label.control-label{for: @rname+'_requirements_friends'}= t 'common.friends'
         .controls
-          %input{name: resource_class.name.underscore+'[requirements][friends]', type: 'number', value: resource.requirements['friends']}
+          %input{name: @rname+'[requirements][friends]', type: 'number', value: resource.requirements['friends']}
       .control-group
-        %label.control-label{for: resource_class.name.underscore+'_requirements_reputation'}= t 'common.reputation'
+        %label.control-label{for: @rname+'_requirements_reputation'}= t 'common.reputation'
         .controls
-          %input{name: resource_class.name.underscore+'[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
+          %input{name: @rname+'[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
       .itemRequirements
       .removeLink.template
         %a.btn.btn-small.btn-danger
@@ -48,17 +48,17 @@
     .span6
       %legend= t 'quest.complete_requirements'
       .control-group
-        %label.control-label{for: resource_class.name.underscore+'_requirements_level'}= t 'common.level'
+        %label.control-label{for: @rname+'_requirements_level'}= t 'common.level'
         .controls
-          %input{name: resource_class.name.underscore+'[requirements][level]', type: 'number', value: resource.requirements['level']}
+          %input{name: @rname+'[requirements][level]', type: 'number', value: resource.requirements['level']}
       .control-group
-        %label.control-label{for: resource_class.name.underscore+'_requirements_friends'}= t 'common.friends'
+        %label.control-label{for: @rname+'_requirements_friends'}= t 'common.friends'
         .controls
-          %input{name: resource_class.name.underscore+'[requirements][friends]', type: 'number', value: resource.requirements['friends']}
+          %input{name: @rname+'[requirements][friends]', type: 'number', value: resource.requirements['friends']}
       .control-group
-        %label.control-label{for: resource_class.name.underscore+'_requirements_reputation'}= t 'common.reputation'
+        %label.control-label{for: @rname+'_requirements_reputation'}= t 'common.reputation'
         .controls
-          %input{name: resource_class.name.underscore+'[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
+          %input{name: @rname+'[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
       .itemRequirements
       .removeLink.template
         %a.btn.btn-small.btn-danger
