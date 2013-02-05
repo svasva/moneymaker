@@ -60,6 +60,12 @@ class UsersController < ApplicationController
         user = User.find params[:id]
         user.send_client
         response = { success: 'client push initiated' }
+      when 'overdueClient'
+        user = User.find params[:id]
+        client_id, wait_time = args
+        raise 'wrong params' unless clinet_id and wait_time
+        EventHandler.trigger user, :overdue_client, {client: Client.find(client_id), wait_time: wait_time.to_i}
+        response = { success: 'event queued' }
       when 'getShopCatalog'
         shop = {}
         user = User.find(params[:id])

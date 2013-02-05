@@ -47,10 +47,14 @@ class User
 
   has_and_belongs_to_many :friends, class_name: 'User'
   after_update :update_client, :calc_stats, :fire_events
-  after_create :setup_start_location
+  after_create :setup_start_location, :first_login
 
   def capacity
     max_coins
+  end
+
+  def first_login
+    EventHandler.trigger self, :first_login
   end
 
   def nextlevel
@@ -72,6 +76,11 @@ class User
       from, to = changes['experience']
       if level.next and (from..to).include? level.next.experience
         EventHandler.trigger(self, :levelup, {level: level.next})
+      end
+    end
+    if changes.has_key? 'coins'
+      if self.coins >= self.max_coins
+        EventHandler.trigger self, :max_coins
       end
     end
   end
@@ -213,10 +222,20 @@ class User
 
   def send_client
     client = Client.get_random
+    supported = self.supported_operations
+    client.operations.keys.each do |op|
+      unless supported.include? op
+        EventHandler.trigger self, :unsupported_operation, {client: client, operation: op}
+      end
+    end
     send_message({
       requestId: -3,
       response: client.as_json(methods: [:operations_mapped, :swf_url])
     })
+  end
+
+  def supported_operations
+    items.in(_type: ['Atm', 'CashDesk']).map(&:operations).delete('').flatten.uniq
   end
 
   handle_asynchronously :generate_clients, run_at: Proc.new { |i|

@@ -22,6 +22,12 @@ ru:
       event_handler:
         event_type:
           levelup: Новый уровень
+          first_login: Первый вход в игру
+          max_coins: Хранилище заполнено
+          atm_empty: Пустой банкомат
+          cashdesk_full: Касса заполнена
+          unsupported_operation: Неподдерживаемая операция
+          overdue_client: Слишком длинные очереди
       room_type:
         placement:
           any: Любой этаж
@@ -64,6 +70,7 @@ ru:
         event_type: Тип события
         message_title: Заголовок окна
         message_body: Текст
+        tell_friends: Рассказать друзьям
       quest:
         complete_text: Текст по завершению
         parent_id: Родительский квест
@@ -129,6 +136,8 @@ ru:
     experience: Опыт
     rooms: Комнаты
     additional_fields: Дополнительные поля
+    coins: Деньги (игр.)
+    money: Деньги (реал.)
   event_handlers:
     menu_caption: События
     caption: Событие

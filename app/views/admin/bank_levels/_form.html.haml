@@ -1,11 +1,11 @@
+- rname = resource_class.name.pluralize.underscore
 = simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
   %legend
-    = t("common.#{params[:action]}") + ' ' + t(resource_class.name.pluralize.underscore + '.caption').mb_chars.downcase
+    = t("common.#{params[:action]}") + ' ' + t(rname + '.caption').mb_chars.downcase
     = "# #{resource.id}" unless resource.new_record?
-  = f.input :event_type, collection: EventHandler::EVENTS
-  = f.input :message_title
-  = f.input :message_body, as: :text, input_html: {rows: 4}
-  = f.input :tell_friends, as: :boolean
+  = f.input :number, as: :integer
+  = f.input :experience, as: :integer
+  = f.input :min_reputation, as: :integer
   %legend= t 'common.rewards'
   .control-group
     %label.control-label{for: resource_class.name.underscore+'_rewards_reputation'}= t 'common.reputation'

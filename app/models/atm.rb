@@ -48,6 +48,10 @@ class Atm < Item
     event :capacity_reached do
       transition :serving_client => :empty
     end
+
+    after_transition :to => :empty do |i|
+      EventHandler.trigger i.user, :atm_empty, {item: i}
+    end
   end
 
   def enough_cash

@@ -52,6 +52,10 @@ class CashDesk < Item
     event :capacity_reached do
       transition :serving_client => :full
     end
+
+    after_transition :to => :full do |i|
+      EventHandler.trigger i.user, :cashdesk_full, {item: i}
+    end
   end
 
   def not_full
