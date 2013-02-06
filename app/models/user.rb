@@ -235,9 +235,9 @@ class User
   end
 
   def supported_operations
-    items = items.in(_type: ['Atm', 'CashDesk']).map(&:operations).flatten.uniq
-    items.delete ''
-    items
+    itms = items.in(_type: ['Atm', 'CashDesk']).map(&:operations).flatten.uniq
+    itms.delete ''
+    itms
   end
 
   handle_asynchronously :generate_clients, run_at: Proc.new { |i|
