@@ -5,7 +5,7 @@ class CashDesk < Item
 
   field :cash,              type: Integer, default: 0 # current
   field :client_id,         type: String
-  field :current_operation, type: String
+  field :operation_id,      type: String
 
   state_machine initial: :standby do
     event :serve_client do
@@ -17,7 +17,7 @@ class CashDesk < Item
 
       def serve
         client = Client.find client_id
-        client_cash = client.operations[current_operation].to_i
+        client_cash = client.operations[operation_id].to_i
         if (client_cash + cash) > capacity
           self.cash = capacity
         else

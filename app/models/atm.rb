@@ -5,7 +5,7 @@ class Atm < Item
 
   field :cash,              type: Integer
   field :client_id,         type: String
-  field :current_operation, type: String
+  field :operation_id,      type: String
 
   before_create :fill_cash
 
@@ -23,11 +23,12 @@ class Atm < Item
 
       def serve
         client = Client.find client_id
-        client_cash = client.operations[current_operation].to_i
-        self.update_attributes({
-          client_id: nil,
-          operation_id: nil,
-          cash: self.cash - client_cash})
+        client_cash = client.operations[operation_id].to_i
+        self.client_id = nil
+        self.operation_id = nil
+        self.cash -= client_cash
+        self.save
+        puts "ATM SERVED, -#{client_cash}"
         self.cash > 0 ? self.client_served : self.capacity_reached
       end
 
@@ -62,7 +63,7 @@ class Atm < Item
 
   def enough_cash
     client = Client.find client_id
-    cash >= client.operations[current_operation].to_i
+    cash >= client.operations[operation_id].to_i
   end
 
   def time_per_client
