@@ -24,6 +24,7 @@ Moneymaker::Application.routes.draw do
     resources :event_handlers
     resources :branches
     resources :branch_levels
+    resources :contracts
     resources :swfclients do
       member { get :activate }
     end

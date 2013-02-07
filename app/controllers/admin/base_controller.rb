@@ -8,6 +8,6 @@ class Admin::BaseController < InheritedResources::Base
 
   def set_rnames
     @rpname = resource_class.name.pluralize.underscore
-    @rname = resource_class.name.pluralize.underscore
+    @rname = resource_class.name.underscore
   end
 end

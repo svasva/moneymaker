@@ -17,7 +17,7 @@
               = t 'common.content'
               %b.caret
             %ul.dropdown-menu
-              - %w(greetings bank_operations bank_levels atms cash_desks items item_types rooms room_types clients quests quest_characters event_handlers branches branch_levels).each do |controller|
+              - %w(greetings contracts bank_operations bank_levels atms cash_desks items item_types rooms room_types clients quests quest_characters event_handlers branches branch_levels).each do |controller|
                 %li{class: ("active" if params[:controller] == "admin/#{controller}")}
                   %a{href: url_for(controller: controller)}
                     = t "#{controller}.menu_caption"

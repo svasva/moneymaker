@@ -6,10 +6,21 @@
     window.req_items = #{@req_items.to_json};
     window.req_rooms = #{@req_rooms.to_json};
     window.resourceClass = '#{@rname}';
-  = f.input :name
-  = f.input :capacity, as: :integer
-  = f.input :cost, as: :integer
-  = f.input :profit, as: :integer
+  .row-fluid
+    .span6
+      = f.input :name
+      = f.input :desc, as: :text, input_html: {rows: 4}
+      = f.input :execution_time, as: :integer
+      = f.input :is_advert, as: :boolean
+    .span6
+      = f.input :icon
+      - unless resource.new_record?
+        .control-group
+          .controls
+            %a{href: resource.icon_url}= resource.icon_filename
+      = f.input :coins_cost, as: :integer
+      = f.input :money_cost, as: :integer
+      = f.input :sell_cost, as: :integer
   .row-fluid
     .span6
       %legend= t 'common.requirements'

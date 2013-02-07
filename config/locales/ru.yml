@@ -71,6 +71,9 @@ ru:
         message_title: Заголовок окна
         message_body: Текст
         tell_friends: Рассказать друзьям
+      contract:
+        execution_time: Время выполн-я (час.)
+        is_advert: Инвестиция
       quest:
         complete_text: Текст по завершению
         parent_id: Родительский квест
@@ -146,6 +149,12 @@ ru:
   settings:
     caption: Настройка
     menu_caption: Настройки
+  contracts:
+    caption: Контракт
+    menu_caption: Контракты
+    name: Имя
+    coins_cost: Стоимость (игр.)
+    money_cost: Стоимость (реал.)
   bank_levels:
     caption: Уровень банка
     menu_caption: Уровни банка

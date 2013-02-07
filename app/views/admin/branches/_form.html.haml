@@ -1,7 +1,6 @@
-- rname = @rpname
 = simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
   %legend
-    = t("common.#{params[:action]}") + ' ' + t(rname + '.caption').mb_chars.downcase
+    = t("common.#{params[:action]}") + ' ' + t(@rpname + '.caption').mb_chars.downcase
     = "# #{resource.id}" unless resource.new_record?
   :javascript
     window.req_items = #{@req_items.to_json};
