@@ -26,7 +26,12 @@ class CashDesk < Item
         self.client_id = nil
         self.operation_id = nil
         self.save
-        not_full ? self.client_served : self.capacity_reached
+        if not_full
+          self.client_served
+          user.update_attribute :reputation, user.reputation + client.reputation
+        else
+          self.capacity_reached
+        end
       end
 
       handle_asynchronously :serve, run_at: Proc.new { |i|

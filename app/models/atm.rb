@@ -29,6 +29,12 @@ class Atm < Item
         self.cash -= client_cash
         self.save
         puts "ATM SERVED, -#{client_cash}"
+        if self.cash > 0
+          self.client_served
+          user.update_attribute :reputation, user.reputation + client.reputation
+        else
+          self.capacity_reached
+        end
         self.cash > 0 ? self.client_served : self.capacity_reached
       end
 
