@@ -34,14 +34,21 @@ class UsersController < ApplicationController
         user.start_game
         response = { success: 'application started' }
       when 'startClientService'
+        user = User.find params[:id]
         item_id, client_id, operation_id = args
-        raise 'wrong params' unless item_id and client_id and operation_id
-        item = Item.find(item_id)
-        raise "item not ready, state = #{item.state}" unless item.state == 'standby'
-        raise 'wrong client_id' unless Client.find(client_id)
-        item.update_attributes client_id: client_id, operation_id: operation_id
-        item.serve_client
-        response = { success: 'service started' }
+        raise 'wrong item_id' unless item = Item.find(item_id)
+        raise 'wrong client_id' unless client = Client.find(client_id)
+        case item.state
+        when 'empty', 'full'
+          user.update_attribute :reputation, user.reputation - client.reputation
+          response = { no_service: "item is #{item.state}" }
+        when 'standby'
+          item.update_attributes client_id: client_id, operation_id: operation_id
+          item.serve_client
+          response = { success: 'service started' }
+        else
+          raise 'item not ready'
+        end
       when 'placeItem'
         room_id, item_id, x, y, rotation = args
         raise 'wrong params' unless room_id and item_id and x and y and rotation
