@@ -73,7 +73,7 @@ ru:
         tell_friends: Рассказать друзьям
       contract:
         execution_time: Время выполн-я (час.)
-        is_advert: Инвестиция
+        is_advert: Реклама
       quest:
         complete_text: Текст по завершению
         parent_id: Родительский квест
