@@ -3,9 +3,15 @@ class Atm < Item
   field :capacity,          type: Integer, default: 100 # coins
   field :operations,        type: Array,   default: []
 
-  field :cash,              type: Integer, default: ->{self.capacity} # current
+  field :cash,              type: Integer
   field :client_id,         type: String
   field :current_operation, type: String
+
+  before_create :fill_cash
+
+  def fill_cash
+    self.cash = self.capacity
+  end
 
   state_machine initial: :standby do
     event :serve_client do
