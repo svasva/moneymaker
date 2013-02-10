@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       when 'getContent'
         response = GameContent.find(args.first)
       when 'getContracts'
-        response = Contract.refs.as_json({})
+        response = Contract.refs.as_json(methods: [:icon_url])
       when 'buyContent'
         user = User.find(params[:id])
         content_id, currency = args
