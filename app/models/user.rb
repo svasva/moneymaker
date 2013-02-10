@@ -156,12 +156,13 @@ class User
   end
 
   def give_rewards(rewards)
+    logger.error "give_rewards, #{rewards.inspect}"
     return false unless rewards
     return false if rewards.empty?
     rewards.each do |type, rew|
       case type
       when 'items'
-        req.each do |item_id, count|
+        rew.each do |item_id, count|
           item = Item.find(item_id)
           # TODO: error logging
           if item and requirements_met? item.requirements
