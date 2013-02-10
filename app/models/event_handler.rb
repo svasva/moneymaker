@@ -21,11 +21,15 @@ class EventHandler
 
   def self.trigger(user, event, options = {})
     # STUB
+
     case event
     when :levelup
       user.send_message({
         requestId: -1,
-        response: {levelnumber: options[:level].number}
+        response: {
+          levelnumber: options[:level].number,
+          nextlevelexp: options[:level].next.experience
+        }
       })
     end
   end
