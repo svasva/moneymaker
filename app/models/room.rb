@@ -24,7 +24,7 @@ class Room < GameContent
   end
 
   def place_item(useritem, x, y, rotation)
-    raise 'no space for item' unless got_space? useritem, x, y, rotation
+    # raise 'no space for item' unless got_space? useritem, x, y, rotation
     useritem.update_attributes room_id: self.id, x: x, y: y, rotation: rotation
     return useritem
   end
