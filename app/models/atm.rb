@@ -17,6 +17,7 @@ class Atm < Item
     raise 'not enough coins' if user.coins < self.capacity
     user.update_attribute :coins, user.coins - self.capacity
     self.update_attribute :cash, self.capacity
+    self.encashment_done
   end
 
   state_machine initial: :standby do
@@ -65,6 +66,10 @@ class Atm < Item
 
     event :capacity_reached do
       transition :serving_client => :empty
+    end
+
+    event :encashment_done do
+      transition :empty => :standby
     end
 
     after_transition :to => :empty do |i|

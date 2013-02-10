@@ -11,6 +11,7 @@ class CashDesk < Item
     raise 'max_coins reached' if (user.coins + self.cash) > user.max_coins
     user.update_attribute :coins, user.coins + self.cash
     self.update_attribute :cash, 0
+    self.encashment_done
   end
 
   state_machine initial: :standby do
@@ -62,6 +63,10 @@ class CashDesk < Item
 
     event :capacity_reached do
       transition :serving_client => :full
+    end
+
+    event :encashment_done do
+      transition :empty => :standby
     end
 
     after_transition :to => :full do |i|
