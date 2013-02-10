@@ -21,6 +21,7 @@ class Contract
 
   mount_uploader :icon, SwfUploader, mount_on: :icon_filename
 
+  scope :refs, where(user_id: nil)
   before_destroy :destroy_refs
 
   state_machine initial: :standby do

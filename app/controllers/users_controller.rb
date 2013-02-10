@@ -10,6 +10,8 @@ class UsersController < ApplicationController
         response = user.as_json(methods: [:rooms, :items, :levelnumber, :nextlevel, :min_rep, :capacity])
       when 'getContent'
         response = GameContent.find(args.first)
+      when 'getContracts'
+        response = Contract.refs.as_json
       when 'buyContent'
         user = User.find(params[:id])
         content_id, currency = args
