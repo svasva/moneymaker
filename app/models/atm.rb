@@ -13,6 +13,12 @@ class Atm < Item
     self.cash = self.capacity
   end
 
+  def do_encashment
+    raise 'not enough coins' if user.coins < self.capacity
+    user.update_attribute :coins, user.coins - self.capacity
+    self.update_attribute :cash, self.capacity
+  end
+
   state_machine initial: :standby do
     event :serve_client do
       transition :standby => :serving_client
@@ -28,7 +34,6 @@ class Atm < Item
         self.operation_id = nil
         self.cash -= client_cash
         self.save
-        puts "ATM SERVED, -#{client_cash}"
         if self.cash > 0
           self.client_served
           user.update_attribute :reputation, user.reputation + client.reputation

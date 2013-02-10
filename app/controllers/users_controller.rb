@@ -33,6 +33,12 @@ class UsersController < ApplicationController
         user = User.find params[:id]
         user.start_game
         response = { success: 'application started' }
+      when 'itemEncashment'
+        user = User.find params[:id]
+        item_id = args[0]
+        raise 'wrong item_id' unless item = Item.find item_id
+        item.do_encashment
+        response = { success: 'encashment done' }
       when 'startClientService'
         user = User.find params[:id]
         item_id, client_id, operation_id = args
@@ -40,7 +46,10 @@ class UsersController < ApplicationController
         raise 'wrong client_id' unless client = Client.find(client_id)
         case item.state
         when 'empty', 'full'
-          user.update_attribute :reputation, user.reputation - client.reputation
+          # TODO: move this out of controller
+          if user.reputation >= client.reputation
+            user.update_attribute :reputation, user.reputation - client.reputation
+          end
           response = { no_service: "item is #{item.state}" }
         when 'standby'
           item.update_attributes client_id: client_id, operation_id: operation_id

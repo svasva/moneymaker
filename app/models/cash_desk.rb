@@ -7,6 +7,12 @@ class CashDesk < Item
   field :client_id,         type: String
   field :operation_id,      type: String
 
+  def do_encashment
+    raise 'max_coins reached' if (user.coins + self.cash) > user.max_coins
+    user.update_attribute :coins, user.coins + self.cash
+    self.update_attribute :cash, 0
+  end
+
   state_machine initial: :standby do
     event :serve_client do
       transition :standby => :serving_client
