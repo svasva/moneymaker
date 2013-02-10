@@ -66,7 +66,7 @@ class CashDesk < Item
     end
 
     event :encashment_done do
-      transition :empty => :standby
+      transition :full => :standby
     end
 
     after_transition :to => :full do |i|
