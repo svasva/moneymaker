@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       when 'itemEncashment'
         user = User.find params[:id]
         item_id = args[0]
-        raise 'wrong item_id' unless item = Item.find item_id
+        raise 'wrong item_id' unless item = Item.find(item_id)
         item.do_encashment
         response = { success: 'encashment done' }
       when 'startClientService'
