@@ -10,6 +10,10 @@ class BankLevel
 
   default_scope asc(:number)
 
+  def self.for_exp(exp)
+    BankLevel.where(:experience.lte => exp).last
+  end
+
   def next
     BankLevel.where(number: self.number + 1).first
   end

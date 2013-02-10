@@ -74,8 +74,9 @@ class User
     # level up event
     if changes.has_key? 'experience'
       from, to = changes['experience']
-      if level.next and (from..to).include? level.next.experience
-        EventHandler.trigger(self, :levelup, {level: level.next})
+      if BankLevel.for_exp(from).number != BankLevel.for_exp(to).number
+      # if level and level.next and (from..to).include? level.next.experience
+        EventHandler.trigger(self, :levelup, {level: level})
       end
     end
     if changes.has_key? 'coins'
@@ -115,7 +116,7 @@ class User
   end
 
   def level
-    BankLevel.where(:experience.lte => self.experience).last
+    BankLevel.for_exp(self.experience)
   end
 
   def levelnumber
@@ -156,7 +157,6 @@ class User
   end
 
   def give_rewards(rewards)
-    logger.error "give_rewards, #{rewards.inspect}"
     return false unless rewards
     return false if rewards.empty?
     rewards.each do |type, rew|
@@ -192,7 +192,6 @@ class User
     usercontent = content.add_to_user self.id
     self[currency] -= content_cost
     self.give_rewards content.rewards
-    self.save
     return usercontent
   end
 

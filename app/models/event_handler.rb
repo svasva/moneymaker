@@ -25,7 +25,7 @@ class EventHandler
     when :levelup
       user.send_message({
         requestId: -1,
-        response: {levelnumber: options.level.number}
+        response: {levelnumber: options[:level].number}
       })
     end
   end
