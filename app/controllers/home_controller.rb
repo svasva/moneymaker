@@ -12,7 +12,7 @@ class HomeController < ApplicationController
       socket_url: SOCKET_URL,
       social: @social,
       content_url: CONTENT_URL
-    }.map {|k,v| URI.escape "#{k}=#{v}"}.join '&'
+    }.merge(params).map {|k,v| URI.escape "#{k}=#{v}"}.join '&'
     render :index, layout: false
   end
 end
