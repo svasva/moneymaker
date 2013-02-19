@@ -60,6 +60,12 @@ class UsersController < ApplicationController
         else
           raise 'item not ready'
         end
+      when 'placeRoom'
+        room_id, x, y, rotation = args
+        user = User.find params[:id]
+        room = user.rooms.find room_id
+        room.update_attributes x: x.to_i, y: y.to_i, rotation: rotation.to_i
+        response = { success: 'room placement done' }
       when 'placeItem'
         room_id, item_id, x, y, rotation = args
         raise 'wrong params' unless room_id and item_id and x and y and rotation
