@@ -52,7 +52,7 @@ class UsersController < ApplicationController
           if user.reputation >= client.reputation
             user.update_attribute :reputation, user.reputation - client.reputation
           end
-          response = { no_service: "item is #{item.state}" }
+          response = { no_service: "item is #{item.state}", item_id: item_id }
         when 'standby'
           item.update_attributes client_id: client_id, operation_id: operation_id
           item.serve_client
