@@ -56,7 +56,7 @@ class UsersController < ApplicationController
         when 'standby'
           item.update_attributes client_id: client_id, operation_id: operation_id
           item.serve_client
-          response = { success: 'service started' }
+          response = { success: 'service started', item_id: item_id }
         else
           raise 'item not ready'
         end
