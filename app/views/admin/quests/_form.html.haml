@@ -1,7 +1,8 @@
 :javascript
-  window.req_items = #{@req_items.to_json};
-  window.compl_req_items = #{@compl_req_items.to_json};
-  window.resourceClass = '#{@rname}';
+  req_items = #{@req_items.to_json};
+  compl_req_rooms = #{@req_rooms.to_json};
+  compl_req_items = #{@compl_req_items.to_json};
+  resourceClass = '#{@rname}';
 = simple_form_for [:admin, resource], html: {class: 'form-horizontal'} do |f|
   %legend
     = t("common.#{params[:action]}") + ' ' + t(@rpname + '.caption').mb_chars.downcase
@@ -46,34 +47,42 @@
             - Item.refs.each do |item|
               %option{value: item.id}= item.name
     .span6
-      %legend= t 'quest.complete_requirements'
+      %legend= t 'quests.complete_requirements'
       .control-group
-        %label.control-label{for: @rname+'_requirements_level'}= t 'common.level'
+        %label.control-label{for: @rname+'_complete_requirements_coins'}= t 'common.coins'
         .controls
-          %input{name: @rname+'[requirements][level]', type: 'number', value: resource.requirements['level']}
+          %input{name: @rname+'[complete_requirements][coins]', type: 'number', value: resource.complete_requirements['coins']}
       .control-group
-        %label.control-label{for: @rname+'_requirements_friends'}= t 'common.friends'
+        %label.control-label{for: @rname+'_complete_requirements_money'}= t 'common.money'
         .controls
-          %input{name: @rname+'[requirements][friends]', type: 'number', value: resource.requirements['friends']}
+          %input{name: @rname+'[complete_requirements][money]', type: 'number', value: resource.complete_requirements['money']}
       .control-group
-        %label.control-label{for: @rname+'_requirements_reputation'}= t 'common.reputation'
+        %label.control-label{for: @rname+'_complete_requirements_level'}= t 'common.level'
         .controls
-          %input{name: @rname+'[requirements][reputation]', type: 'number', value: resource.requirements['reputation']}
-      .itemRequirements
-      .removeLink.template
-        %a.btn.btn-small.btn-danger
-          %i.icon-trash.icon-white
-      .itemRequirement.template
-        .control-group
-          %label.control-label label
-          .controls
-            %input{type: 'number', value: 1}
+          %input{name: @rname+'[complete_requirements][level]', type: 'number', value: resource.complete_requirements['level']}
+      .control-group
+        %label.control-label{for: @rname+'_complete_requirements_friends'}= t 'common.friends'
+        .controls
+          %input{name: @rname+'[complete_requirements][friends]', type: 'number', value: resource.complete_requirements['friends']}
+      .control-group
+        %label.control-label{for: @rname+'_complete_requirements_reputation'}= t 'common.reputation'
+        .controls
+          %input{name: @rname+'[complete_requirements][reputation]', type: 'number', value: resource.complete_requirements['reputation']}
+      .itemComplRequirements
       .control-group
         %label.control-label= t 'common.items'
         .controls
-          %select#requireItem
+          %select#requireComplItem
             %option
             - Item.refs.each do |item|
+              %option{value: item.id}= item.name
+      .roomComplRequirements
+      .control-group
+        %label.control-label= t 'common.rooms'
+        .controls
+          %select#requireComplRoom
+            %option
+            - Room.refs.each do |item|
               %option{value: item.id}= item.name
 
   .control-group

@@ -7,6 +7,12 @@ class Admin::QuestsController < Admin::BaseController
   end
 
   def edit
+    resource.complete_requirements['rooms'] ||= {}
+    @req_rooms = resource.complete_requirements['rooms'].map do |item_id, count|
+      { id: item_id,
+        name: Room.find(item_id).name,
+        count: count }
+    end
     resource.requirements['items'] ||= {}
     @req_items = resource.requirements['items'].map do |item_id, count|
       { id: item_id,

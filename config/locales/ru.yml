@@ -3,6 +3,7 @@ ru:
     failure:
       admin:
         unauthenticated: Доступ запрещен
+        invalid: Неверный логин или пароль
     sessions:
       admin:
         signed_in: Вы вошли в систему
