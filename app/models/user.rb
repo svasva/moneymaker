@@ -139,6 +139,11 @@ class User
           own_count = self.items.where(reference_id: item_id).count
           raise 'not enough required items: ' + item_id if own_count < count.to_i
         end
+      when 'rooms'
+        req.each do |room_id, count|
+          own_count = self.rooms.where(reference_id: room_id).count
+          raise 'not enough required rooms: ' + room_id if own_count < count.to_i
+        end
       when 'level'
         if self.level and req.to_i > self.level.number
           raise "level requirement not met: #{req} > #{self.level.number}"

@@ -16,4 +16,18 @@ class Quest
   mount_uploader :icon, SwfUploader, as: :icon_filename
 
   validates_presence_of :name, :desc, :complete_text, :quest_character_id
+
+  def complete_for(user)
+    raise 'quest is not accepted' unless user.accepted_quests.include? self.id
+    user.requirements_met? self.complete_requirements
+    user.completed_quests << self.id
+    user.accepted_quests.delete self.id
+    user.save
+  end
+
+  def accept_for(user)
+    user.requirements_met? self.requirements
+    user.accepted_quests << self.id
+    user.save
+  end
 end
