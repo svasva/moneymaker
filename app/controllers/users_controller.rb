@@ -42,8 +42,6 @@ class UsersController < ApplicationController
         response = { success: 'quest complete' }
       when 'getContracts'
         response = Contract.all
-      when 'getAvailableContracts'
-        response = Contract.available_for(user).map &:id
       when 'buyContract'
         Contract.find(args.first).start_for user
         response = { success: 'contract started' }

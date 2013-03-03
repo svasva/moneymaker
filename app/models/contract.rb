@@ -45,11 +45,6 @@ class Contract
     self.destroy
   end
 
-  def available_for(user)
-    running_contracts = user.running_contracts.map &:id
-    self.class.nin(_id: running_contracts)
-  end
-
   def start_for(user)
     raise 'already running' if user.running_contracts.map(&:id).include? self.id
     user.requirements_met? self.requirements
