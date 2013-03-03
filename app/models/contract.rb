@@ -14,7 +14,7 @@ class Contract
   field :sell_cost,       type: Integer
   field :requirements,    type: Hash,    default: {items: {}, rooms: {}}
   field :rewards,         type: Hash,    default: {}
-  field :execution_time,  type: Integer
+  field :execution_time,  type: Integer # hours
   field :is_advert,       type: Boolean
 
   validates_presence_of :name, :execution_time
@@ -23,38 +23,6 @@ class Contract
 
   scope :refs, where(user_id: nil)
   before_destroy :destroy_refs
-
-  state_machine initial: :standby do
-    event :start_contract do
-      transition :standby => :working
-    end
-
-    state :working do
-      def run
-        self.user.give_rewards self.rewards
-        self.finish
-      end
-
-      handle_asynchronously :run, run_at: Proc.new { |i|
-        i.execution_time.hours.from_now
-      }
-    end
-
-    after_transition :to => :working do |i|
-      i.run
-    end
-
-    event :finish do
-      transition :working => :done
-    end
-
-    after_transition :to => :done do |i|
-      i.user.send_message({
-        requestId: -5, # item expired
-        response: { id: i.id, message: 'contract done' }
-      })
-    end
-  end
 
   def destroy_refs
     self.references.destroy
@@ -76,4 +44,31 @@ class Contract
     end
     self.destroy
   end
+
+  def available_for(user)
+    running_contracts = user.running_contracts.map &:id
+    self.class.nin(_id: running_contracts)
+  end
+
+  def start_for(user)
+    raise 'already running' if user.running_contracts.map(&:id).include? self.id
+    user.requirements_met? self.requirements
+    user.running_contracts << { id: self.id, ending_at: end_time }
+    user.save
+    self.process_for(user)
+  end
+
+  def end_time
+    self.execution_time.hours.from_now
+  end
+
+  def process_for(user)
+    running_contracts = user.running_contracts.map &:id
+    raise 'contract was not running' unless running_contracts.include? self.id
+    user.running_contracts.delete_if {|rc| rc['id'] == self.id or rc[:id] == self.id}
+    user.give_rewards self.rewards
+    user.save
+  end
+
+  handle_asynchronously :process, run_at: Proc.new { |i| i.end_time }
 end

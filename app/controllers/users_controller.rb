@@ -40,6 +40,13 @@ class UsersController < ApplicationController
       when 'completeQuest'
         Quest.find(quest_id).complete_for(user)
         response = { success: 'quest complete' }
+      when 'getContracts'
+        response = Contract.all
+      when 'getAvailableContracts'
+        response = Contract.available_for(user).map &:id
+      when 'buyContract'
+        Contract.find(args.first).start_for user
+        response = { success: 'contract started' }
       when 'startApplication'
         user.start_game
         response = { success: 'application started' }
