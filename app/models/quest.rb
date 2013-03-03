@@ -22,6 +22,7 @@ class Quest
     user.requirements_met? self.complete_requirements
     user.completed_quests << self.id
     user.accepted_quests.delete self.id
+    user.give_rewards self.rewards
     user.save
   end
 
