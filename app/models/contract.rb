@@ -65,5 +65,5 @@ class Contract
     user.save
   end
 
-  handle_asynchronously :process, run_at: Proc.new { |i| i.end_time }
+  handle_asynchronously :process_for, run_at: Proc.new { |i| i.end_time }
 end
