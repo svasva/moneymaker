@@ -31,4 +31,12 @@ class Quest
     user.accepted_quests << self.id
     user.save
   end
+
+  def character_swf
+    self.quest_character.swf_url
+  end
+
+  def character_icon
+    self.quest_character.icon_url
+  end
 end

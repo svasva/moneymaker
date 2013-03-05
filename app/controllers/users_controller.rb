@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       when 'getRooms'
         response = Room.refs.as_json(methods: [:swf_url, :icon_url])
       when 'getQuests'
-        response = Quest.all
+        response = Quest.all.as_json(methods: [:character_swf, :character_icon])
       when 'getAvailableQuests'
         response = user.available_quests.map &:id
       when 'acceptQuest'
