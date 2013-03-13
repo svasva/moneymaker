@@ -38,7 +38,7 @@ class UsersController < ApplicationController
         Quest.find(args.first).accept_for(user)
         response = { success: 'quest accepted' }
       when 'completeQuest'
-        Quest.find(quest_id).complete_for(user)
+        Quest.find(args.first).complete_for(user)
         response = { success: 'quest complete' }
       when 'getContracts'
         response = Contract.all
