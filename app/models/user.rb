@@ -33,6 +33,7 @@ class User
 
   field :accepted_quests,  type: Array, default: []
   field :completed_quests, type: Array, default: []
+  field :running_contracts,type: Array, default: []
 
   scope :online, where(online: true)
 
